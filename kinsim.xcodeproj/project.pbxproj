@@ -1,0 +1,479 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A719388D1831719F009EFD11 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A719388C1831719F009EFD11 /* Cocoa.framework */; };
+		A71938971831719F009EFD11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A71938951831719F009EFD11 /* InfoPlist.strings */; };
+		A71938991831719F009EFD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A71938981831719F009EFD11 /* main.m */; };
+		A719389D1831719F009EFD11 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A719389B1831719F009EFD11 /* Credits.rtf */; };
+		A71938A01831719F009EFD11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A719389F1831719F009EFD11 /* AppDelegate.m */; };
+		A71938A31831719F009EFD11 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A71938A11831719F009EFD11 /* MainMenu.xib */; };
+		A71938A51831719F009EFD11 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A71938A41831719F009EFD11 /* Images.xcassets */; };
+		A71938AC1831719F009EFD11 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71938AB1831719F009EFD11 /* XCTest.framework */; };
+		A71938AD1831719F009EFD11 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A719388C1831719F009EFD11 /* Cocoa.framework */; };
+		A71938B5183171A0009EFD11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A71938B3183171A0009EFD11 /* InfoPlist.strings */; };
+		A71938B7183171A0009EFD11 /* kinsimTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A71938B6183171A0009EFD11 /* kinsimTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A71938AE1831719F009EFD11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A71938811831719F009EFD11 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A71938881831719F009EFD11;
+			remoteInfo = kinsim;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A71938891831719F009EFD11 /* kinsim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kinsim.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A719388C1831719F009EFD11 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		A719388F1831719F009EFD11 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		A71938901831719F009EFD11 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A71938911831719F009EFD11 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A71938941831719F009EFD11 /* kinsim-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "kinsim-Info.plist"; sourceTree = "<group>"; };
+		A71938961831719F009EFD11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A71938981831719F009EFD11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A719389A1831719F009EFD11 /* kinsim-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "kinsim-Prefix.pch"; sourceTree = "<group>"; };
+		A719389C1831719F009EFD11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		A719389E1831719F009EFD11 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A719389F1831719F009EFD11 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A71938A21831719F009EFD11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		A71938A41831719F009EFD11 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A71938AA1831719F009EFD11 /* kinsimTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kinsimTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A71938AB1831719F009EFD11 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		A71938B21831719F009EFD11 /* kinsimTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "kinsimTests-Info.plist"; sourceTree = "<group>"; };
+		A71938B4183171A0009EFD11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A71938B6183171A0009EFD11 /* kinsimTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kinsimTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A71938861831719F009EFD11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A719388D1831719F009EFD11 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A71938A71831719F009EFD11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A71938AD1831719F009EFD11 /* Cocoa.framework in Frameworks */,
+				A71938AC1831719F009EFD11 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A71938801831719F009EFD11 = {
+			isa = PBXGroup;
+			children = (
+				A71938921831719F009EFD11 /* kinsim */,
+				A71938B01831719F009EFD11 /* kinsimTests */,
+				A719388B1831719F009EFD11 /* Frameworks */,
+				A719388A1831719F009EFD11 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A719388A1831719F009EFD11 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A71938891831719F009EFD11 /* kinsim.app */,
+				A71938AA1831719F009EFD11 /* kinsimTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A719388B1831719F009EFD11 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A719388C1831719F009EFD11 /* Cocoa.framework */,
+				A71938AB1831719F009EFD11 /* XCTest.framework */,
+				A719388E1831719F009EFD11 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A719388E1831719F009EFD11 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A719388F1831719F009EFD11 /* AppKit.framework */,
+				A71938901831719F009EFD11 /* CoreData.framework */,
+				A71938911831719F009EFD11 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		A71938921831719F009EFD11 /* kinsim */ = {
+			isa = PBXGroup;
+			children = (
+				A719389E1831719F009EFD11 /* AppDelegate.h */,
+				A719389F1831719F009EFD11 /* AppDelegate.m */,
+				A71938A11831719F009EFD11 /* MainMenu.xib */,
+				A71938A41831719F009EFD11 /* Images.xcassets */,
+				A71938931831719F009EFD11 /* Supporting Files */,
+			);
+			path = kinsim;
+			sourceTree = "<group>";
+		};
+		A71938931831719F009EFD11 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A71938941831719F009EFD11 /* kinsim-Info.plist */,
+				A71938951831719F009EFD11 /* InfoPlist.strings */,
+				A71938981831719F009EFD11 /* main.m */,
+				A719389A1831719F009EFD11 /* kinsim-Prefix.pch */,
+				A719389B1831719F009EFD11 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A71938B01831719F009EFD11 /* kinsimTests */ = {
+			isa = PBXGroup;
+			children = (
+				A71938B6183171A0009EFD11 /* kinsimTests.m */,
+				A71938B11831719F009EFD11 /* Supporting Files */,
+			);
+			path = kinsimTests;
+			sourceTree = "<group>";
+		};
+		A71938B11831719F009EFD11 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A71938B21831719F009EFD11 /* kinsimTests-Info.plist */,
+				A71938B3183171A0009EFD11 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A71938881831719F009EFD11 /* kinsim */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A71938BA183171A0009EFD11 /* Build configuration list for PBXNativeTarget "kinsim" */;
+			buildPhases = (
+				A71938851831719F009EFD11 /* Sources */,
+				A71938861831719F009EFD11 /* Frameworks */,
+				A71938871831719F009EFD11 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = kinsim;
+			productName = kinsim;
+			productReference = A71938891831719F009EFD11 /* kinsim.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A71938A91831719F009EFD11 /* kinsimTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A71938BD183171A0009EFD11 /* Build configuration list for PBXNativeTarget "kinsimTests" */;
+			buildPhases = (
+				A71938A61831719F009EFD11 /* Sources */,
+				A71938A71831719F009EFD11 /* Frameworks */,
+				A71938A81831719F009EFD11 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A71938AF1831719F009EFD11 /* PBXTargetDependency */,
+			);
+			name = kinsimTests;
+			productName = kinsimTests;
+			productReference = A71938AA1831719F009EFD11 /* kinsimTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A71938811831719F009EFD11 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Rene;
+				TargetAttributes = {
+					A71938A91831719F009EFD11 = {
+						TestTargetID = A71938881831719F009EFD11;
+					};
+				};
+			};
+			buildConfigurationList = A71938841831719F009EFD11 /* Build configuration list for PBXProject "kinsim" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A71938801831719F009EFD11;
+			productRefGroup = A719388A1831719F009EFD11 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A71938881831719F009EFD11 /* kinsim */,
+				A71938A91831719F009EFD11 /* kinsimTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A71938871831719F009EFD11 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A71938971831719F009EFD11 /* InfoPlist.strings in Resources */,
+				A71938A51831719F009EFD11 /* Images.xcassets in Resources */,
+				A719389D1831719F009EFD11 /* Credits.rtf in Resources */,
+				A71938A31831719F009EFD11 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A71938A81831719F009EFD11 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A71938B5183171A0009EFD11 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A71938851831719F009EFD11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A71938A01831719F009EFD11 /* AppDelegate.m in Sources */,
+				A71938991831719F009EFD11 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A71938A61831719F009EFD11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A71938B7183171A0009EFD11 /* kinsimTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A71938AF1831719F009EFD11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A71938881831719F009EFD11 /* kinsim */;
+			targetProxy = A71938AE1831719F009EFD11 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A71938951831719F009EFD11 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A71938961831719F009EFD11 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A719389B1831719F009EFD11 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A719389C1831719F009EFD11 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		A71938A11831719F009EFD11 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A71938A21831719F009EFD11 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		A71938B3183171A0009EFD11 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A71938B4183171A0009EFD11 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A71938B8183171A0009EFD11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A71938B9183171A0009EFD11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A71938BB183171A0009EFD11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "kinsim/kinsim-Prefix.pch";
+				INFOPLIST_FILE = "kinsim/kinsim-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A71938BC183171A0009EFD11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "kinsim/kinsim-Prefix.pch";
+				INFOPLIST_FILE = "kinsim/kinsim-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		A71938BE183171A0009EFD11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/kinsim.app/Contents/MacOS/kinsim";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "kinsim/kinsim-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "kinsimTests/kinsimTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		A71938BF183171A0009EFD11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/kinsim.app/Contents/MacOS/kinsim";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "kinsim/kinsim-Prefix.pch";
+				INFOPLIST_FILE = "kinsimTests/kinsimTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A71938841831719F009EFD11 /* Build configuration list for PBXProject "kinsim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A71938B8183171A0009EFD11 /* Debug */,
+				A71938B9183171A0009EFD11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A71938BA183171A0009EFD11 /* Build configuration list for PBXNativeTarget "kinsim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A71938BB183171A0009EFD11 /* Debug */,
+				A71938BC183171A0009EFD11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A71938BD183171A0009EFD11 /* Build configuration list for PBXNativeTarget "kinsimTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A71938BE183171A0009EFD11 /* Debug */,
+				A71938BF183171A0009EFD11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A71938811831719F009EFD11 /* Project object */;
+}
