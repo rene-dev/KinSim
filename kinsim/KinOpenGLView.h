@@ -51,5 +51,8 @@ typedef struct {
     
     //frame timer
     NSTimer* timer;
+    
+    NSPoint drag;
+    NSPoint cam;
 }
 @end

@@ -79,7 +79,14 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
+    drag = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+}
 
+- (void)mouseDragged:(NSEvent *)theEvent
+{
+    NSPoint location = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    cam.x = drag.x+location.x;
+    cam.y = drag.y-location.y;
 }
 
 - (void)scrollWheel:(NSEvent *)theEvent
@@ -137,6 +144,13 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
 {
     GLfloat j1,j2,j3;
     
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslatef(0, -1, -5);
+    glRotatef(cam.y, 1, 0, 0);
+    glRotatef(cam.x, 0, 1, 0);
+    glRotatef(0, 0, 0, 1);
+    
     // Set every pixel in the frame buffer to the current clear color.
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
@@ -173,6 +187,11 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     glColor3f(0, 0, 1); glVertex3f(0, 0, 0); glVertex3f(0, 0, 1);
     glEnd();
     
+    //zu fahrender path
+    glBegin(GL_LINES);
+    glColor3f(0, 1, 1); glVertex3f(0, 0, 0); glVertex3f(1, 0, 0);
+    glEnd();
+    
     // Flush drawing command buffer to make drawing happen as soon as possible.
     glFlush();
 }
@@ -181,15 +200,10 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
 - (void) prepareOpenGL
 {
     [self resetCamera];
+    cam.x = 0;
+    cam.y = 0;
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
-
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    glTranslatef(0, -1, -5);
-    glRotatef(20, 1, 0, 0);
-    glRotatef(0, 0, 1, 0);
-    glRotatef(0, 0, 0, 1);
     
     p = interpol();
     [pos setMaxValue:p.length-1];
