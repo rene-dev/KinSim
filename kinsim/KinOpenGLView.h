@@ -36,6 +36,7 @@ typedef struct {
     IBOutlet NSSlider* joint6;
     IBOutlet NSSlider* pos;
     
+    struct path* AB;
     struct outpath p;
     
     // camera handling

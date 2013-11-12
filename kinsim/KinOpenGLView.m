@@ -163,10 +163,11 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     }
     glEnd();
     
-    j1 = 90-[joint1 floatValue]+p.jointpos1[(int)[pos floatValue]];
+    j1 = [joint1 floatValue]+p.jointpos1[(int)[pos floatValue]];
     j2 = [joint2 floatValue]+p.jointpos2[(int)[pos floatValue]];
     j3 = [joint3 floatValue]+p.jointpos3[(int)[pos floatValue]];
     
+    j1 = - j1 - 90;
     j2 = j2 - 45;
     j3 = j3 - j2 - 45;
     
@@ -192,23 +193,20 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     
     //zu fahrender path
     glBegin(GL_LINES);
-    glColor3f(0, 1, 1); glVertex3f(0, 0, 0); glVertex3f(1, 0, 0);
+    glColor3f(1, 1, 0);
+    struct path* tmp = AB;
+    while(tmp){
+        glVertex3f(tmp->pos.axis_pos[0] / 100, tmp->pos.axis_pos[2] / 100, tmp->pos.axis_pos[1] / 100);
+        tmp = tmp->next;
+    }
     glEnd();
     
     // Flush drawing command buffer to make drawing happen as soon as possible.
     glFlush();
 }
 
-
-- (void) prepareOpenGL
-{
-    [self resetCamera];
-    cam.x = 0;
-    cam.y = 0;
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
-    
-    
+- (void) initPath{
+    AB = (struct path *)malloc(sizeof(struct path));
     struct vec A;
 	A.axis_pos[0] = 100;
 	A.axis_pos[1] = 0;
@@ -239,8 +237,6 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
 	F.axis_pos[1] = 0;
 	F.axis_pos[2] = 100;
 	
-    struct path* AB = (struct path *)malloc(sizeof(struct path));
-	struct path* AB_head;
 	AB->next = 0;
 	AB->prev = 0;
 	AB->pos = A;
@@ -250,6 +246,17 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
 	append(AB, A);
     append(AB, E);
     append(AB, F);
+}
+
+- (void) prepareOpenGL
+{
+    [self resetCamera];
+    cam.x = 0;
+    cam.y = 0;
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    
+    [self initPath];
     
     p = interpol(AB);
     
