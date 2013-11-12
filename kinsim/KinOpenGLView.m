@@ -164,8 +164,11 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     glEnd();
     
     j1 = 90-[joint1 floatValue]+p.jointpos1[(int)[pos floatValue]];
-    j2 = [joint2 floatValue]-45+p.jointpos2[(int)[pos floatValue]];
-    j3 = [joint3 floatValue]-45+p.jointpos3[(int)[pos floatValue]];
+    j2 = [joint2 floatValue]+p.jointpos2[(int)[pos floatValue]];
+    j3 = [joint3 floatValue]+p.jointpos3[(int)[pos floatValue]];
+    
+    j2 = j2 - 45;
+    j3 = j3 - j2 - 45;
     
     glPushMatrix();
     glRotatef(j1, 0, 1, 0);
@@ -176,7 +179,7 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     wireBox(0.5, 1.9, 0.5);
     
     glTranslatef(0, 1.9, 0);
-    glRotatef(j3-j2, 1, 0, 0);
+    glRotatef(j3, 1, 0, 0);
     wireBox(0.5, 1.9, 0.5);
     glPopMatrix();
     
