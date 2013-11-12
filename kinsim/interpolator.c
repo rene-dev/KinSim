@@ -3,20 +3,6 @@
 #include <stdlib.h>
 #include "interpolator.h"
 
-#define axis 3
-#define joints 3
-
-struct vec{
-	double axis_pos[axis];
-	double joint_pos[joints];
-};
-
-struct path{
-	struct vec pos;
-	struct path* next;
-	struct path* prev;
-};
-
 struct max_joint_steps{
 	double step[joints];
 };
@@ -151,6 +137,16 @@ void insert(struct path* A, struct vec B){
 	}
 }
 
+void append(struct path* A, struct vec B){
+    while(A->next){
+        A = A->next;
+    }
+	A->next = (struct path *)malloc(sizeof(struct path));
+	A->next->pos = B;
+    A->next->next = 0;
+	A->next->prev = A;
+}
+
 int check_joint_steps(struct vec A, struct vec B, struct max_joint_steps max_j_s){
 	for(int i = 0; i < joints; i++){
 		if(fabs(A.joint_pos[i] - B.joint_pos[i]) > max_j_s.step[i]){
@@ -217,11 +213,9 @@ int no_jump(struct path* AB){
 	return(0);
 }
 
-struct outpath interpol(){
+struct outpath interpol(struct path* AB){
     struct outpath p;
-    
-	FILE *file;
-	//file = fopen("intp.txt","w+");
+	struct path* head = AB;
 
 	struct max_joint_steps max_j_s; // min axis res
 	max_j_s.step[0] = 1 / 180 * 3.141526; // 0.1 deg res -> rad
@@ -233,7 +227,8 @@ struct outpath interpol(){
 	min_a_s.step[1] = 1; // 0.1 mm res
 	min_a_s.step[2] = 1; // 0.1 mm res
 
-	struct vec A;
+    /*
+    struct vec A;
 	A.axis_pos[0] = 100;
 	A.axis_pos[1] = 0;
 	A.axis_pos[2] = 0;
@@ -243,27 +238,51 @@ struct outpath interpol(){
 	B.axis_pos[1] = 0;
 	B.axis_pos[2] = 0;
 
+    struct vec C;
+	C.axis_pos[0] = 200;
+	C.axis_pos[1] = 100;
+	C.axis_pos[2] = 0;
 
-	struct path* AB = (struct path *)malloc(sizeof(struct path));
+    struct vec D;
+	D.axis_pos[0] = 100;
+	D.axis_pos[1] = 100;
+	D.axis_pos[2] = 0;
+    
+    struct vec E;
+	E.axis_pos[0] = 100;
+	E.axis_pos[1] = 0;
+	E.axis_pos[2] = 100;
+    
+    struct vec F;
+	F.axis_pos[0] = 200;
+	F.axis_pos[1] = 0;
+	F.axis_pos[2] = 100;
+	
+    struct path* AB = (struct path *)malloc(sizeof(struct path));
 	struct path* AB_head;
-	struct path* head = AB;
 	AB->next = 0;
 	AB->prev = 0;
 	AB->pos = A;
-	insert(AB, B);
+    append(AB, B);
+	append(AB, C);
+	append(AB, D);
+	append(AB, A);
+    append(AB, E);
+    append(AB, F);
+    */
 
 
 	//insert(AB, A);
     intp(AB, max_j_s, min_a_s);
     
 	int i = 0;
-	AB_head = AB;
+	head = AB;
 	while(AB){
 		i++;
 		AB = AB->next;
 	}
     p.length = i;
-	AB = AB_head;
+	AB = head;
 
 	double *joint_pos_0 = (double *) malloc(sizeof(double) * i);
 	double *joint_pos_1 = (double *) malloc(sizeof(double) * i);
