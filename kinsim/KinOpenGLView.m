@@ -182,6 +182,11 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     glTranslatef(0, 1.9, 0);
     glRotatef(j3, 1, 0, 0);
     wireBox(0.5, 1.9, 0.5);
+    
+    glTranslatef(0, 1.9, 0);
+    glRotatef([joint4 floatValue], 1, 0, 0);
+    glRotatef([joint5 floatValue]+90, 0, 1, 0);
+    wireBox(0.1, 1.15, 0.7);
     glPopMatrix();
     
     // Draw a red x-axis, a green y-axis, and a blue z-axis.
