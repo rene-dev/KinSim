@@ -268,8 +268,6 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     [speed setContinuous:YES];
     frame = 0;
 
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
     glEnable(GL_LINE_SMOOTH);
 
     [self initPath];
