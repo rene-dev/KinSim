@@ -708,7 +708,7 @@
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nzR-w6-DFO">
                         <rect key="frame" x="142" y="120" width="96" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="Ecc-kK-9rZ"/>
+                        <sliderCell key="cell" alignment="left" minValue="-1" maxValue="50" doubleValue="-1" tickMarkPosition="above" sliderType="linear" id="Ecc-kK-9rZ"/>
                         <connections>
                             <action selector="sliderValueChanged:" target="aWz-lx-G8Q" id="ezq-UR-CYp"/>
                         </connections>

@@ -203,6 +203,18 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     
     // Flush drawing command buffer to make drawing happen as soon as possible.
     glFlush();
+    
+    if([speed floatValue] > 0){
+        frame++;
+        if(frame > 50-[speed floatValue]){
+            frame = 0;
+            if ([pos floatValue] >= [pos maxValue]) {
+                [pos setFloatValue:0];
+            }else{
+                [pos setFloatValue:[pos floatValue]+1];
+            }
+        }
+    }
 }
 
 - (void) initPath{
@@ -256,6 +268,7 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     cam.x = 0;
     cam.y = 0;
     [speed setContinuous:YES];
+    frame = 0;
 
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
