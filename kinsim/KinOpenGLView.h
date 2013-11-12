@@ -39,6 +39,7 @@ typedef struct {
     
     struct path* AB;
     struct outpath p;
+    int curr_pos;
     
     // camera handling
 	recCamera camera;

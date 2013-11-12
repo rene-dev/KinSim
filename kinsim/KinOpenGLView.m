@@ -163,9 +163,9 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     }
     glEnd();
     
-    j1 = [joint1 floatValue]+p.jointpos1[(int)[pos floatValue]];
-    j2 = [joint2 floatValue]+p.jointpos2[(int)[pos floatValue]];
-    j3 = [joint3 floatValue]+p.jointpos3[(int)[pos floatValue]];
+    j1 = [joint1 floatValue]+p.jointpos1[curr_pos];
+    j2 = [joint2 floatValue]+p.jointpos2[curr_pos];
+    j3 = [joint3 floatValue]+p.jointpos3[curr_pos];
     
     j1 = - j1 - 90;
     j2 = j2 - 45;
@@ -204,17 +204,15 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     // Flush drawing command buffer to make drawing happen as soon as possible.
     glFlush();
     
-    if([speed floatValue] > 0){
-        frame++;
-        if(frame > 50-[speed floatValue]){
-            frame = 0;
-            if ([pos floatValue] >= [pos maxValue]) {
-                [pos setFloatValue:0];
-            }else{
-                [pos setFloatValue:[pos floatValue]+1];
-            }
-        }
+    curr_pos += (int)[speed floatValue];
+    if(curr_pos < 0){
+        curr_pos = p.length - 1;
     }
+    if(curr_pos >= p.length){
+        curr_pos = 0;
+    }
+    
+    [pos setFloatValue:curr_pos * 100 / p.length];
 }
 
 - (void) initPath{
@@ -272,10 +270,12 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
 
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
+    glEnable(GL_LINE_SMOOTH);
 
     [self initPath];
     
     p = interpol(AB);
+    curr_pos = 0;
     
     [pos setMaxValue:p.length-1];
     [pos setMinValue:0];
