@@ -713,6 +713,17 @@
                             <action selector="sliderValueChanged:" target="aWz-lx-G8Q" id="ezq-UR-CYp"/>
                         </connections>
                     </slider>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bhm-Fn-lgo">
+                        <rect key="frame" x="238" y="113" width="69" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5hf-ZN-Vdz">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="stop:" target="aWz-lx-G8Q" id="Z7i-2T-37n"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
         </window>

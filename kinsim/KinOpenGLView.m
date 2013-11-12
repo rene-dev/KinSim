@@ -211,8 +211,15 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     if(curr_pos >= p.length){
         curr_pos = 0;
     }
-    
-    [pos setFloatValue:curr_pos * 100 / p.length];
+    if([speed floatValue] != 0){
+        [pos setFloatValue:curr_pos * 100 / p.length];
+    }else{
+        curr_pos = [pos floatValue]/100*(p.length-1);
+    }
+}
+
+-(IBAction)stop:(id)sender{
+    [speed setFloatValue:0];
 }
 
 - (void) initPath{
@@ -275,7 +282,7 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     p = interpol(AB);
     curr_pos = 0;
     
-    [pos setMaxValue:p.length-1];
+    //[pos setMaxValue:p.length-1];
     [pos setMinValue:0];
     
     timer = [NSTimer

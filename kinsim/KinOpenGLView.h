@@ -61,4 +61,7 @@ typedef struct {
     
     int frame;
 }
+
+-(IBAction)stop:(id)sender;
+
 @end
