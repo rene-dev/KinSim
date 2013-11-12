@@ -18,6 +18,10 @@
 		A71938AD1831719F009EFD11 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A719388C1831719F009EFD11 /* Cocoa.framework */; };
 		A71938B5183171A0009EFD11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A71938B3183171A0009EFD11 /* InfoPlist.strings */; };
 		A71938B7183171A0009EFD11 /* kinsimTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A71938B6183171A0009EFD11 /* kinsimTests.m */; };
+		A71938C2183171DD009EFD11 /* KinOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = A71938C1183171DD009EFD11 /* KinOpenGLView.m */; };
+		A71938C41831723C009EFD11 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71938C31831723C009EFD11 /* OpenGL.framework */; };
+		A71938C618318388009EFD11 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71938C518318388009EFD11 /* GLKit.framework */; };
+		A71938C818319FF6009EFD11 /* interpolator.c in Sources */ = {isa = PBXBuildFile; fileRef = A71938C718319FF6009EFD11 /* interpolator.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,12 @@
 		A71938B21831719F009EFD11 /* kinsimTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "kinsimTests-Info.plist"; sourceTree = "<group>"; };
 		A71938B4183171A0009EFD11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A71938B6183171A0009EFD11 /* kinsimTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kinsimTests.m; sourceTree = "<group>"; };
+		A71938C0183171DD009EFD11 /* KinOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KinOpenGLView.h; sourceTree = "<group>"; };
+		A71938C1183171DD009EFD11 /* KinOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KinOpenGLView.m; sourceTree = "<group>"; };
+		A71938C31831723C009EFD11 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		A71938C518318388009EFD11 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		A71938C718319FF6009EFD11 /* interpolator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = interpolator.c; sourceTree = "<group>"; };
+		A71938C91831A020009EFD11 /* interpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interpolator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A71938C618318388009EFD11 /* GLKit.framework in Frameworks */,
+				A71938C41831723C009EFD11 /* OpenGL.framework in Frameworks */,
 				A719388D1831719F009EFD11 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +107,8 @@
 		A719388B1831719F009EFD11 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A71938C518318388009EFD11 /* GLKit.framework */,
+				A71938C31831723C009EFD11 /* OpenGL.framework */,
 				A719388C1831719F009EFD11 /* Cocoa.framework */,
 				A71938AB1831719F009EFD11 /* XCTest.framework */,
 				A719388E1831719F009EFD11 /* Other Frameworks */,
@@ -115,6 +129,10 @@
 		A71938921831719F009EFD11 /* kinsim */ = {
 			isa = PBXGroup;
 			children = (
+				A71938C718319FF6009EFD11 /* interpolator.c */,
+				A71938C91831A020009EFD11 /* interpolator.h */,
+				A71938C0183171DD009EFD11 /* KinOpenGLView.h */,
+				A71938C1183171DD009EFD11 /* KinOpenGLView.m */,
 				A719389E1831719F009EFD11 /* AppDelegate.h */,
 				A719389F1831719F009EFD11 /* AppDelegate.m */,
 				A71938A11831719F009EFD11 /* MainMenu.xib */,
@@ -252,7 +270,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A71938C818319FF6009EFD11 /* interpolator.c in Sources */,
 				A71938A01831719F009EFD11 /* AppDelegate.m in Sources */,
+				A71938C2183171DD009EFD11 /* KinOpenGLView.m in Sources */,
 				A71938991831719F009EFD11 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +484,7 @@
 				A71938BC183171A0009EFD11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A71938BD183171A0009EFD11 /* Build configuration list for PBXNativeTarget "kinsimTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +493,7 @@
 				A71938BF183171A0009EFD11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
