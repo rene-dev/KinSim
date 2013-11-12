@@ -1,7 +1,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "int2.h"
+#include "interpolator.h"
 
 #define axis 3
 #define joints 3
