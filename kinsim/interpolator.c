@@ -218,14 +218,14 @@ struct outpath interpol(struct path* AB){
 	struct path* head = AB;
 
 	struct max_joint_steps max_j_s; // min axis res
-	max_j_s.step[0] = 1 / 180 * 3.141526; // 0.1 deg res -> rad
-	max_j_s.step[1] = 1 / 180 * 3.141526; // 0.1 mm res
-	max_j_s.step[2] = 1 / 180 * 3.141526; // 0.1 mm res
+	max_j_s.step[0] = 0.1 / 180 * 3.141526; // 0.1 deg res -> rad
+	max_j_s.step[1] = 0.1 / 180 * 3.141526; // 0.1 mm res
+	max_j_s.step[2] = 0.1 / 180 * 3.141526; // 0.1 mm res
 
 	struct min_axis_steps min_a_s; // min joint res
-	min_a_s.step[0] = 1; // 0.1 mm res
-	min_a_s.step[1] = 1; // 0.1 mm res
-	min_a_s.step[2] = 1; // 0.1 mm res
+	min_a_s.step[0] = 50; // 0.1 mm res
+	min_a_s.step[1] = 50; // 0.1 mm res
+	min_a_s.step[2] = 50; // 0.1 mm res
 
     /*
     struct vec A;

@@ -192,7 +192,7 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     glEnd();
     
     //zu fahrender path
-    glBegin(GL_LINES);
+    glBegin(GL_LINE_STRIP);
     glColor3f(1, 1, 0);
     struct path* tmp = AB;
     while(tmp){
