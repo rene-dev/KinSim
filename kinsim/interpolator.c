@@ -89,12 +89,15 @@ struct vec fkin(struct vec A){ // forward kin axis -> joints
 	double dest_xy = sqrt(A.axis_pos[0] * A.axis_pos[0] + A.axis_pos[1] * A.axis_pos[1]);
 	double dest_xyz = sqrt(dest_xy * dest_xy + (A.axis_pos[2] - 245) * (A.axis_pos[2] - 245));
 	double tjoint1 = atan2(A.axis_pos[2] - 245, dest_xy);
-	double tjoint2 = acos(dest_xyz / 2 / 190);
+	double tjoint2 = asin(dest_xyz / 2 / 190) * 2;
 
 	a.joint_pos[0] = atan2(A.axis_pos[1], A.axis_pos[0]);
-	a.joint_pos[1] = tjoint1 + 3.141526/2 - tjoint2 - 3.141526/4;
-	a.joint_pos[2] = tjoint2 - tjoint1;
+	a.joint_pos[1] = tjoint1 + 3.141526/2 - tjoint2/2 - 3.141526/4;
+	a.joint_pos[2] = tjoint2 + 3.141526;
+    
+    a.joint_pos[2] = a.joint_pos[2] + a.joint_pos[1];
 
+    
 	return(a);
 }
 
@@ -236,7 +239,7 @@ struct outpath interpol(){
 	A.axis_pos[2] = 0;
 
 	struct vec B;
-	B.axis_pos[0] = 1;
+	B.axis_pos[0] = 200;
 	B.axis_pos[1] = 0;
 	B.axis_pos[2] = 0;
 
