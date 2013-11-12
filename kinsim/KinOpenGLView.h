@@ -35,6 +35,7 @@ typedef struct {
     IBOutlet NSSlider* joint5;
     IBOutlet NSSlider* joint6;
     IBOutlet NSSlider* pos;
+    IBOutlet NSSlider* speed;
     
     struct path* AB;
     struct outpath p;
@@ -52,6 +53,7 @@ typedef struct {
     
     //frame timer
     NSTimer* timer;
+    NSTimer* postimer;
     
     NSPoint drag;
     NSPoint cam;

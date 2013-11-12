@@ -207,6 +207,8 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
 
 - (void) initPath{
     AB = (struct path *)malloc(sizeof(struct path));
+
+    
     struct vec A;
 	A.axis_pos[0] = 100;
 	A.axis_pos[1] = 0;
@@ -253,9 +255,11 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     [self resetCamera];
     cam.x = 0;
     cam.y = 0;
+    [speed setContinuous:YES];
+
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
-    
+
     [self initPath];
     
     p = interpol(AB);
@@ -273,6 +277,11 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     // ensure timer fires during resize
 	[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSEventTrackingRunLoopMode];
+}
+
+-(IBAction)sliderValueChanged:(NSSlider *)sender
+{
+
 }
 
 @end
