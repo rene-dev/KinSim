@@ -31,4 +31,5 @@ struct path{
 
 void append(struct path* A, struct vec B);
 void insert(struct path* A, struct vec B);
+void freepath(struct path* p);
 #endif

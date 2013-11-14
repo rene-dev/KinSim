@@ -30,3 +30,12 @@ void append(struct path* A, struct vec B){
     A->next->next = 0;
 	A->next->prev = A;
 }
+
+void freepath(struct path* p){
+    struct path* tmp = p;
+    while(tmp){
+        if(tmp)
+            free(tmp);
+            tmp = tmp->next;
+            }
+}

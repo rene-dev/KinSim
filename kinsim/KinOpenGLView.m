@@ -180,7 +180,11 @@
 - (void) newPath:(struct path*)newpath
 {
     display = NO;
-    free(currentPath);
+    free(p.jointpos1);
+    free(p.jointpos2);
+    free(p.jointpos3);
+    freepath(currentPath);
+    
     currentPath = newpath;
     p = interpol(currentPath);
     display = YES;
