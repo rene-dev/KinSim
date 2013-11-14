@@ -19,4 +19,10 @@
     return YES;
 }
 
+-(BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
+{
+    gcode([filename cStringUsingEncoding:NSASCIIStringEncoding]);
+    return YES;
+}
+
 @end

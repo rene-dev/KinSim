@@ -11,7 +11,7 @@
 		A71938971831719F009EFD11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A71938951831719F009EFD11 /* InfoPlist.strings */; };
 		A71938991831719F009EFD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A71938981831719F009EFD11 /* main.m */; };
 		A719389D1831719F009EFD11 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A719389B1831719F009EFD11 /* Credits.rtf */; };
-		A71938A01831719F009EFD11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A719389F1831719F009EFD11 /* AppDelegate.m */; };
+		A71938A01831719F009EFD11 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A719389F1831719F009EFD11 /* AppDelegate.mm */; };
 		A71938A31831719F009EFD11 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A71938A11831719F009EFD11 /* MainMenu.xib */; };
 		A71938A51831719F009EFD11 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A71938A41831719F009EFD11 /* Images.xcassets */; };
 		A71938AC1831719F009EFD11 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71938AB1831719F009EFD11 /* XCTest.framework */; };
@@ -48,7 +48,7 @@
 		A719389A1831719F009EFD11 /* kinsim-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "kinsim-Prefix.pch"; sourceTree = "<group>"; };
 		A719389C1831719F009EFD11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		A719389E1831719F009EFD11 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A719389F1831719F009EFD11 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A719389F1831719F009EFD11 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		A71938A21831719F009EFD11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A71938A41831719F009EFD11 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A71938AA1831719F009EFD11 /* kinsimTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kinsimTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +65,8 @@
 		A73FFD9E18353CB600F6EAAB /* path.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = path.c; sourceTree = "<group>"; };
 		A73FFDA018353CD900F6EAAB /* path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = path.h; sourceTree = "<group>"; };
 		A73FFDA11835470200F6EAAB /* gcode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcode.cpp; sourceTree = "<group>"; };
+		A73FFDA31835503D00F6EAAB /* gcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gcode.h; sourceTree = "<group>"; };
+		A73FFDA4183556E600F6EAAB /* gcode.ngc */ = {isa = PBXFileReference; lastKnownFileType = text; path = gcode.ngc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +136,9 @@
 		A71938921831719F009EFD11 /* kinsim */ = {
 			isa = PBXGroup;
 			children = (
+				A73FFDA4183556E600F6EAAB /* gcode.ngc */,
 				A73FFDA11835470200F6EAAB /* gcode.cpp */,
+				A73FFDA31835503D00F6EAAB /* gcode.h */,
 				A73FFD9E18353CB600F6EAAB /* path.c */,
 				A73FFDA018353CD900F6EAAB /* path.h */,
 				A71938C718319FF6009EFD11 /* interpolator.c */,
@@ -142,7 +146,7 @@
 				A71938C0183171DD009EFD11 /* KinOpenGLView.h */,
 				A71938C1183171DD009EFD11 /* KinOpenGLView.m */,
 				A719389E1831719F009EFD11 /* AppDelegate.h */,
-				A719389F1831719F009EFD11 /* AppDelegate.m */,
+				A719389F1831719F009EFD11 /* AppDelegate.mm */,
 				A71938A11831719F009EFD11 /* MainMenu.xib */,
 				A71938A41831719F009EFD11 /* Images.xcassets */,
 				A71938931831719F009EFD11 /* Supporting Files */,
@@ -280,7 +284,7 @@
 			files = (
 				A73FFD9F18353CB600F6EAAB /* path.c in Sources */,
 				A71938C818319FF6009EFD11 /* interpolator.c in Sources */,
-				A71938A01831719F009EFD11 /* AppDelegate.m in Sources */,
+				A71938A01831719F009EFD11 /* AppDelegate.mm in Sources */,
 				A71938C2183171DD009EFD11 /* KinOpenGLView.m in Sources */,
 				A73FFDA21835470200F6EAAB /* gcode.cpp in Sources */,
 				A71938991831719F009EFD11 /* main.m in Sources */,

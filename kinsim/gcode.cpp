@@ -11,37 +11,36 @@
 #include <iostream>
 #include <string>
 #include <ctype.h>
+#include "path.h"
+#include "gcode.h"
 
 using namespace std;
 
 namespace g{
-    enum{G,code,axis,posx,posy,posz,posa,posb,posc}next;
-    float xstack,ystack;
+    enum{G,code,posx,posy,posz,posa,posb,posc}next;
 }
 
 bool parse(string w){
-    cout << "p ";
+    static float xstack = 0,ystack = 0,zstack = 0;
     if (g::next == g::code) {
-       cout << "G:" << stoi(w) << endl;
     }
     if (g::next == g::posx) {
-        cout << "X:" << stof(w) << endl;
+        xstack = stof(w);
     }
     if (g::next == g::posy) {
-        cout << "Y:" << stof(w) << endl;
+        ystack = stof(w);
     }
     if (g::next == g::posz) {
-        cout << "Z:" << stof(w) << endl;
+        zstack = stof(w);
     }
     if (w == "\n") {
-        cout << "go" << endl;
+        cout << "goto:" << xstack << " " << ystack << " " << zstack << endl;
     }
     return true;
 }
 
-int gcode()
-{
-    FILE *f = fopen("file", "r");
+int gcode(const char *filename){
+    FILE *f = fopen(filename, "r");
     char c;
     string word = "";
     

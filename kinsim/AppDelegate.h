@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "gcode.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
