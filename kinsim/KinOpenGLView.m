@@ -8,40 +8,6 @@
 
 #import "KinOpenGLView.h"
 
-// single set of interaction flags and states
-GLint gDollyPanStartPoint[2] = {0, 0};
-GLfloat gTrackBallRotation [4] = {0.0f, 0.0f, 0.0f, 0.0f};
-GLboolean gDolly = GL_FALSE;
-GLboolean gPan = GL_FALSE;
-GLboolean gTrackball = GL_FALSE;
-KinOpenGLView * gTrackingViewInfo = NULL;
-
-// simple cube data
-GLint cube_num_vertices = 8;
-
-GLfloat cube_vertices [8][3] = {
-    {1.0, 1.0, 1.0}, {1.0, -1.0, 1.0}, {-1.0, -1.0, 1.0}, {-1.0, 1.0, 1.0},
-    {1.0, 1.0, -1.0}, {1.0, -1.0, -1.0}, {-1.0, -1.0, -1.0}, {-1.0, 1.0, -1.0} };
-
-short cube_faces [6][4] = {
-    {3, 2, 1, 0}, {2, 3, 7, 6}, {0, 1, 5, 4}, {3, 0, 4, 7}, {1, 2, 6, 5}, {4, 5, 6, 7} };
-
-//ugly hacked cube
-void wireBox(GLdouble width, GLdouble height, GLdouble depth){
-    glPushMatrix();
-    glTranslatef(0, height/2, 0);
-    glScalef(width/2, height/2, depth/2);
-    glColor3f (0, 0, 4.0);
-    long f,i,fSize=1;
-    for (f = 0; f < 6; f++) {
-        glBegin (GL_LINE_LOOP);
-        for (i = 0; i < 4; i++)
-            glVertex3f(cube_vertices[cube_faces[f][i]][0] * fSize, cube_vertices[cube_faces[f][i]][1] * fSize, cube_vertices[cube_faces[f][i]][2] * fSize);
-        glEnd ();
-    }
-    glPopMatrix();
-}
-
 @implementation KinOpenGLView
 
 // sets the camera data to initial conditions
@@ -73,7 +39,6 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
 		
 		glViewport (0, 0, camera.viewWidth, camera.viewHeight);
 		[self updateProjection];  // update projection matrix
-		//[self updateInfoString];
 	}
 }
 
@@ -137,7 +102,6 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
 		bottom = -wd2 / ratio;
 	}
 	glFrustum (left, right, bottom, top, near, far);
-	//[self updateCameraString];
 }
 
 - (void)animationTimer:(NSTimer *)timer
@@ -155,58 +119,16 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     
-    glColor3f(1.0, 1.0, 1.0);
-    glBegin(GL_LINES);
-    for (GLfloat i = -2; i <= 2; i += 1) {
-        glVertex3f(i, 0, 2.5); glVertex3f(i, 0, -2.5);
-        glVertex3f(2.5, 0, i); glVertex3f(-2.5, 0, i);
-    }
-    glEnd();
+    drawgrid();
+    
     if(display){
     j1 = [joint1 floatValue]+p.jointpos1[curr_pos];
     j2 = [joint2 floatValue]+p.jointpos2[curr_pos];
     j3 = [joint3 floatValue]+p.jointpos3[curr_pos];
     
-    j1 = - j1 - 90;
-    j2 = j2 - 45;
-    j3 = j3 - j2 - 45;
-    
-    glPushMatrix();
-    glRotatef(j1, 0, 1, 0);
-    wireBox(0.5, 2.45, 0.5);
-    
-    glTranslatef(0, 2.45, 0);
-    glRotatef(j2, 1, 0, 0);
-    wireBox(0.5, 1.9, 0.5);
-    
-    glTranslatef(0, 1.9, 0);
-    glRotatef(j3, 1, 0, 0);
-    wireBox(0.5, 1.9, 0.5);
-    
-    glTranslatef(0, 1.9, 0);
-    glRotatef([joint4 floatValue], 1, 0, 0);
-    glRotatef([joint5 floatValue]+90, 0, 1, 0);
-    wireBox(0.1, 1.15, 0.7);
-    glPopMatrix();
-    
-    // Draw a red x-axis, a green y-axis, and a blue z-axis.
-    glBegin(GL_LINES);
-    glColor3f(1, 0, 0); glVertex3f(0, 0, 0); glVertex3f(1, 0, 0);
-    glColor3f(0, 1, 0); glVertex3f(0, 0, 0); glVertex3f(0, 1, 0);
-    glColor3f(0, 0, 1); glVertex3f(0, 0, 0); glVertex3f(0, 0, 1);
-    glEnd();
-    
-    //zu fahrender path
-    glBegin(GL_LINE_STRIP);
-    glColor3f(1, 1, 0);
-    struct path* tmp = currentPath;
-    while(tmp){
-        if(tmp->pos.type == axis){
-        glVertex3f(tmp->pos.axis_pos[0] / 100, tmp->pos.axis_pos[2] / 100, tmp->pos.axis_pos[1] / 100);
-        }
-        tmp = tmp->next;
-    }
-    glEnd();
+    drawrobot(j1, j2, j3, [joint4 floatValue], [joint5 floatValue], 0);
+    drawaxis();
+    drawpath(currentPath);
     
     // Flush drawing command buffer to make drawing happen as soon as possible.
     glFlush();
@@ -242,8 +164,6 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
 
     curr_pos = 0;
     display = NO;
-    //[pos setMaxValue:p.length-1];
-    [pos setMinValue:0];
     
     timer = [NSTimer
              timerWithTimeInterval:(1.0f/60.0f)
@@ -264,11 +184,6 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     currentPath = newpath;
     p = interpol(currentPath);
     display = YES;
-}
-
--(IBAction)sliderValueChanged:(NSSlider *)sender
-{
-
 }
 
 @end

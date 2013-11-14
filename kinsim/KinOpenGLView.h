@@ -11,6 +11,7 @@
 #import <OpenGL/glext.h>
 #import <OpenGL/glu.h>
 #import "interpolator.h"
+#import "easygl.h"
 
 typedef struct {
     GLdouble x,y,z;
@@ -64,6 +65,6 @@ typedef struct {
 }
 
 -(IBAction)stop:(id)sender;
-- (void) newPath:(struct path*)newpath;
+-(void) newPath:(struct path*)newpath;
 
 @end
