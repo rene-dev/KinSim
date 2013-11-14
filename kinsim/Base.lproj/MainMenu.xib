@@ -709,9 +709,6 @@
                         <rect key="frame" x="142" y="120" width="96" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <sliderCell key="cell" alignment="left" minValue="-10" maxValue="10" tickMarkPosition="above" sliderType="linear" id="Ecc-kK-9rZ"/>
-                        <connections>
-                            <action selector="sliderValueChanged:" target="aWz-lx-G8Q" id="ezq-UR-CYp"/>
-                        </connections>
                     </slider>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bhm-Fn-lgo">
                         <rect key="frame" x="238" y="113" width="69" height="32"/>
