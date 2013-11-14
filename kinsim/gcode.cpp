@@ -32,6 +32,8 @@ struct path* gcode(const char *filename){
     result->pos.axis_pos[0] = 0;
     result->pos.axis_pos[1] = 0;
     result->pos.axis_pos[2] = 0;
+    result->next = 0;
+    result->prev = 0;
     
     g::next = g::G;
     
