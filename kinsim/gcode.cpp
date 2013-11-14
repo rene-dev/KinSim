@@ -7,11 +7,11 @@
 //
 
 //TODO no newline at end, leerzeilen
+//idee: gcode in path, zeile in vec, vorschau der aktuellen zeile
 
 #include <iostream>
 #include <string>
 #include <ctype.h>
-#include "path.h"
 #include "gcode.h"
 
 using namespace std;
@@ -20,29 +20,18 @@ namespace g{
     enum{G,code,posx,posy,posz,posa,posb,posc}next;
 }
 
-bool parse(string w){
-    static float xstack = 0,ystack = 0,zstack = 0;
-    if (g::next == g::code) {
-    }
-    if (g::next == g::posx) {
-        xstack = stof(w);
-    }
-    if (g::next == g::posy) {
-        ystack = stof(w);
-    }
-    if (g::next == g::posz) {
-        zstack = stof(w);
-    }
-    if (w == "\n") {
-        cout << "goto:" << xstack << " " << ystack << " " << zstack << endl;
-    }
-    return true;
-}
-
-int gcode(const char *filename){
+struct path* gcode(const char *filename){
     FILE *f = fopen(filename, "r");
     char c;
     string word = "";
+    struct path* result = (struct path *)malloc(sizeof(struct path));
+    struct vec newvec;
+    newvec.type = vec::invalid;
+    float x = 0,y = 0,z = 0;
+    
+    result->pos.axis_pos[0] = 0;
+    result->pos.axis_pos[1] = 0;
+    result->pos.axis_pos[2] = 0;
     
     g::next = g::G;
     
@@ -54,7 +43,6 @@ int gcode(const char *filename){
                 if(isdigit(c)){
                     word.append(&c,1);
                 }else{
-                    parse(word);
                     g::next = g::G;
                 }
                 break;
@@ -62,7 +50,7 @@ int gcode(const char *filename){
                 if(isdigit(c) || c == '.' || c == '-'){
                     word.append(&c,1);
                 }else{
-                    parse(word);
+                    x = stof(word);
                     g::next = g::G;
                 }
                 break;
@@ -70,7 +58,7 @@ int gcode(const char *filename){
                 if(isdigit(c) || c == '.' || c == '-'){
                     word.append(&c,1);
                 }else{
-                    parse(word);
+                    y = stof(word);
                     g::next = g::G;
                 }
                 break;
@@ -78,7 +66,7 @@ int gcode(const char *filename){
                 if(isdigit(c) || c == '.' || c == '-'){
                     word.append(&c,1);
                 }else{
-                    parse(word);
+                    z = stof(word);
                     g::next = g::G;
                 }
                 break;
@@ -104,12 +92,17 @@ int gcode(const char *filename){
                 word = "";
                 break;
             case '\n' :
-                parse("\n");
+                newvec.type = vec::axis;
+                newvec.axis_pos[0] = x;
+                newvec.axis_pos[1] = y;
+                newvec.axis_pos[2] = z;
+                append(result, newvec);
+                cout << "goto:" << x << " " << y << " " << z << endl;
                 break;
             default:
                 break;
         }
     }
-    return 0;
+    return result;
 }
 

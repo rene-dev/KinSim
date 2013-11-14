@@ -37,7 +37,7 @@ typedef struct {
     IBOutlet NSSlider* pos;
     IBOutlet NSSlider* speed;
     
-    struct path* AB;
+    struct path* currentPath;
     struct outpath p;
     int curr_pos;
     
@@ -60,8 +60,10 @@ typedef struct {
     NSPoint cam;
     
     int frame;
+    Boolean display;
 }
 
 -(IBAction)stop:(id)sender;
+- (void) newPath:(struct path*)newpath;
 
 @end

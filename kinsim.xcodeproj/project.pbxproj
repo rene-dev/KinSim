@@ -24,6 +24,7 @@
 		A71938C818319FF6009EFD11 /* interpolator.c in Sources */ = {isa = PBXBuildFile; fileRef = A71938C718319FF6009EFD11 /* interpolator.c */; };
 		A73FFD9F18353CB600F6EAAB /* path.c in Sources */ = {isa = PBXBuildFile; fileRef = A73FFD9E18353CB600F6EAAB /* path.c */; };
 		A73FFDA21835470200F6EAAB /* gcode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A73FFDA11835470200F6EAAB /* gcode.cpp */; };
+		A7AC763A18357400009DFF34 /* gcode.ngc in Resources */ = {isa = PBXBuildFile; fileRef = A73FFDA4183556E600F6EAAB /* gcode.ngc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		A73FFDA11835470200F6EAAB /* gcode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcode.cpp; sourceTree = "<group>"; };
 		A73FFDA31835503D00F6EAAB /* gcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gcode.h; sourceTree = "<group>"; };
 		A73FFDA4183556E600F6EAAB /* gcode.ngc */ = {isa = PBXFileReference; lastKnownFileType = text; path = gcode.ngc; sourceTree = "<group>"; };
+		A73FFDA518355B2D00F6EAAB /* cmot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cmot.cpp; sourceTree = "<group>"; };
+		A73FFDA618355B2D00F6EAAB /* cmot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cmot.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				A73FFDA4183556E600F6EAAB /* gcode.ngc */,
+				A73FFDA518355B2D00F6EAAB /* cmot.cpp */,
+				A73FFDA618355B2D00F6EAAB /* cmot.h */,
 				A73FFDA11835470200F6EAAB /* gcode.cpp */,
 				A73FFDA31835503D00F6EAAB /* gcode.h */,
 				A73FFD9E18353CB600F6EAAB /* path.c */,
@@ -264,6 +269,7 @@
 				A71938A51831719F009EFD11 /* Images.xcassets in Resources */,
 				A719389D1831719F009EFD11 /* Credits.rtf in Resources */,
 				A71938A31831719F009EFD11 /* MainMenu.xib in Resources */,
+				A7AC763A18357400009DFF34 /* gcode.ngc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

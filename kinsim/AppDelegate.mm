@@ -9,10 +9,12 @@
 #import "AppDelegate.h"
 
 @implementation AppDelegate
+@synthesize kinView;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-
+    NSString *defaultgcode = [[NSBundle mainBundle] pathForResource:@"gcode" ofType:@"ngc"];
+    [kinView newPath:gcode([defaultgcode cStringUsingEncoding:NSASCIIStringEncoding])];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication{
@@ -21,7 +23,7 @@
 
 -(BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
-    gcode([filename cStringUsingEncoding:NSASCIIStringEncoding]);
+    [kinView newPath:gcode([filename cStringUsingEncoding:NSASCIIStringEncoding])];
     return YES;
 }
 

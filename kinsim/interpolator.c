@@ -4,21 +4,21 @@
 #include "interpolator.h"
 
 struct max_joint_steps{
-	double step[joints];
+	double step[JOINTS];
 };
 
 struct min_axis_steps{
-	double step[axis];
+	double step[AXIS];
 };
 
 struct tool_offset{
-	double offset[axis];
+	double offset[AXIS];
 };
 
 struct vec split(struct vec A, struct vec B, int steps){
 	struct vec C;
 
-	for(int i = 0; i < axis; i++){
+	for(int i = 0; i < AXIS; i++){
 		C.axis_pos[i] = A.axis_pos[i] + (B.axis_pos[i] - A.axis_pos[i]) / steps;
 	}
 
@@ -126,7 +126,7 @@ struct vec ikin(struct vec a){ // inverse kin joints -> axis
 }
 
 int check_joint_steps(struct vec A, struct vec B, struct max_joint_steps max_j_s){
-	for(int i = 0; i < joints; i++){
+	for(int i = 0; i < JOINTS; i++){
 		if(fabs(A.joint_pos[i] - B.joint_pos[i]) > max_j_s.step[i]){
 			return(1);
 		}
@@ -135,7 +135,7 @@ int check_joint_steps(struct vec A, struct vec B, struct max_joint_steps max_j_s
 }
 
 int check_axis_steps(struct vec A, struct vec B, struct min_axis_steps min_a_s){
-	for(int i = 0; i < axis; i++){
+	for(int i = 0; i < AXIS; i++){
 		if(fabs(A.axis_pos[i] - B.axis_pos[i]) > min_a_s.step[i]){
 			return(1);
 		}
@@ -161,7 +161,7 @@ int intp(struct path* A, struct max_joint_steps max_j_s, struct min_axis_steps m
 	p = A;
 
 	while(p->next){
-		for(int i = 0; i < axis; i++){
+		for(int i = 0; i < AXIS; i++){
 			tmp = ceil(abs((p->next->pos.axis_pos[i] - p->pos.axis_pos[i]) / min_a_s.step[i]));
 			if(steps < tmp){
 				steps = tmp;
@@ -174,7 +174,6 @@ int intp(struct path* A, struct max_joint_steps max_j_s, struct min_axis_steps m
 		}
 
 		steps = 0;
-
 		p = p->next;
 	}
 

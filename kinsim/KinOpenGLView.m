@@ -162,7 +162,7 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
         glVertex3f(2.5, 0, i); glVertex3f(-2.5, 0, i);
     }
     glEnd();
-    
+    if(display){
     j1 = [joint1 floatValue]+p.jointpos1[curr_pos];
     j2 = [joint2 floatValue]+p.jointpos2[curr_pos];
     j3 = [joint3 floatValue]+p.jointpos3[curr_pos];
@@ -199,9 +199,11 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     //zu fahrender path
     glBegin(GL_LINE_STRIP);
     glColor3f(1, 1, 0);
-    struct path* tmp = AB;
+    struct path* tmp = currentPath;
     while(tmp){
+        if(tmp->pos.type == axis){
         glVertex3f(tmp->pos.axis_pos[0] / 100, tmp->pos.axis_pos[2] / 100, tmp->pos.axis_pos[1] / 100);
+        }
         tmp = tmp->next;
     }
     glEnd();
@@ -221,55 +223,11 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     }else{
         curr_pos = [pos floatValue]/100*(p.length-1);
     }
+    }
 }
 
 -(IBAction)stop:(id)sender{
     [speed setFloatValue:0];
-}
-
-- (void) initPath{
-    AB = (struct path *)malloc(sizeof(struct path));
-
-    
-    struct vec A;
-	A.axis_pos[0] = 100;
-	A.axis_pos[1] = 0;
-	A.axis_pos[2] = 0;
-    
-	struct vec B;
-	B.axis_pos[0] = 200;
-	B.axis_pos[1] = 0;
-	B.axis_pos[2] = 0;
-    
-    struct vec C;
-	C.axis_pos[0] = 200;
-	C.axis_pos[1] = 100;
-	C.axis_pos[2] = 0;
-    
-    struct vec D;
-	D.axis_pos[0] = 100;
-	D.axis_pos[1] = 100;
-	D.axis_pos[2] = 0;
-    
-    struct vec E;
-	E.axis_pos[0] = 100;
-	E.axis_pos[1] = 0;
-	E.axis_pos[2] = 100;
-    
-    struct vec F;
-	F.axis_pos[0] = 200;
-	F.axis_pos[1] = 0;
-	F.axis_pos[2] = 100;
-	
-	AB->next = 0;
-	AB->prev = 0;
-	AB->pos = A;
-    append(AB, B);
-	append(AB, C);
-	append(AB, D);
-	append(AB, A);
-    append(AB, E);
-    append(AB, F);
 }
 
 - (void) prepareOpenGL
@@ -282,11 +240,8 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
 
     glEnable(GL_LINE_SMOOTH);
 
-    [self initPath];
-    
-    p = interpol(AB);
     curr_pos = 0;
-    
+    display = NO;
     //[pos setMaxValue:p.length-1];
     [pos setMinValue:0];
     
@@ -300,6 +255,15 @@ void wireBox(GLdouble width, GLdouble height, GLdouble depth){
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     // ensure timer fires during resize
 	[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSEventTrackingRunLoopMode];
+}
+
+- (void) newPath:(struct path*)newpath
+{
+    display = NO;
+    free(currentPath);
+    currentPath = newpath;
+    p = interpol(currentPath);
+    display = YES;
 }
 
 -(IBAction)sliderValueChanged:(NSSlider *)sender

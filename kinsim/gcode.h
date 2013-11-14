@@ -6,9 +6,13 @@
 //  Copyright (c) 2013 Rene. All rights reserved.
 //
 
+extern "C" {
+#include "path.h"
+}
+
 #ifndef kinsim_gcode_h
 #define kinsim_gcode_h
 
-int gcode(const char *);
+struct path* gcode(const char *);
 
 #endif

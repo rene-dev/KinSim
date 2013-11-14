@@ -9,12 +9,18 @@
 #ifndef kinsim_path_h
 #define kinsim_path_h
 
-#define axis 3
-#define joints 3
+#define AXIS 3
+#define JOINTS 3
 
 struct vec{
-	double axis_pos[axis];
-	double joint_pos[joints];
+	double axis_pos[AXIS];
+	double joint_pos[JOINTS];
+    enum{
+		axis,
+		joint,
+		both,
+		invalid
+	}type;
 };
 
 struct path{
