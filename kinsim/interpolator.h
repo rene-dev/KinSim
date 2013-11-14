@@ -6,11 +6,10 @@
 //  Copyright (c) 2013 Rene. All rights reserved.
 //
 
+#include "path.h"
+
 #ifndef kinsim_interpolator_h
 #define kinsim_interpolator_h
-
-#define axis 3
-#define joints 3
 
 struct outpath{
     double* jointpos1;
@@ -19,18 +18,6 @@ struct outpath{
     int length;
 };
 
-struct vec{
-	double axis_pos[axis];
-	double joint_pos[joints];
-};
-
-struct path{
-	struct vec pos;
-	struct path* next;
-	struct path* prev;
-};
-
 struct outpath interpol(struct path* AB);
-void append(struct path* A, struct vec B);
 
 #endif

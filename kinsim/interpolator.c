@@ -34,7 +34,6 @@ struct vec split(struct vec A, struct vec B, int steps){
 struct vec fkin(struct vec A){ // forward kin axis -> joints
 	struct vec a = A;
 	double tmp;
-	double jump;
 
 
 	// wire kin:
@@ -124,34 +123,6 @@ struct vec ikin(struct vec a){ // inverse kin joints -> axis
 	A.axis_pos[5] = a.joint_pos[5];*/
 
 	return(a);
-}
-
-void insert(struct path* A, struct vec B){
-	struct path* tmp = A->next;
-	A->next = (struct path *)malloc(sizeof(struct path));
-	A->next->pos = B;
-	A->next->next = tmp;
-	A->next->prev = A;
-	if(A->next->next){
-		A->next->next->prev = A->next;
-	}
-}
-
-void append(struct path* A, struct vec B){
-    if(!A){
-        A = (struct path *)malloc(sizeof(struct path));
-        A->next = 0;
-        A->prev = 0;
-        A->pos = B;
-        return;
-    }
-    while(A->next){
-        A = A->next;
-    }
-	A->next = (struct path *)malloc(sizeof(struct path));
-	A->next->pos = B;
-    A->next->next = 0;
-	A->next->prev = A;
 }
 
 int check_joint_steps(struct vec A, struct vec B, struct max_joint_steps max_j_s){
