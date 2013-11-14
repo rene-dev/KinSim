@@ -34,6 +34,7 @@ struct path* gcode(const char *filename){
     result->pos.axis_pos[2] = 0;
     result->next = 0;
     result->prev = 0;
+    result->pos.type = vec::invalid;
     
     g::next = g::G;
     
