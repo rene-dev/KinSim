@@ -138,6 +138,13 @@ void insert(struct path* A, struct vec B){
 }
 
 void append(struct path* A, struct vec B){
+    if(!A){
+        A = (struct path *)malloc(sizeof(struct path));
+        A->next = 0;
+        A->prev = 0;
+        A->pos = B;
+        return;
+    }
     while(A->next){
         A = A->next;
     }
