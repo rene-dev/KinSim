@@ -22,6 +22,7 @@
 		A71938C41831723C009EFD11 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71938C31831723C009EFD11 /* OpenGL.framework */; };
 		A71938C618318388009EFD11 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71938C518318388009EFD11 /* GLKit.framework */; };
 		A71938C818319FF6009EFD11 /* interpolator.c in Sources */ = {isa = PBXBuildFile; fileRef = A71938C718319FF6009EFD11 /* interpolator.c */; };
+		A73FFD9F18353CB600F6EAAB /* path.c in Sources */ = {isa = PBXBuildFile; fileRef = A73FFD9E18353CB600F6EAAB /* path.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		A71938C518318388009EFD11 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		A71938C718319FF6009EFD11 /* interpolator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = interpolator.c; sourceTree = "<group>"; };
 		A71938C91831A020009EFD11 /* interpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interpolator.h; sourceTree = "<group>"; };
+		A73FFD9E18353CB600F6EAAB /* path.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = path.c; sourceTree = "<group>"; };
+		A73FFDA018353CD900F6EAAB /* path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = path.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +132,8 @@
 		A71938921831719F009EFD11 /* kinsim */ = {
 			isa = PBXGroup;
 			children = (
+				A73FFD9E18353CB600F6EAAB /* path.c */,
+				A73FFDA018353CD900F6EAAB /* path.h */,
 				A71938C718319FF6009EFD11 /* interpolator.c */,
 				A71938C91831A020009EFD11 /* interpolator.h */,
 				A71938C0183171DD009EFD11 /* KinOpenGLView.h */,
@@ -270,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A73FFD9F18353CB600F6EAAB /* path.c in Sources */,
 				A71938C818319FF6009EFD11 /* interpolator.c in Sources */,
 				A71938A01831719F009EFD11 /* AppDelegate.m in Sources */,
 				A71938C2183171DD009EFD11 /* KinOpenGLView.m in Sources */,
