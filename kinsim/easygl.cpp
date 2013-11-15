@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Rene. All rights reserved.
 //
 
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <OpenGL/gl.h>
 #include <OpenGL/glext.h>
@@ -88,6 +90,25 @@ void drawgrid(){
     for (GLfloat i = -2; i <= 2; i += 1) {
         glVertex3f(i, 0, 2.5); glVertex3f(i, 0, -2.5);
         glVertex3f(2.5, 0, i); glVertex3f(-2.5, 0, i);
+    }
+    glEnd();
+}
+
+void stl(const char *filename){
+    std::ifstream infile("/Users/rene/dev/stl/cube.stl");
+    std::string line;
+    char a [20],b [20],c [20],d [20];
+    glBegin(GL_TRIANGLES);
+    glColor3f(1, 1, 1);
+    
+    while (getline(infile,line))
+    {
+        if(sscanf (line.c_str(),"%s %s %s %s",a,b,c,d) == 4){
+            if (!strcmp("vertex", a)) {
+                std::cout << b << " " << c << " " << d << std::endl;
+                glVertex3f(atof(b)*0.1, atof(c)*0.1, atof(d)*0.1);
+            }
+        }
     }
     glEnd();
 }

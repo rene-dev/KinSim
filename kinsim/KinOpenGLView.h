@@ -10,8 +10,11 @@
 #import <OpenGL/gl.h>
 #import <OpenGL/glext.h>
 #import <OpenGL/glu.h>
-#import "interpolator.h"
 #import "easygl.h"
+
+extern "C" {
+#import "interpolator.h"
+}
 
 typedef struct {
     GLdouble x,y,z;
