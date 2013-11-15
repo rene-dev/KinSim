@@ -12,6 +12,7 @@
 #include <OpenGL/gl.h>
 #include <OpenGL/glext.h>
 #include <OpenGL/glu.h>
+#include "easygl.h"
 
 extern "C" {
 #include "path.h"
@@ -97,7 +98,7 @@ void drawgrid(){
     glEnd();
 }
 
-GLfloat* stl(const char *filename){
+easyobj* stl(const char *filename){
     std::ifstream infile(filename);
     std::string line;
     char a [20],b [20],c [20],d [20];
@@ -105,6 +106,7 @@ GLfloat* stl(const char *filename){
     struct vec vert;
     struct path* vertlist= 0;
     struct path* tmp;
+    struct easyobj* obj = 0;
     GLfloat* result = 0;
     int* indices = 0;
     int index = 0;
@@ -124,6 +126,9 @@ GLfloat* stl(const char *filename){
     }
     
     std::cout << "parsed " << vertices << " vertices" << std::endl;
+    if(vertices == 0){
+        return 0;
+    }
     result = (GLfloat*)malloc(sizeof(GLfloat)*vertices*3);
     indices = (int*)malloc(sizeof(int)*vertices);
     tmp = vertlist;
@@ -141,14 +146,21 @@ GLfloat* stl(const char *filename){
         indices[index] = index*3;
         index++;
     }
+    
+    obj = (easyobj*)malloc(sizeof(easyobj));
+    obj->vec = result;
+    obj->indices = indices;
+    obj->vertices = vertices;
 
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glColor3f(0.3, 0.3, 0.3);
-    glVertexPointer( 3, GL_FLOAT, sizeof(*result), result);
-    glDrawElements(GL_TRIANGLES, vertices, GL_UNSIGNED_INT, indices);
-    glDisableClientState(GL_VERTEX_ARRAY);
+    return obj;
+}
 
-    free(indices);
-    free(result);
-    return 0;
+void draw(easyobj* obj){
+    if(obj){
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glColor3f(0.3, 0.3, 0.3);
+        glVertexPointer( 3, GL_FLOAT, sizeof(*obj->vec), obj->vec);
+        glDrawElements(GL_TRIANGLES, obj->vertices, GL_UNSIGNED_INT, obj->indices);
+        glDisableClientState(GL_VERTEX_ARRAY);
+    }
 }
