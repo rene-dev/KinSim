@@ -21,21 +21,31 @@ void insert(struct path* A, struct vec B){
 	}
 }
 
-void append(struct path* A, struct vec B){
-    while(A->next){
-        A = A->next;
+void append(struct path** A, struct vec B){
+    struct path* tmp = *A;
+    if(!tmp){
+        tmp = (struct path *)malloc(sizeof(struct path));
+        tmp->next = 0;
+        tmp->prev = 0;
+        tmp->pos = B;
+        *A = tmp;
+        return;
     }
-	A->next = (struct path *)malloc(sizeof(struct path));
-	A->next->pos = B;
-    A->next->next = 0;
-	A->next->prev = A;
+    while(tmp->next){
+        tmp = tmp->next;
+    }
+	tmp->next = (struct path *)malloc(sizeof(struct path));
+	tmp->next->pos = B;
+    tmp->next->next = 0;
+	tmp->next->prev = *A;
 }
 
 void freepath(struct path* p){
-    struct path* tmp = p;
-    while(tmp){
-        if(tmp)
+    struct path* tmp;
+    while(p){
+        if(p)
+            tmp = p;
+            p = p->next;
             free(tmp);
-            tmp = tmp->next;
             }
 }

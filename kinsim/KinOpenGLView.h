@@ -59,6 +59,7 @@ typedef struct {
     
     NSPoint drag;
     NSPoint cam;
+    NSPoint startcam;
     
     int frame;
     Boolean display;

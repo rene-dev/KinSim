@@ -44,14 +44,18 @@
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-    drag = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    NSPoint location = [self convertPoint:[theEvent locationInWindow] fromView:self];
+    drag.x = location.x;
+    drag.y = location.y;
+    startcam.x = cam.x;
+    startcam.y = cam.y;
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent
 {
-    NSPoint location = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-    cam.x = drag.x+location.x;
-    cam.y = drag.y-location.y;
+    NSPoint location = [self convertPoint:[theEvent locationInWindow] fromView:self];
+    cam.x = location.x-drag.x+startcam.x;
+    cam.y = drag.y-location.y+startcam.y;
 }
 
 - (void)scrollWheel:(NSEvent *)theEvent
