@@ -110,7 +110,19 @@ void cmot::intp(){ // interpolator
 	}
 }
 
-void cmot::kin(){ // kinematic (axis pos -> joint pos)
+void cmot::kin(point &A){ // kinematic (axis pos -> joint pos)
+    switch(A.type){
+        case point::axis:
+            // TODO: axis -> joint
+        break;
+            
+        case point::joint:
+            // TODO: joint -> axis
+        break;
+        
+        default:
+        break;
+    }
 }
 
 void cmot::vplan(){ // velocity planing

@@ -137,7 +137,7 @@ class cmot{
 
 		void intp(); // interpolator
 
-		void kin(); // kinematic (axis pos -> joint pos)
+		void kin(point &A); // kinematic (axis pos -> joint pos)
 
 		void vplan(); // velocity planing
 
