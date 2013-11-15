@@ -9,9 +9,17 @@
 #ifndef kinsim_easygl_h
 #define kinsim_easygl_h
 
+struct easyobj{
+    int* indices;
+    int vertices;
+    GLfloat* vec;
+};
+
 void drawpath(struct path* currentPath);
 void drawrobot(float j1,float j2,float j3,float j4,float j5,float j6);
 void drawaxis();
 void drawgrid();
+easyobj* stl(const char *filename);
+void draw(easyobj*);
 
 #endif

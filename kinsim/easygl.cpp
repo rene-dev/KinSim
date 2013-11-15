@@ -6,11 +6,17 @@
 //  Copyright (c) 2013 Rene. All rights reserved.
 //
 
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <OpenGL/gl.h>
 #include <OpenGL/glext.h>
 #include <OpenGL/glu.h>
+#include "easygl.h"
+
+extern "C" {
 #include "path.h"
+}
 
 // simple cube data
 GLint cube_num_vertices = 8;
@@ -90,4 +96,71 @@ void drawgrid(){
         glVertex3f(2.5, 0, i); glVertex3f(-2.5, 0, i);
     }
     glEnd();
+}
+
+easyobj* stl(const char *filename){
+    std::ifstream infile(filename);
+    std::string line;
+    char a [20],b [20],c [20],d [20];
+    int length = 0;
+    struct vec vert;
+    struct path* vertlist= 0;
+    struct path* tmp;
+    struct easyobj* obj = 0;
+    GLfloat* result = 0;
+    int* indices = 0;
+    int index = 0;
+    int vertices = 0;
+
+    while (getline(infile,line))
+    {
+        if(sscanf (line.c_str(),"%s %s %s %s",a,b,d,c) == 4){
+            if (!strcmp("vertex", a)) {
+                vert.axis_pos[0] = atof(b)/10;
+                vert.axis_pos[1] = atof(c)/10;
+                vert.axis_pos[2] = atof(d)/10;
+                append(&vertlist, vert);
+                vertices++;
+            }
+        }
+    }
+    
+    std::cout << "parsed " << vertices << " vertices" << std::endl;
+    if(vertices == 0){
+        return 0;
+    }
+    result = (GLfloat*)malloc(sizeof(GLfloat)*vertices*3);
+    indices = (int*)malloc(sizeof(int)*vertices);
+    tmp = vertlist;
+    
+    while (tmp) {
+        result[length]   = tmp->pos.axis_pos[0];
+        result[length+1] = tmp->pos.axis_pos[1];
+        result[length+2] = tmp->pos.axis_pos[2];
+        length+=3;
+        tmp = tmp->next;
+    }
+    freepath(vertlist);
+    
+    while (index<vertices) {
+        indices[index] = index*3;
+        index++;
+    }
+    
+    obj = (easyobj*)malloc(sizeof(easyobj));
+    obj->vec = result;
+    obj->indices = indices;
+    obj->vertices = vertices;
+
+    return obj;
+}
+
+void draw(easyobj* obj){
+    if(obj){
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glColor3f(0.3, 0.3, 0.3);
+        glVertexPointer( 3, GL_FLOAT, sizeof(*obj->vec), obj->vec);
+        glDrawElements(GL_TRIANGLES, obj->vertices, GL_UNSIGNED_INT, obj->indices);
+        glDisableClientState(GL_VERTEX_ARRAY);
+    }
 }

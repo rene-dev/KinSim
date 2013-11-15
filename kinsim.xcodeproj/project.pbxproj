@@ -16,14 +16,14 @@
 		A71938A01831719F009EFD11 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A719389F1831719F009EFD11 /* AppDelegate.mm */; };
 		A71938A31831719F009EFD11 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A71938A11831719F009EFD11 /* MainMenu.xib */; };
 		A71938A51831719F009EFD11 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A71938A41831719F009EFD11 /* Images.xcassets */; };
-		A71938C2183171DD009EFD11 /* KinOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = A71938C1183171DD009EFD11 /* KinOpenGLView.m */; };
+		A71938C2183171DD009EFD11 /* KinOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = A71938C1183171DD009EFD11 /* KinOpenGLView.mm */; };
 		A71938C41831723C009EFD11 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71938C31831723C009EFD11 /* OpenGL.framework */; };
 		A71938C618318388009EFD11 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71938C518318388009EFD11 /* GLKit.framework */; };
 		A71938C818319FF6009EFD11 /* interpolator.c in Sources */ = {isa = PBXBuildFile; fileRef = A71938C718319FF6009EFD11 /* interpolator.c */; };
 		A73FFD9F18353CB600F6EAAB /* path.c in Sources */ = {isa = PBXBuildFile; fileRef = A73FFD9E18353CB600F6EAAB /* path.c */; };
 		A73FFDA21835470200F6EAAB /* gcode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A73FFDA11835470200F6EAAB /* gcode.cpp */; };
 		A7AC763A18357400009DFF34 /* gcode.ngc in Resources */ = {isa = PBXBuildFile; fileRef = A73FFDA4183556E600F6EAAB /* gcode.ngc */; };
-		A7AC763C18357EAB009DFF34 /* easygl.c in Sources */ = {isa = PBXBuildFile; fileRef = A7AC763B18357EAB009DFF34 /* easygl.c */; };
+		A7AC763C18357EAB009DFF34 /* easygl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7AC763B18357EAB009DFF34 /* easygl.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,7 @@
 		A71938A41831719F009EFD11 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A71938AB1831719F009EFD11 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A71938C0183171DD009EFD11 /* KinOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KinOpenGLView.h; sourceTree = "<group>"; };
-		A71938C1183171DD009EFD11 /* KinOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KinOpenGLView.m; sourceTree = "<group>"; };
+		A71938C1183171DD009EFD11 /* KinOpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KinOpenGLView.mm; sourceTree = "<group>"; };
 		A71938C31831723C009EFD11 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		A71938C518318388009EFD11 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		A71938C718319FF6009EFD11 /* interpolator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = interpolator.c; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				A73FFD9E18353CB600F6EAAB /* path.c */,
 				A73FFDA018353CD900F6EAAB /* path.h */,
 				A71938C0183171DD009EFD11 /* KinOpenGLView.h */,
-				A71938C1183171DD009EFD11 /* KinOpenGLView.m */,
+				A71938C1183171DD009EFD11 /* KinOpenGLView.mm */,
 				A719389E1831719F009EFD11 /* AppDelegate.h */,
 				A719389F1831719F009EFD11 /* AppDelegate.mm */,
 				A71938A11831719F009EFD11 /* MainMenu.xib */,
@@ -287,11 +287,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7AC763C18357EAB009DFF34 /* easygl.c in Sources */,
+				A7AC763C18357EAB009DFF34 /* easygl.cpp in Sources */,
 				A73FFD9F18353CB600F6EAAB /* path.c in Sources */,
 				A71938C818319FF6009EFD11 /* interpolator.c in Sources */,
 				A71938A01831719F009EFD11 /* AppDelegate.mm in Sources */,
-				A71938C2183171DD009EFD11 /* KinOpenGLView.m in Sources */,
+				A71938C2183171DD009EFD11 /* KinOpenGLView.mm in Sources */,
 				A73FFDA21835470200F6EAAB /* gcode.cpp in Sources */,
 				A71938991831719F009EFD11 /* main.m in Sources */,
 			);

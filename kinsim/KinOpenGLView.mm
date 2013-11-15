@@ -134,6 +134,7 @@
     drawaxis();
     drawpath(currentPath);
     
+    draw(obj);
     // Flush drawing command buffer to make drawing happen as soon as possible.
     glFlush();
     
@@ -168,6 +169,8 @@
 
     curr_pos = 0;
     display = NO;
+
+    //obj = stl("/Users/rene/dev/stl/cube.stl");
     
     timer = [NSTimer
              timerWithTimeInterval:(1.0f/60.0f)

@@ -28,7 +28,7 @@ struct path* gcode(const char *filename){
     struct path* result = 0;
     struct vec newvec;
     float x = 0,y = 0,z = 0;
-    bool linedone;
+    bool linedone = true;
     
     word.clear();
     g::next = g::any;
