@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87BF0C191835A55000D4ABBC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87BF0C181835A55000D4ABBC /* main.cpp */; };
+		87BF0C1F1835A5CF00D4ABBC /* cmot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A73FFDA518355B2D00F6EAAB /* cmot.cpp */; };
 		A719388D1831719F009EFD11 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A719388C1831719F009EFD11 /* Cocoa.framework */; };
 		A71938971831719F009EFD11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A71938951831719F009EFD11 /* InfoPlist.strings */; };
 		A71938991831719F009EFD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A71938981831719F009EFD11 /* main.m */; };
@@ -38,7 +40,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		87BF0C141835A55000D4ABBC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		87BF0C161835A55000D4ABBC /* cmot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cmot; sourceTree = BUILT_PRODUCTS_DIR; };
+		87BF0C181835A55000D4ABBC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A71938891831719F009EFD11 /* kinsim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kinsim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A719388C1831719F009EFD11 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A719388F1831719F009EFD11 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -69,13 +85,20 @@
 		A73FFDA11835470200F6EAAB /* gcode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcode.cpp; sourceTree = "<group>"; };
 		A73FFDA31835503D00F6EAAB /* gcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gcode.h; sourceTree = "<group>"; };
 		A73FFDA4183556E600F6EAAB /* gcode.ngc */ = {isa = PBXFileReference; lastKnownFileType = text; path = gcode.ngc; sourceTree = "<group>"; };
-		A73FFDA518355B2D00F6EAAB /* cmot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cmot.cpp; sourceTree = "<group>"; };
-		A73FFDA618355B2D00F6EAAB /* cmot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cmot.h; sourceTree = "<group>"; };
+		A73FFDA518355B2D00F6EAAB /* cmot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cmot.cpp; path = ../kinsim/cmot.cpp; sourceTree = "<group>"; };
+		A73FFDA618355B2D00F6EAAB /* cmot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cmot.h; path = ../kinsim/cmot.h; sourceTree = "<group>"; };
 		A7AC763B18357EAB009DFF34 /* easygl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = easygl.c; sourceTree = "<group>"; };
 		A7AC763D18357EBD009DFF34 /* easygl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = easygl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		87BF0C131835A55000D4ABBC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A71938861831719F009EFD11 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -98,11 +121,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		87BF0C171835A55000D4ABBC /* cmot */ = {
+			isa = PBXGroup;
+			children = (
+				A73FFDA518355B2D00F6EAAB /* cmot.cpp */,
+				A73FFDA618355B2D00F6EAAB /* cmot.h */,
+				87BF0C181835A55000D4ABBC /* main.cpp */,
+			);
+			path = cmot;
+			sourceTree = "<group>";
+		};
 		A71938801831719F009EFD11 = {
 			isa = PBXGroup;
 			children = (
 				A71938921831719F009EFD11 /* kinsim */,
 				A71938B01831719F009EFD11 /* kinsimTests */,
+				87BF0C171835A55000D4ABBC /* cmot */,
 				A719388B1831719F009EFD11 /* Frameworks */,
 				A719388A1831719F009EFD11 /* Products */,
 			);
@@ -113,6 +147,7 @@
 			children = (
 				A71938891831719F009EFD11 /* kinsim.app */,
 				A71938AA1831719F009EFD11 /* kinsimTests.xctest */,
+				87BF0C161835A55000D4ABBC /* cmot */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,16 +178,14 @@
 			isa = PBXGroup;
 			children = (
 				A73FFDA4183556E600F6EAAB /* gcode.ngc */,
-				A73FFDA518355B2D00F6EAAB /* cmot.cpp */,
-				A73FFDA618355B2D00F6EAAB /* cmot.h */,
 				A73FFDA11835470200F6EAAB /* gcode.cpp */,
 				A73FFDA31835503D00F6EAAB /* gcode.h */,
-				A73FFD9E18353CB600F6EAAB /* path.c */,
-				A73FFDA018353CD900F6EAAB /* path.h */,
 				A7AC763B18357EAB009DFF34 /* easygl.c */,
 				A7AC763D18357EBD009DFF34 /* easygl.h */,
 				A71938C718319FF6009EFD11 /* interpolator.c */,
 				A71938C91831A020009EFD11 /* interpolator.h */,
+				A73FFD9E18353CB600F6EAAB /* path.c */,
+				A73FFDA018353CD900F6EAAB /* path.h */,
 				A71938C0183171DD009EFD11 /* KinOpenGLView.h */,
 				A71938C1183171DD009EFD11 /* KinOpenGLView.m */,
 				A719389E1831719F009EFD11 /* AppDelegate.h */,
@@ -197,6 +230,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		87BF0C151835A55000D4ABBC /* cmot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87BF0C1E1835A55000D4ABBC /* Build configuration list for PBXNativeTarget "cmot" */;
+			buildPhases = (
+				87BF0C121835A55000D4ABBC /* Sources */,
+				87BF0C131835A55000D4ABBC /* Frameworks */,
+				87BF0C141835A55000D4ABBC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cmot;
+			productName = cmot;
+			productReference = 87BF0C161835A55000D4ABBC /* cmot */;
+			productType = "com.apple.product-type.tool";
+		};
 		A71938881831719F009EFD11 /* kinsim */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A71938BA183171A0009EFD11 /* Build configuration list for PBXNativeTarget "kinsim" */;
@@ -261,6 +311,7 @@
 			targets = (
 				A71938881831719F009EFD11 /* kinsim */,
 				A71938A91831719F009EFD11 /* kinsimTests */,
+				87BF0C151835A55000D4ABBC /* cmot */,
 			);
 		};
 /* End PBXProject section */
@@ -289,6 +340,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		87BF0C121835A55000D4ABBC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87BF0C1F1835A5CF00D4ABBC /* cmot.cpp in Sources */,
+				87BF0C191835A55000D4ABBC /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A71938851831719F009EFD11 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -357,6 +417,26 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		87BF0C1C1835A55000D4ABBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		87BF0C1D1835A55000D4ABBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		A71938B8183171A0009EFD11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -498,6 +578,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		87BF0C1E1835A55000D4ABBC /* Build configuration list for PBXNativeTarget "cmot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87BF0C1C1835A55000D4ABBC /* Debug */,
+				87BF0C1D1835A55000D4ABBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		A71938841831719F009EFD11 /* Build configuration list for PBXProject "kinsim" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
