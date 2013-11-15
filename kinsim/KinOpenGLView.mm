@@ -134,6 +134,7 @@
     drawaxis();
     drawpath(currentPath);
     
+    //stl("/Users/rene/dev/stl/cube.stl");
     // Flush drawing command buffer to make drawing happen as soon as possible.
     glFlush();
     

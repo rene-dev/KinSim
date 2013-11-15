@@ -12,7 +12,10 @@
 #include <OpenGL/gl.h>
 #include <OpenGL/glext.h>
 #include <OpenGL/glu.h>
+
+extern "C" {
 #include "path.h"
+}
 
 // simple cube data
 GLint cube_num_vertices = 8;
@@ -94,21 +97,57 @@ void drawgrid(){
     glEnd();
 }
 
-void stl(const char *filename){
-    std::ifstream infile("/Users/rene/dev/stl/cube.stl");
+GLfloat* stl(const char *filename){
+    std::ifstream infile(filename);
     std::string line;
     char a [20],b [20],c [20],d [20];
-    glBegin(GL_TRIANGLES);
-    glColor3f(1, 1, 1);
+    int length = 0;
+    struct vec vert;
+    struct path* vertlist= 0;
+    struct path* tmp;
+    GLfloat *result=0;
+    int *indices=0;
+    int index = 0;
     
     while (getline(infile,line))
     {
         if(sscanf (line.c_str(),"%s %s %s %s",a,b,c,d) == 4){
             if (!strcmp("vertex", a)) {
-                std::cout << b << " " << c << " " << d << std::endl;
-                glVertex3f(atof(b)*0.1, atof(c)*0.1, atof(d)*0.1);
+                vert.axis_pos[0] = atof(b)/10;
+                vert.axis_pos[1] = atof(c)/10;
+                vert.axis_pos[2] = atof(d)/10;
+                append(&vertlist, vert);
+                length++;
             }
         }
     }
-    glEnd();
+    
+    std::cout << "parsed " << length << " vertices" << std::endl;
+    result = (GLfloat*)malloc(sizeof(GLfloat)*length*3);
+    indices = (int*)malloc(sizeof(int)*length*3);
+    length = 0;
+    tmp = vertlist;
+    
+    while (tmp) {
+        result[length]   = tmp->pos.axis_pos[0];
+        result[length+1] = tmp->pos.axis_pos[1];
+        result[length+2] = tmp->pos.axis_pos[2];
+        length+=3;
+        tmp = tmp->next;
+    }
+    freepath(vertlist);
+    while (index<length) {
+        indices[index] = index;
+        index++;
+    }
+    
+    length--;
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glColor3f(0.3, 0.3, 0.3);
+    glVertexPointer( 3, GL_FLOAT, sizeof(*result), result);
+    glDrawElements(GL_TRIANGLES, length, GL_UNSIGNED_INT, indices);
+    glDisableClientState(GL_VERTEX_ARRAY);
+    free(indices);
+    free(result);
+    return 0;
 }
