@@ -14,10 +14,6 @@
 		A71938A01831719F009EFD11 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A719389F1831719F009EFD11 /* AppDelegate.mm */; };
 		A71938A31831719F009EFD11 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A71938A11831719F009EFD11 /* MainMenu.xib */; };
 		A71938A51831719F009EFD11 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A71938A41831719F009EFD11 /* Images.xcassets */; };
-		A71938AC1831719F009EFD11 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71938AB1831719F009EFD11 /* XCTest.framework */; };
-		A71938AD1831719F009EFD11 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A719388C1831719F009EFD11 /* Cocoa.framework */; };
-		A71938B5183171A0009EFD11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A71938B3183171A0009EFD11 /* InfoPlist.strings */; };
-		A71938B7183171A0009EFD11 /* kinsimTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A71938B6183171A0009EFD11 /* kinsimTests.m */; };
 		A71938C2183171DD009EFD11 /* KinOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = A71938C1183171DD009EFD11 /* KinOpenGLView.m */; };
 		A71938C41831723C009EFD11 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71938C31831723C009EFD11 /* OpenGL.framework */; };
 		A71938C618318388009EFD11 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71938C518318388009EFD11 /* GLKit.framework */; };
@@ -27,16 +23,6 @@
 		A7AC763A18357400009DFF34 /* gcode.ngc in Resources */ = {isa = PBXBuildFile; fileRef = A73FFDA4183556E600F6EAAB /* gcode.ngc */; };
 		A7AC763C18357EAB009DFF34 /* easygl.c in Sources */ = {isa = PBXBuildFile; fileRef = A7AC763B18357EAB009DFF34 /* easygl.c */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A71938AE1831719F009EFD11 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A71938811831719F009EFD11 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A71938881831719F009EFD11;
-			remoteInfo = kinsim;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A71938891831719F009EFD11 /* kinsim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kinsim.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,11 +39,7 @@
 		A719389F1831719F009EFD11 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		A71938A21831719F009EFD11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A71938A41831719F009EFD11 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A71938AA1831719F009EFD11 /* kinsimTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kinsimTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71938AB1831719F009EFD11 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		A71938B21831719F009EFD11 /* kinsimTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "kinsimTests-Info.plist"; sourceTree = "<group>"; };
-		A71938B4183171A0009EFD11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A71938B6183171A0009EFD11 /* kinsimTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kinsimTests.m; sourceTree = "<group>"; };
 		A71938C0183171DD009EFD11 /* KinOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KinOpenGLView.h; sourceTree = "<group>"; };
 		A71938C1183171DD009EFD11 /* KinOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KinOpenGLView.m; sourceTree = "<group>"; };
 		A71938C31831723C009EFD11 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -86,15 +68,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A71938A71831719F009EFD11 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A71938AD1831719F009EFD11 /* Cocoa.framework in Frameworks */,
-				A71938AC1831719F009EFD11 /* XCTest.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -102,7 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				A71938921831719F009EFD11 /* kinsim */,
-				A71938B01831719F009EFD11 /* kinsimTests */,
 				A719388B1831719F009EFD11 /* Frameworks */,
 				A719388A1831719F009EFD11 /* Products */,
 			);
@@ -112,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				A71938891831719F009EFD11 /* kinsim.app */,
-				A71938AA1831719F009EFD11 /* kinsimTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -176,24 +147,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A71938B01831719F009EFD11 /* kinsimTests */ = {
-			isa = PBXGroup;
-			children = (
-				A71938B6183171A0009EFD11 /* kinsimTests.m */,
-				A71938B11831719F009EFD11 /* Supporting Files */,
-			);
-			path = kinsimTests;
-			sourceTree = "<group>";
-		};
-		A71938B11831719F009EFD11 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A71938B21831719F009EFD11 /* kinsimTests-Info.plist */,
-				A71938B3183171A0009EFD11 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -214,24 +167,6 @@
 			productReference = A71938891831719F009EFD11 /* kinsim.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A71938A91831719F009EFD11 /* kinsimTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A71938BD183171A0009EFD11 /* Build configuration list for PBXNativeTarget "kinsimTests" */;
-			buildPhases = (
-				A71938A61831719F009EFD11 /* Sources */,
-				A71938A71831719F009EFD11 /* Frameworks */,
-				A71938A81831719F009EFD11 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A71938AF1831719F009EFD11 /* PBXTargetDependency */,
-			);
-			name = kinsimTests;
-			productName = kinsimTests;
-			productReference = A71938AA1831719F009EFD11 /* kinsimTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -240,11 +175,6 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Rene;
-				TargetAttributes = {
-					A71938A91831719F009EFD11 = {
-						TestTargetID = A71938881831719F009EFD11;
-					};
-				};
 			};
 			buildConfigurationList = A71938841831719F009EFD11 /* Build configuration list for PBXProject "kinsim" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -260,7 +190,6 @@
 			projectRoot = "";
 			targets = (
 				A71938881831719F009EFD11 /* kinsim */,
-				A71938A91831719F009EFD11 /* kinsimTests */,
 			);
 		};
 /* End PBXProject section */
@@ -275,14 +204,6 @@
 				A719389D1831719F009EFD11 /* Credits.rtf in Resources */,
 				A71938A31831719F009EFD11 /* MainMenu.xib in Resources */,
 				A7AC763A18357400009DFF34 /* gcode.ngc in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A71938A81831719F009EFD11 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A71938B5183171A0009EFD11 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,23 +224,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A71938A61831719F009EFD11 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A71938B7183171A0009EFD11 /* kinsimTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A71938AF1831719F009EFD11 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A71938881831719F009EFD11 /* kinsim */;
-			targetProxy = A71938AE1831719F009EFD11 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A71938951831719F009EFD11 /* InfoPlist.strings */ = {
@@ -344,14 +249,6 @@
 				A71938A21831719F009EFD11 /* Base */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		A71938B3183171A0009EFD11 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A71938B4183171A0009EFD11 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -455,46 +352,6 @@
 			};
 			name = Release;
 		};
-		A71938BE183171A0009EFD11 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/kinsim.app/Contents/MacOS/kinsim";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "kinsim/kinsim-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "kinsimTests/kinsimTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		A71938BF183171A0009EFD11 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/kinsim.app/Contents/MacOS/kinsim";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "kinsim/kinsim-Prefix.pch";
-				INFOPLIST_FILE = "kinsimTests/kinsimTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -512,15 +369,6 @@
 			buildConfigurations = (
 				A71938BB183171A0009EFD11 /* Debug */,
 				A71938BC183171A0009EFD11 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A71938BD183171A0009EFD11 /* Build configuration list for PBXNativeTarget "kinsimTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A71938BE183171A0009EFD11 /* Debug */,
-				A71938BF183171A0009EFD11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
