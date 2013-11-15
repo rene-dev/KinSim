@@ -88,7 +88,7 @@ struct machine_config{
 };
 
 struct cmot_config{
-	unsigned int max_look_ahead; // look ahead limit, 0 = always stop at end of move, -1 = unlimited look ahead
+	unsigned int min_buffer_size; // look ahead limit, 0 = always stop at end of move, -1 = unlimited look ahead
 
 	double max_axis_step[AXIS]; // interpolation accuracy
 	double max_joint_step[JOINTS];
@@ -110,8 +110,8 @@ class cmot{
 
         complex_path *in_path;
     
-        complex_path *intp_pos;
-        complex_path *intped_path;
+        complex_path *blended_path;
+        complex_path *blended_path_head;
     
         complex_path *vplan_pos;
         complex_path *vplaned_path;

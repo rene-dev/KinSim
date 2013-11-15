@@ -113,11 +113,13 @@ void cmot::intp(){ // interpolator
 void cmot::kin(point &A){ // kinematic (axis pos -> joint pos)
     switch(A.type){
         case point::axis:
+            cout << "cmot: kin: forward kinematic not implemented" << endl << flush;
             // TODO: axis -> joint
         break;
             
         case point::joint:
             // TODO: joint -> axis
+            cout << "cmot: kin: forward kinematic not implemented" << endl << flush;
         break;
         
         default:
@@ -126,6 +128,7 @@ void cmot::kin(point &A){ // kinematic (axis pos -> joint pos)
 }
 
 void cmot::vplan(){ // velocity planing
+    
 }
 
 void cmot::tplan(){ // move / timestep planing
