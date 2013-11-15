@@ -105,27 +105,27 @@ GLfloat* stl(const char *filename){
     struct vec vert;
     struct path* vertlist= 0;
     struct path* tmp;
-    GLfloat *result=0;
-    int *indices=0;
+    GLfloat* result = 0;
+    int* indices = 0;
     int index = 0;
-    
+    int vertices = 0;
+
     while (getline(infile,line))
     {
-        if(sscanf (line.c_str(),"%s %s %s %s",a,b,c,d) == 4){
+        if(sscanf (line.c_str(),"%s %s %s %s",a,b,d,c) == 4){
             if (!strcmp("vertex", a)) {
                 vert.axis_pos[0] = atof(b)/10;
                 vert.axis_pos[1] = atof(c)/10;
                 vert.axis_pos[2] = atof(d)/10;
                 append(&vertlist, vert);
-                length++;
+                vertices++;
             }
         }
     }
     
-    std::cout << "parsed " << length << " vertices" << std::endl;
-    result = (GLfloat*)malloc(sizeof(GLfloat)*length*3);
-    indices = (int*)malloc(sizeof(int)*length*3);
-    length = 0;
+    std::cout << "parsed " << vertices << " vertices" << std::endl;
+    result = (GLfloat*)malloc(sizeof(GLfloat)*vertices*3);
+    indices = (int*)malloc(sizeof(int)*vertices);
     tmp = vertlist;
     
     while (tmp) {
@@ -136,17 +136,18 @@ GLfloat* stl(const char *filename){
         tmp = tmp->next;
     }
     freepath(vertlist);
-    while (index<length) {
-        indices[index] = index;
+    
+    while (index<vertices) {
+        indices[index] = index*3;
         index++;
     }
-    
-    length--;
+
     glEnableClientState(GL_VERTEX_ARRAY);
     glColor3f(0.3, 0.3, 0.3);
     glVertexPointer( 3, GL_FLOAT, sizeof(*result), result);
-    glDrawElements(GL_TRIANGLES, length, GL_UNSIGNED_INT, indices);
+    glDrawElements(GL_TRIANGLES, vertices, GL_UNSIGNED_INT, indices);
     glDisableClientState(GL_VERTEX_ARRAY);
+
     free(indices);
     free(result);
     return 0;
