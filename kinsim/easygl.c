@@ -43,9 +43,7 @@ void drawpath(struct path* currentPath){
     glColor3f(1, 1, 0);
     struct path* tmp = currentPath;
     while(tmp){
-        if(tmp->pos.type == axis){
-            glVertex3f(tmp->pos.axis_pos[0] / 100, tmp->pos.axis_pos[2] / 100, tmp->pos.axis_pos[1] / 100);
-        }
+        glVertex3f(tmp->pos.axis_pos[0] / 100, tmp->pos.axis_pos[2] / 100, tmp->pos.axis_pos[1] / 100);
         tmp = tmp->next;
     }
     glEnd();

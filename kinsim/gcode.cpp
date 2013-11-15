@@ -24,17 +24,9 @@ struct path* gcode(const char *filename){
     FILE *f = fopen(filename, "r");
     char c;
     string word = "";
-    struct path* result = (struct path *)malloc(sizeof(struct path));
+    struct path* result = 0;
     struct vec newvec;
-    newvec.type = vec::invalid;
     float x = 0,y = 0,z = 0;
-    
-    result->pos.axis_pos[0] = 0;
-    result->pos.axis_pos[1] = 0;
-    result->pos.axis_pos[2] = 0;
-    result->next = 0;
-    result->prev = 0;
-    result->pos.type = vec::invalid;
     
     g::next = g::G;
     
@@ -99,7 +91,7 @@ struct path* gcode(const char *filename){
                 newvec.axis_pos[0] = x;
                 newvec.axis_pos[1] = y;
                 newvec.axis_pos[2] = z;
-                append(result, newvec);
+                append(&result, newvec);
                 cout << "goto:" << x << " " << y << " " << z << endl;
                 break;
             default:
