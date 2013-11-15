@@ -41,10 +41,11 @@ void append(struct path** A, struct vec B){
 }
 
 void freepath(struct path* p){
-    struct path* tmp = p;
-    while(tmp){
-        if(tmp)
+    struct path* tmp;
+    while(p){
+        if(p)
+            tmp = p;
+            p = p->next;
             free(tmp);
-            tmp = tmp->next;
             }
 }
