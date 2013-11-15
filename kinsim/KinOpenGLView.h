@@ -64,6 +64,8 @@ typedef struct {
     NSPoint cam;
     NSPoint startcam;
     
+    easyobj* obj;
+    
     int frame;
     Boolean display;
 }
