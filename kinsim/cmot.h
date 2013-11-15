@@ -1,4 +1,5 @@
 #include <math.h>
+#include <iostream>
 
 #define AXIS 5
 #define JOINTS 5
@@ -20,7 +21,8 @@ struct complex_move{
 		arc, // no full circle
 		probe, // line, no blending
 		fast, // fast move, no axis interpolation
-		joint // use joint position
+		joint, // use joint position
+        start // move to startpoint
 	} type;
 
 	double blend_r; // blending radius at end of line
@@ -33,6 +35,7 @@ struct complex_move{
 	double max_break_vel[JOINTS]; // limit by break distance
 	double drive_vel[JOINTS]; // joint velocity
     unsigned int id; // move id
+    unsigned int bid; // blend move id
     unsigned int aid; // move axis split id
     unsigned int jid; // move joint split id
     
@@ -91,6 +94,8 @@ struct cmot_config{
 	double max_joint_step[JOINTS];
 
 	double timestep; // timestep for tplan
+    
+    bool blend; // use path blending
 };
 
 class machine{
@@ -102,15 +107,19 @@ class machine{
 
 class cmot{
 	private:
-		complex_path *cpath;
-        complex_path *current_blend;
-        complex_path *current_pplan;
-        complex_path *current_intp;
-        complex_path *current_vplan;
-        complex_path *current_tplan;
+
+        complex_path *in_path;
     
-		joint_step_path *jpath;
-        joint_step_path *current_jdrive;
+        complex_path *intp_pos;
+        complex_path *intped_path;
+    
+        complex_path *vplan_pos;
+        complex_path *vplaned_path;
+    
+        complex_path *tplan_pos;
+        complex_path *tplaned_path;
+    
+		joint_step_path *out_path;
 
 	public:
 		machine m;
@@ -125,8 +134,6 @@ class cmot{
 		void start(); // start calculation
 
 		void blend(); // path blending (line, line -> line, arc, line)
-
-		void pplan(); // path planing (arc -> line, ...)
 
 		void intp(); // interpolator
 
@@ -145,4 +152,5 @@ class cmot{
 
 void append(complex_path *A, complex_move B);
 void insert(complex_path *A, complex_move B);
-complex_path *split(complex_move A, complex_move B, unsigned int i);
+complex_path *split(point A, complex_move B, unsigned int count);
+double length(complex_move A);
