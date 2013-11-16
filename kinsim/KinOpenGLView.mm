@@ -170,7 +170,7 @@
     curr_pos = 0;
     display = NO;
 
-    //obj = stl("/Users/rene/dev/stl/cube.stl");
+    obj = stl("/Users/crinq/Dropbox/maschinen/knuth/pumpe.stl");
     
     timer = [NSTimer
              timerWithTimeInterval:(1.0f/60.0f)

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		87BF0C191835A55000D4ABBC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87BF0C181835A55000D4ABBC /* main.cpp */; };
 		87BF0C1F1835A5CF00D4ABBC /* cmot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A73FFDA518355B2D00F6EAAB /* cmot.cpp */; };
+		87BF0C211836D12300D4ABBC /* easygl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87BF0C201836D12300D4ABBC /* easygl.cpp */; };
+		87BF0C241836DD9000D4ABBC /* list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87BF0C221836DD9000D4ABBC /* list.cpp */; };
 		A719388D1831719F009EFD11 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A719388C1831719F009EFD11 /* Cocoa.framework */; };
 		A71938971831719F009EFD11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A71938951831719F009EFD11 /* InfoPlist.strings */; };
 		A71938991831719F009EFD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A71938981831719F009EFD11 /* main.m */; };
@@ -23,18 +25,7 @@
 		A73FFD9F18353CB600F6EAAB /* path.c in Sources */ = {isa = PBXBuildFile; fileRef = A73FFD9E18353CB600F6EAAB /* path.c */; };
 		A73FFDA21835470200F6EAAB /* gcode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A73FFDA11835470200F6EAAB /* gcode.cpp */; };
 		A7AC763A18357400009DFF34 /* gcode.ngc in Resources */ = {isa = PBXBuildFile; fileRef = A73FFDA4183556E600F6EAAB /* gcode.ngc */; };
-		A7AC763C18357EAB009DFF34 /* easygl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7AC763B18357EAB009DFF34 /* easygl.cpp */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A71938AE1831719F009EFD11 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A71938811831719F009EFD11 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A71938881831719F009EFD11;
-			remoteInfo = kinsim;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		87BF0C141835A55000D4ABBC /* CopyFiles */ = {
@@ -51,6 +42,9 @@
 /* Begin PBXFileReference section */
 		87BF0C161835A55000D4ABBC /* cmot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cmot; sourceTree = BUILT_PRODUCTS_DIR; };
 		87BF0C181835A55000D4ABBC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		87BF0C201836D12300D4ABBC /* easygl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = easygl.cpp; sourceTree = "<group>"; };
+		87BF0C221836DD9000D4ABBC /* list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list.cpp; sourceTree = "<group>"; };
+		87BF0C231836DD9000D4ABBC /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list.h; sourceTree = "<group>"; };
 		A71938891831719F009EFD11 /* kinsim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kinsim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A719388C1831719F009EFD11 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A719388F1831719F009EFD11 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -79,7 +73,6 @@
 		A73FFDA4183556E600F6EAAB /* gcode.ngc */ = {isa = PBXFileReference; lastKnownFileType = text; path = gcode.ngc; sourceTree = "<group>"; };
 		A73FFDA518355B2D00F6EAAB /* cmot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cmot.cpp; path = ../kinsim/cmot.cpp; sourceTree = "<group>"; };
 		A73FFDA618355B2D00F6EAAB /* cmot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cmot.h; path = ../kinsim/cmot.h; sourceTree = "<group>"; };
-		A7AC763B18357EAB009DFF34 /* easygl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = easygl.c; sourceTree = "<group>"; };
 		A7AC763D18357EBD009DFF34 /* easygl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = easygl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				A71938921831719F009EFD11 /* kinsim */,
-				A71938B01831719F009EFD11 /* kinsimTests */,
 				87BF0C171835A55000D4ABBC /* cmot */,
 				A719388B1831719F009EFD11 /* Frameworks */,
 				A719388A1831719F009EFD11 /* Products */,
@@ -129,7 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				A71938891831719F009EFD11 /* kinsim.app */,
-				A71938AA1831719F009EFD11 /* kinsimTests.xctest */,
 				87BF0C161835A55000D4ABBC /* cmot */,
 			);
 			name = Products;
@@ -160,15 +151,17 @@
 		A71938921831719F009EFD11 /* kinsim */ = {
 			isa = PBXGroup;
 			children = (
+				87BF0C201836D12300D4ABBC /* easygl.cpp */,
 				A73FFDA4183556E600F6EAAB /* gcode.ngc */,
 				A73FFDA11835470200F6EAAB /* gcode.cpp */,
 				A73FFDA31835503D00F6EAAB /* gcode.h */,
-				A7AC763B18357EAB009DFF34 /* easygl.c */,
 				A7AC763D18357EBD009DFF34 /* easygl.h */,
 				A71938C718319FF6009EFD11 /* interpolator.c */,
 				A71938C91831A020009EFD11 /* interpolator.h */,
 				A73FFD9E18353CB600F6EAAB /* path.c */,
 				A73FFDA018353CD900F6EAAB /* path.h */,
+				87BF0C221836DD9000D4ABBC /* list.cpp */,
+				87BF0C231836DD9000D4ABBC /* list.h */,
 				A71938C0183171DD009EFD11 /* KinOpenGLView.h */,
 				A71938C1183171DD009EFD11 /* KinOpenGLView.mm */,
 				A719389E1831719F009EFD11 /* AppDelegate.h */,
@@ -252,7 +245,6 @@
 			projectRoot = "";
 			targets = (
 				A71938881831719F009EFD11 /* kinsim */,
-				A71938A91831719F009EFD11 /* kinsimTests */,
 				87BF0C151835A55000D4ABBC /* cmot */,
 			);
 		};
@@ -287,11 +279,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7AC763C18357EAB009DFF34 /* easygl.cpp in Sources */,
+				87BF0C211836D12300D4ABBC /* easygl.cpp in Sources */,
 				A73FFD9F18353CB600F6EAAB /* path.c in Sources */,
 				A71938C818319FF6009EFD11 /* interpolator.c in Sources */,
 				A71938A01831719F009EFD11 /* AppDelegate.mm in Sources */,
 				A71938C2183171DD009EFD11 /* KinOpenGLView.mm in Sources */,
+				87BF0C241836DD9000D4ABBC /* list.cpp in Sources */,
 				A73FFDA21835470200F6EAAB /* gcode.cpp in Sources */,
 				A71938991831719F009EFD11 /* main.m in Sources */,
 			);
@@ -455,6 +448,7 @@
 				87BF0C1D1835A55000D4ABBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A71938841831719F009EFD11 /* Build configuration list for PBXProject "kinsim" */ = {
 			isa = XCConfigurationList;
