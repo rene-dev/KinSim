@@ -15,6 +15,7 @@ struct easyobj{
     GLfloat* vec;
 };
 
+void wireBox(GLdouble width, GLdouble height, GLdouble depth);
 void drawpath(struct path* currentPath);
 void drawrobot(float j1,float j2,float j3,float j4,float j5,float j6);
 void drawaxis();
