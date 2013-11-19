@@ -101,26 +101,38 @@ void drawgrid(){
 easyobj* stl(const char *filename){
     std::ifstream infile(filename);
     std::string line;
-    char a [20],b [20],c [20],d [20];
+    char a[20], b[20], c[20], d[20], e[20];
     int length = 0;
     struct vec vert;
     struct path* vertlist= 0;
     struct path* tmp;
     struct easyobj* obj = 0;
     GLfloat* result = 0;
+    GLfloat* normal = 0;
     int* indices = 0;
     int index = 0;
     int vertices = 0;
 
+    //glBegin(GL_TRIANGLES);
+    
     while (getline(infile,line))
     {
-        if(sscanf (line.c_str(),"%s %s %s %s",a,b,d,c) == 4){
+        if(sscanf (line.c_str(),"%s %s %s %s %s",a,b,c,d,e)){
+            //if (!strcmp("facet", a)) {
+                //vert.joint_pos[0] = atof(c);
+                //vert.joint_pos[1] = atof(e);
+                //vert.joint_pos[2] = atof(d);
+                //glNormal3f(vert.joint_pos[0],vert.joint_pos[1],vert.joint_pos[2]);
+                //strcpy(a, "");
+            //}
             if (!strcmp("vertex", a)) {
                 vert.axis_pos[0] = atof(b)/10;
-                vert.axis_pos[1] = atof(c)/10;
-                vert.axis_pos[2] = atof(d)/10;
+                vert.axis_pos[1] = atof(d)/10;
+                vert.axis_pos[2] = atof(c)/10;
                 append(&vertlist, vert);
+                glVertex3f(vert.axis_pos[0],vert.axis_pos[1],vert.axis_pos[2]);
                 vertices++;
+                strcpy(a, "");
             }
         }
     }
@@ -130,6 +142,7 @@ easyobj* stl(const char *filename){
         return 0;
     }
     result = (GLfloat*)malloc(sizeof(GLfloat)*vertices*3);
+    normal = (GLfloat*)malloc(sizeof(GLfloat)*vertices);
     indices = (int*)malloc(sizeof(int)*vertices);
     tmp = vertlist;
     
@@ -151,7 +164,7 @@ easyobj* stl(const char *filename){
     obj->vec = result;
     obj->indices = indices;
     obj->vertices = vertices;
-
+    //glEnd();
     return obj;
 }
 
