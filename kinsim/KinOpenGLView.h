@@ -41,6 +41,7 @@ typedef struct {
     IBOutlet NSSlider* joint6;
     IBOutlet NSSlider* pos;
     IBOutlet NSSlider* speed;
+    IBOutlet NSTextField* debugtext;
     
     struct path* currentPath;
     struct outpath p;

@@ -130,9 +130,11 @@
     glMatrixMode(GL_MODELVIEW);
     
     if(display){
-        j1 = [joint1 floatValue];//+p.jointpos1[curr_pos];
-        j2 = [joint2 floatValue];//+p.jointpos2[curr_pos];
-        j3 = [joint3 floatValue];//+p.jointpos3[curr_pos];
+        j1 = [joint1 floatValue]+p.jointpos1[curr_pos];
+        j2 = [joint2 floatValue]+p.jointpos2[curr_pos];
+        j3 = [joint3 floatValue]+p.jointpos3[curr_pos]-360;
+        
+        [debugtext setStringValue:[NSString stringWithFormat:@"%f\n%f\n%f",j1,j2,j3]];
         
         drawgrid();
         drawrobot(j1, j2, j3, [joint4 floatValue], [joint5 floatValue], 0);
@@ -170,17 +172,13 @@
 
 -(IBAction)send:(id)sender{
     int i1 = -j1 / 0.055;
-    int i2 = j2 / 0.038;
-    int i3 = j3-j2 / 0.038;
-    //int i4 = j4 / 0.055;
-    //int i5 = j5 / 0.055;
-    //int i6 = j6 / 0.026;
+    int i2 =  j2 / 0.038;
+    int i3 =  j3 / 0.038;
     
     char buffer[1024];
     snprintf(buffer, sizeof(buffer), "D %i %i %i %i %i %i\n", i1, i2, i3, 0, 0, 0);
     NSLog(@"%@",[NSString stringWithCString:buffer encoding:NSASCIIStringEncoding]);
-    
-    //swrite(buffer);
+    swrite(buffer);
 }
 
 
