@@ -11,6 +11,7 @@
 		87BF0C1F1835A5CF00D4ABBC /* cmot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A73FFDA518355B2D00F6EAAB /* cmot.cpp */; };
 		87BF0C211836D12300D4ABBC /* easygl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87BF0C201836D12300D4ABBC /* easygl.cpp */; };
 		87BF0C241836DD9000D4ABBC /* list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87BF0C221836DD9000D4ABBC /* list.cpp */; };
+		87BF0C2C183AEC4200D4ABBC /* socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 87BF0C2B183AEC4200D4ABBC /* socket.c */; };
 		A719388D1831719F009EFD11 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A719388C1831719F009EFD11 /* Cocoa.framework */; };
 		A71938971831719F009EFD11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A71938951831719F009EFD11 /* InfoPlist.strings */; };
 		A71938991831719F009EFD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A71938981831719F009EFD11 /* main.m */; };
@@ -45,6 +46,8 @@
 		87BF0C201836D12300D4ABBC /* easygl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = easygl.cpp; sourceTree = "<group>"; };
 		87BF0C221836DD9000D4ABBC /* list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list.cpp; sourceTree = "<group>"; };
 		87BF0C231836DD9000D4ABBC /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list.h; sourceTree = "<group>"; };
+		87BF0C27183ABB2F00D4ABBC /* socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
+		87BF0C2B183AEC4200D4ABBC /* socket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = socket.c; sourceTree = "<group>"; };
 		A71938891831719F009EFD11 /* kinsim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kinsim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A719388C1831719F009EFD11 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A719388F1831719F009EFD11 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -152,6 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				87BF0C201836D12300D4ABBC /* easygl.cpp */,
+				87BF0C27183ABB2F00D4ABBC /* socket.h */,
+				87BF0C2B183AEC4200D4ABBC /* socket.c */,
 				A73FFDA4183556E600F6EAAB /* gcode.ngc */,
 				A73FFDA11835470200F6EAAB /* gcode.cpp */,
 				A73FFDA31835503D00F6EAAB /* gcode.h */,
@@ -281,6 +286,7 @@
 			files = (
 				87BF0C211836D12300D4ABBC /* easygl.cpp in Sources */,
 				A73FFD9F18353CB600F6EAAB /* path.c in Sources */,
+				87BF0C2C183AEC4200D4ABBC /* socket.c in Sources */,
 				A71938C818319FF6009EFD11 /* interpolator.c in Sources */,
 				A71938A01831719F009EFD11 /* AppDelegate.mm in Sources */,
 				A71938C2183171DD009EFD11 /* KinOpenGLView.mm in Sources */,

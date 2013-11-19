@@ -21,8 +21,6 @@ void insert(struct path* A, struct vec B){
 	}
 }
 
-
-
 void append(struct path** A, struct vec B){
     struct path* tmp = *A;
     if(!tmp){
@@ -51,3 +49,17 @@ void freepath(struct path* p){
             free(tmp);
             }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

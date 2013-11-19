@@ -16,6 +16,8 @@
     NSString *defaultgcode = [[NSBundle mainBundle] pathForResource:@"gcode" ofType:@"ngc"];
     [kinView newPath:gcode([defaultgcode cStringUsingEncoding:NSASCIIStringEncoding])];
     [window setTitle:[defaultgcode lastPathComponent]];
+    
+    sopen("localhost");
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication{
@@ -27,6 +29,12 @@
     [kinView newPath:gcode([filename cStringUsingEncoding:NSASCIIStringEncoding])];
     [window setTitle:[filename lastPathComponent]];
     return YES;
+}
+
+-(void)applicationWillTerminate:(NSNotification *)notification{
+    swrite("q\n");
+    NSLog(@"end");
+    sclose();
 }
 
 @end

@@ -13,6 +13,7 @@
 #import "easygl.h"
 
 extern "C" {
+#import "socket.h"
 #import "interpolator.h"
 }
 
@@ -71,6 +72,7 @@ typedef struct {
 }
 
 -(IBAction)stop:(id)sender;
+-(IBAction)send:(id)sender;
 -(void) newPath:(struct path*)newpath;
 
 @end
