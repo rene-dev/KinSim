@@ -72,10 +72,10 @@ void drawrobot(float j1,float j2,float j3,float j4,float j5,float j6){
     glRotatef(j3, 1, 0, 0);
     wireBox(0.5, 1.9, 0.5);
 
-    glTranslatef(0, 1.9, 0);
-    glRotatef(j4, 1, 0, 0);
-    glRotatef(j5+90, 0, 1, 0);
-    wireBox(0.1, 1.15, 0.7);
+    //glTranslatef(0, 1.9, 0);
+    //glRotatef(j4, 1, 0, 0);
+    //glRotatef(j5+90, 0, 1, 0);
+    //wireBox(0.1, 1.15, 0.7);
     glPopMatrix();
 }
 

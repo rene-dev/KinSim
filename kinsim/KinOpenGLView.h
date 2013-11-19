@@ -67,6 +67,8 @@ typedef struct {
     
     easyobj* obj;
     
+    GLfloat j1,j2,j3;
+    
     int frame;
     Boolean display;
 }

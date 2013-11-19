@@ -27,7 +27,10 @@
     camera.viewUp.y = 0;
     camera.viewUp.z = 1;
     
-    shapeSize = 20.0f; // max radius of of objects
+    cam.x = 0;
+    cam.y = 0;
+    
+    shapeSize = 40.0f; // max radius of of objects
     
     [self updateCamera];
 }
@@ -85,7 +88,7 @@
 	GLdouble ratio, radians, wd2;
 	GLdouble left, right, top, bottom, near, far;
     
-    [[self openGLContext] makeCurrentContext];
+    //[[self openGLContext] makeCurrentContext];
     
 	// set projection
 	glMatrixMode (GL_PROJECTION);
@@ -115,8 +118,6 @@
 
 - (void)animationTimer:(NSTimer *)timer
 {
-    GLfloat j1,j2,j3;
-    
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glTranslatef(0, -1, -5);
@@ -128,83 +129,71 @@
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     
-    drawgrid();
-    
     if(display){
         j1 = [joint1 floatValue];//+p.jointpos1[curr_pos];
         j2 = [joint2 floatValue];//+p.jointpos2[curr_pos];
         j3 = [joint3 floatValue];//+p.jointpos3[curr_pos];
+        
+        drawgrid();
+        drawrobot(j1, j2, j3, [joint4 floatValue], [joint5 floatValue], 0);
+        drawaxis();
+        drawpath(currentPath);
+        draw(obj);
+        
+        // Flush drawing command buffer to make drawing happen as soon as possible.
+        glFlush();
     
-    drawrobot(j1, j2, j3, [joint4 floatValue], [joint5 floatValue], 0);
-    drawaxis();
-    drawpath(currentPath);
-    
-    draw(obj);
-    // Flush drawing command buffer to make drawing happen as soon as possible.
-    glFlush();
-    
-    curr_pos += (int)[speed floatValue];
-    if(curr_pos < 0){
-        curr_pos = p.length - 1;
-    }
-    if(curr_pos >= p.length){
-        curr_pos = 0;
-    }
-    if([speed floatValue] != 0){
-        [pos setFloatValue:curr_pos * 100 / p.length];
-    }else{
-        curr_pos = [pos floatValue]/100*(p.length-1);
-    }
+        curr_pos += (int)[speed floatValue];
+        if(curr_pos < 0){
+            curr_pos = p.length - 1;
+        }
+        if(curr_pos >= p.length){
+            curr_pos = 0;
+        }
+        if([speed floatValue] != 0){
+            [pos setFloatValue:curr_pos * 100 / p.length];
+        }else{
+            curr_pos = [pos floatValue]/100*(p.length-1);
+        }
     }
 }
 
 -(IBAction)stop:(id)sender{
-    [speed setFloatValue:0];
+    [speed  setFloatValue:0];
+    [joint1 setFloatValue:0];
+    [joint2 setFloatValue:0];
+    [joint3 setFloatValue:0];
+    [joint4 setFloatValue:0];
+    [joint5 setFloatValue:0];
+    [joint6 setFloatValue:0];
 }
 
 -(IBAction)send:(id)sender{
-    GLfloat j1,j2,j3,j4,j5,j6;
-
-    j1 = [joint1 floatValue];
-    j2 = [joint2 floatValue];
-    j3 = [joint3 floatValue];
-    j4 = [joint3 floatValue];
-    j5 = [joint3 floatValue];
-    j6 = [joint3 floatValue];
-    
-    j1 = - j1;
-    j2 = j2;
-    j3 = j3 - j2;
-    
-    int i1 = j1 / 0.055;
+    int i1 = -j1 / 0.055;
     int i2 = j2 / 0.038;
-    int i3 = j3 / 0.038;
-    int i4 = j4 / 0.055;
-    int i5 = j5 / 0.055;
-    int i6 = j6 / 0.026;
+    int i3 = j3-j2 / 0.038;
+    //int i4 = j4 / 0.055;
+    //int i5 = j5 / 0.055;
+    //int i6 = j6 / 0.026;
     
     char buffer[1024];
-    snprintf(buffer, sizeof(buffer), "D %i %i %i %i %i %i\n", i1, i2, i3, i4, i5, i6);
-    NSLog([NSString stringWithCString:buffer encoding:NSASCIIStringEncoding]);
+    snprintf(buffer, sizeof(buffer), "D %i %i %i %i %i %i\n", i1, i2, i3, 0, 0, 0);
+    NSLog(@"%@",[NSString stringWithCString:buffer encoding:NSASCIIStringEncoding]);
     
-    swrite(buffer);
+    //swrite(buffer);
 }
 
 
 - (void) prepareOpenGL
 {
     [self resetCamera];
-    cam.x = 0;
-    cam.y = 0;
-    [speed setContinuous:YES];
     frame = 0;
-
-    glEnable(GL_LINE_SMOOTH);
-
     curr_pos = 0;
     display = NO;
+    
+    glEnable(GL_LINE_SMOOTH);
 
-    obj = stl("/Users/crinq/Dropbox/maschinen/knuth/pumpe.stl");
+    //obj = stl("/Users/crinq/Dropbox/maschinen/knuth/pumpe.stl");
     
     timer = [NSTimer
              timerWithTimeInterval:(1.0f/60.0f)
