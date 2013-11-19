@@ -29,6 +29,11 @@
     
     shapeSize = 20.0f; // max radius of of objects
     
+    [self updateCamera];
+}
+
+- (void) updateCamera
+{
     NSRect rectView = [self bounds];
 	
 	// ensure camera knows size changed
@@ -226,6 +231,8 @@
     display = YES;
 }
 
-
+- (void)windowDidResize:(NSNotification *)notification{
+    [self updateCamera];
+}
 
 @end

@@ -773,6 +773,9 @@
                     <constraint firstItem="aII-CU-oJu" firstAttribute="top" secondItem="3Tn-Ah-GU8" secondAttribute="bottom" constant="8" symbolic="YES" id="zmr-qi-ghK"/>
                 </constraints>
             </view>
+            <connections>
+                <outlet property="delegate" destination="aWz-lx-G8Q" id="RKz-29-iJb"/>
+            </connections>
         </window>
         <customObject id="494" customClass="AppDelegate">
             <connections>
