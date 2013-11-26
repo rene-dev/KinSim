@@ -32,9 +32,10 @@
 }
 
 -(void)applicationWillTerminate:(NSNotification *)notification{
-    swrite("q\n");
-    NSLog(@"end");
-    sclose();
+    if (connected == 0) {
+        swrite("q\n");
+        sclose();
+    }
 }
 
 @end

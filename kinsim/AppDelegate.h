@@ -14,7 +14,9 @@ extern "C"{
 #import "socket.h"
 }
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate>{
+    int connected;
+}
 
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet KinOpenGLView *kinView;

@@ -30,7 +30,7 @@ typedef struct {
 	GLint viewWidth, viewHeight; // current window/screen height and width
 } recCamera;
 
-@interface KinOpenGLView : NSOpenGLView
+@interface KinOpenGLView : NSOpenGLView <NSWindowDelegate>
 
 {
     IBOutlet NSSlider* joint1;
@@ -41,6 +41,7 @@ typedef struct {
     IBOutlet NSSlider* joint6;
     IBOutlet NSSlider* pos;
     IBOutlet NSSlider* speed;
+    IBOutlet NSTextField* debugtext;
     
     struct path* currentPath;
     struct outpath p;
@@ -67,12 +68,16 @@ typedef struct {
     
     easyobj* obj;
     
+    GLfloat j1,j2,j3;
+    
     int frame;
     Boolean display;
 }
 
 -(IBAction)stop:(id)sender;
 -(IBAction)send:(id)sender;
--(void) newPath:(struct path*)newpath;
+-(void)newPath:(struct path*)newpath;
+-(void)updateCamera;
+-(void)resetCamera;
 
 @end
