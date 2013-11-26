@@ -15,42 +15,46 @@ struct point{
 	}type;
 };
 
-struct complex_move{
+struct move{
+	point dest;
+
 	enum move_type{
 		line,
 		arc, // no full circle
-		probe, // line, no blending
-		fast, // fast move, no axis interpolation
+		probe, // line, no blending, stop on probe signal
+		fast, // fast move, no axis interpolation, joint jump allowed
 		joint, // use joint position
-        start // move to startpoint
+    start // move to startpoint
 	} type;
 
 	double blend_r; // blending radius at end of line
-	point dest; // destination of move
+
 	point dir; // start tangent of arc
-	double probe_break_dist; // max probe break distance
-	double max_vel; // max drive velocity
-    double max_joint_vel; // max joint velocity
-	double max_turn_vel[JOINTS]; // limit by turn
-	double max_break_vel[JOINTS]; // limit by break distance
-	double drive_vel[JOINTS]; // joint velocity
-    unsigned int id; // move id
-    unsigned int bid; // blend move id
-    unsigned int aid; // move axis split id
-    unsigned int jid; // move joint split id
-    
+
+	// limits by input
+	double max_vel; // max axis drive velocity
+
+	// limits by machine & look ahead
+	double max_turn_vel; // limit by turn at end of move
+	double max_break_vel; // limit by break distance to end of planed path
+
+	// velocity calculated by vplan
+	double start_vel; // joint velocity at start of move
+	double end_vel; // joint velocity at end of move
+
+	// move & submove ids
+  unsigned int id; // move id
+  unsigned int bid; // blend move id
+  unsigned int iid; // move intp split id
+	unsigned int tid; // move tplan split id
+
+	bool trigger; // trigger new calculation
 };
 
-struct joint_step_path{ // output of
-	point dest;
-	joint_step_path *next;
-	joint_step_path *prev;
-};
-
-struct complex_path{
-	complex_move move;
-	complex_path *next;
-	complex_path *prev;
+struct path{
+	move m;
+	path *next;
+	path *prev;
 };
 
 enum kin_result{
@@ -60,11 +64,13 @@ enum kin_result{
 	not_reachable,
 	joint_limit,
 	colision,
-	misc
+	misc,
+	fkin_not_implemented,
+	ikin_not_implemented
 };
 
 struct tool_config{
-	point offset;
+	point offset; // axis offset of toolpoint
 };
 
 struct machine_config{
@@ -78,24 +84,28 @@ struct machine_config{
 	double min_joint_pos[JOINTS];
 	double max_joint_pos[JOINTS];
 
+	point offset; // axis offset to zero
+
+	double probe_break_dist; // max probe break distance
+
 	enum{
 		linear,
 		radial
 	} axis_type[AXIS],
     joint_type[JOINTS];
 
-	double joint_scale[JOINTS]; // joint rad, mm -> joint pos command
+	//double joint_scale[JOINTS]; // joint rad, mm -> joint pos command
 };
 
 struct cmot_config{
-	unsigned int min_buffer_size; // look ahead limit, 0 = always stop at end of move, -1 = unlimited look ahead
+	unsigned int trigger_dist; // #moves planing ahead
+	unsigned int look_ahead; // velocity planing max look ahead
 
 	double max_axis_step[AXIS]; // interpolation accuracy
-	double max_joint_step[JOINTS];
 
 	double timestep; // timestep for tplan
-    
-    bool blend; // use path blending
+
+  bool blend; // use path blending
 };
 
 class machine{
@@ -107,50 +117,50 @@ class machine{
 
 class cmot{
 	private:
+		path *work_path;
 
-        complex_path *in_path;
+		path *end_of_blend;
+		path *end_of_intp;
+ 		path *end_of_kin;
+ 		path *end_of_vplan;
+ 		path *end_of_tplan;
+ 		path *end_of_pop;
+
+		bool fill_buffer; // request tplan & clean_up
     
-        complex_path *blended_path;
-        complex_path *blended_path_head;
-    
-        complex_path *vplan_pos;
-        complex_path *vplaned_path;
-    
-        complex_path *tplan_pos;
-        complex_path *tplaned_path;
-    
-		joint_step_path *out_path;
+        point pos; // current pos
 
 	public:
 		machine m;
 		cmot_config cnf;
 
-		void import(complex_path *p); // import complex path
-    
-        void push(complex_path *p); // push path to buffer
-    
-        void push(complex_move *m); // push move to buffer
+		void set_pos(point current_pos); // set current position
 
-		void start(); // start calculation
+		void import(path *p); // import complex path, no copy
 
-		void blend(); // path blending (line, line -> line, arc, line)
+        void push(path p); // push path to buffer, no copy
 
-		void intp(); // interpolator
+        void push(move m); // push move to buffer, copy
 
-		void kin(point &A); // kinematic (axis pos -> joint pos)
+		void init(); // initial fill of output buffer
 
-		void vplan(); // velocity planing
+		void blend(int steps); // path blending (line, line -> line, arc, line), -1 = blend all
 
-		void tplan(); // move / timestep planing
+		void intp(int steps); // interpolator, -1 = intp all
 
-		void jdrive(); // joint driver
+		kin_result kin(int steps); // kinematic (axis pos <-> joint pos), -1 = kin all
+		kin_result kin(point current, point &dest); // kinematic (axis pos <-> joint pos)
 
-		joint_step_path *exportp(); // export joint path
-    
-        point *pop(); // pop joint position from buffer
+		void vplan(int steps); // velocity planing, -1 = vplan all
+
+		void tplan(int steps); // move / timestep planing, -1 = tplan all
+
+        point pop(); // pop joint position from output buffer, trigger new calculation & clean_up
+
+		void clean_up(); // remove old submoves from intp & tplan
 };
 
-void append(complex_path *A, complex_move B);
-void insert(complex_path *A, complex_move B);
-complex_path *split(point A, complex_move B, unsigned int count);
-double length(complex_move A);
+void append(path *A, move B);
+void insert(path *A, move B);
+path *split(point A, move B, unsigned int count);
+double length(move A);
