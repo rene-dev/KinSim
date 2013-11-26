@@ -2,9 +2,10 @@
 #include <iostream>
 #include "list.h"
 
-#define AXIS 5
-#define JOINTS 5
+//#define AXIS 5
+//#define JOINTS 5
 
+template <unsigned int AXIS, unsigned int JOINTS>
 struct point{
 	double axis_pos[AXIS];
 	double joint_pos[JOINTS];
@@ -14,10 +15,20 @@ struct point{
 		both,
 		invalid
 	}type;
+    
+    point<AXIS, JOINTS> operator+(point<AXIS, JOINTS> right);
+    point<AXIS, JOINTS> operator-(point<AXIS, JOINTS> right);
+    point<AXIS, JOINTS> operator*(double right);
+    point<AXIS, JOINTS> operator/(double right);
+    double operator!(); // length of vector
 };
 
+template <unsigned int AXIS, unsigned int JOINTS>
+point<AXIS, JOINTS> operator*(double left, point<AXIS, JOINTS> right);
+
+template <unsigned int AXIS, unsigned int JOINTS>
 struct move{
-	point dest;
+	point<AXIS, JOINTS> dest;
 
 	enum move_type{
 		line,
@@ -30,7 +41,7 @@ struct move{
 
 	double blend_r; // blending radius at end of line
 
-	point dir; // start tangent of arc
+	point<AXIS, JOINTS> dir; // start tangent of arc
 
 	// limits by input
 	double max_vel; // max axis drive velocity
@@ -64,10 +75,12 @@ enum kin_result{
 	ikin_not_implemented
 };
 
+template <unsigned int AXIS, unsigned int JOINTS>
 struct tool_config{
-	point offset; // axis offset of toolpoint
+	point<AXIS, JOINTS> offset; // axis offset of toolpoint
 };
 
+template <unsigned int AXIS, unsigned int JOINTS>
 struct machine_config{
 	double max_axis_vel[AXIS]; // velocity + accelaration limits
 	double max_axis_acc[AXIS];
@@ -79,7 +92,7 @@ struct machine_config{
 	double min_joint_pos[JOINTS];
 	double max_joint_pos[JOINTS];
 
-	point offset; // axis offset to zero
+	point<AXIS, JOINTS> offset; // axis offset to zero
 
 	double probe_break_dist; // max probe break distance
 
@@ -92,6 +105,7 @@ struct machine_config{
 	//double joint_scale[JOINTS]; // joint rad, mm -> joint pos command
 };
 
+template <unsigned int AXIS, unsigned int JOINTS>
 struct cmot_config{
 	unsigned int trigger_dist; // #moves planing ahead
 	unsigned int look_ahead; // velocity planing max look ahead
@@ -103,39 +117,41 @@ struct cmot_config{
   bool blend; // use path blending
 };
 
+template <unsigned int AXIS, unsigned int JOINTS>
 class machine{
 	public:
-		tool_config tool;
-		machine_config cnf;
-		virtual kin_result kin(point from, point &to);
+		tool_config<AXIS, JOINTS> tool;
+		machine_config<AXIS, JOINTS> cnf;
+		virtual kin_result kin(point<AXIS, JOINTS> from, point<AXIS, JOINTS> &to);
 };
 
+template <unsigned int AXIS, unsigned int JOINTS>
 class cmot{
 	private:
-		list<struct move> *work_path;
+		list<move<AXIS, JOINTS>>* work_path;
 
-		list<struct move> *end_of_blend;
-		list<struct move> *end_of_intp;
- 		list<struct move> *end_of_kin;
- 		list<struct move> *end_of_vplan;
- 		list<struct move> *end_of_tplan;
- 		list<struct move> *end_of_pop;
+		list<move<AXIS, JOINTS>> *end_of_blend;
+		list<move<AXIS, JOINTS>> *end_of_intp;
+ 		list<move<AXIS, JOINTS>> *end_of_kin;
+ 		list<move<AXIS, JOINTS>> *end_of_vplan;
+ 		list<move<AXIS, JOINTS>> *end_of_tplan;
+ 		list<move<AXIS, JOINTS>> *end_of_pop;
 
 		bool fill_buffer; // request tplan & clean_up
     
-        point pos; // current pos
+        point<AXIS, JOINTS> pos; // current pos
 
 	public:
-		machine m;
-		cmot_config cnf;
+		machine<AXIS, JOINTS> m;
+		cmot_config<AXIS, JOINTS> cnf;
 
-		void set_pos(point current_pos); // set current position
+		void set_pos(point<AXIS, JOINTS> current_pos); // set current position
 
-		void import(list<struct move> *p); // import complex path, no copy
+		void import(list<move<AXIS, JOINTS>> *p); // import complex path, no copy
 
-        void push(list<struct move> *p); // push path to buffer, no copy
+        void push(list<move<AXIS, JOINTS>> *p); // push path to buffer, no copy
 
-        void push(move m); // push move to buffer, copy
+        void push(move<AXIS, JOINTS> m); // push move to buffer, copy
 
 		void init(); // initial fill of output buffer
 
@@ -143,18 +159,15 @@ class cmot{
 
 		void intp(int steps); // interpolator, -1 = intp all
 
-		kin_result kin(int steps); // kinematic (axis pos <-> joint pos), -1 = kin all
-		kin_result kin(point current, point &dest); // kinematic (axis pos <-> joint pos)
+		void kin(int steps); // kinematic (axis pos <-> joint pos), -1 = kin all
+		kin_result kin(point<AXIS, JOINTS> current, point<AXIS, JOINTS> &dest); // kinematic (axis pos <-> joint pos)
 
 		void vplan(int steps); // velocity planing, -1 = vplan all
 
 		void tplan(int steps); // move / timestep planing, -1 = tplan all
 
-        point pop(); // pop joint position from output buffer, trigger new calculation & clean_up
+        point<AXIS, JOINTS> pop(); // pop joint position from output buffer, trigger new calculation & clean_up
 
 		void clean_up(); // remove old submoves from intp & tplan
 };
 
-
-void split(list<struct move> *p, unsigned int count);
-double length(list<struct move> *p);

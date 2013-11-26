@@ -12,6 +12,7 @@
 		87BF0C211836D12300D4ABBC /* easygl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87BF0C201836D12300D4ABBC /* easygl.cpp */; };
 		87BF0C241836DD9000D4ABBC /* list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87BF0C221836DD9000D4ABBC /* list.cpp */; };
 		87BF0C2C183AEC4200D4ABBC /* socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 87BF0C2B183AEC4200D4ABBC /* socket.c */; };
+		87CDE56118443EFF00410458 /* list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87BF0C221836DD9000D4ABBC /* list.cpp */; };
 		A719388D1831719F009EFD11 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A719388C1831719F009EFD11 /* Cocoa.framework */; };
 		A71938971831719F009EFD11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A71938951831719F009EFD11 /* InfoPlist.strings */; };
 		A71938991831719F009EFD11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A71938981831719F009EFD11 /* main.m */; };
@@ -275,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87CDE56118443EFF00410458 /* list.cpp in Sources */,
 				87BF0C1F1835A5CF00D4ABBC /* cmot.cpp in Sources */,
 				87BF0C191835A55000D4ABBC /* main.cpp in Sources */,
 			);

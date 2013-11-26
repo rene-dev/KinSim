@@ -8,19 +8,15 @@
 
 #include "list.h"
 
-
-
-
-
 template <class T>
-void append(struct list<T>** A, T B){
-    struct list<T>* tmp = *A;
+void append(struct list<T>* A, T B){
+    struct list<T>* tmp = A;
     if(!tmp){
         tmp = (list<T>*)malloc(sizeof(list<T>));
         tmp->next = 0;
         tmp->prev = 0;
         tmp->data = B;
-        *A = tmp;
+        A = tmp;
         return;
     }
     while(tmp->next){
@@ -31,3 +27,26 @@ void append(struct list<T>** A, T B){
     tmp->next->next = 0;
 	tmp->next->prev = *A;
 }
+
+template <class T>
+void insert(struct list<T>** A, T B){
+    struct list<T>* tmp = *A;
+    struct list<T>* df = 0;
+    if(!tmp){
+        tmp = (list<T>*)malloc(sizeof(list<T>));
+        tmp->next = 0;
+        tmp->prev = 0;
+        tmp->data = B;
+        *A = tmp;
+        return;
+    }
+    df = tmp->next;
+	tmp->next = (list<T>*)malloc(sizeof(list<T>));
+	tmp->next->data = B;
+    tmp->next->next = df;
+	tmp->next->prev = tmp;
+    A = tmp->next;
+}
+
+
+

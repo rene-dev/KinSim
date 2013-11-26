@@ -1,65 +1,118 @@
 #include "cmot.h"
 
-using namespace std;
+//using namespace std;
 
-double lenght(point A, struct move B){
-    double dist = 0;
-    switch(B.type){
-        case move::arc:
-            cout << "cmot: length: arc move not jet supported, treated as line move, move id: " << B.id << " bid: " << B.bid << endl << flush;
-        case move::joint:
-        case move::probe:
-        case move::start:
-        case move::fast:
-        case move::line:
-            for(int i = 0; i < AXIS; i++){
-                dist += pow((A.axis_pos[i] - B.dest.axis_pos[i]), 2);
-            }
-            dist = sqrt(dist);
-        break;
+template <unsigned int AXIS, unsigned int JOINTS>
+point<AXIS, JOINTS> point<AXIS, JOINTS>::operator+(point<AXIS, JOINTS> right){
+    point result;
+    for(int i = 0; i < AXIS; i++){
+        result.axis_pos[i] = axis_pos[i] + right.axis_pos[i];
     }
-    return(dist);
-}
-
-list<struct move> *split(point A, struct move B, unsigned int count){
-    list<struct move> *result = 0;
-
-    switch(B.type){
-        case move::arc:
-            cout << "cmot: split: arc move not jet supported, treated as line move, move id: " << B.id << " bid: " << B.bid << endl << flush;
-        case move::joint:
-        case move::probe:
-        case move::start:
-        case move::fast:
-        case move::line:
-            //TODO
-            break;
+    for(int i = 0; i < JOINTS; i++){
+        result.joint_pos[i] = joint_pos[i] + right.joint_pos[i];
     }
-
     return(result);
 }
 
-void cmot::set_pos(point p){
+template <unsigned int AXIS, unsigned int JOINTS>
+point<AXIS, JOINTS> point<AXIS, JOINTS>::operator-(point<AXIS, JOINTS> right){
+    point result;
+    for(int i = 0; i < AXIS; i++){
+        result.axis_pos[i] = axis_pos[i] - right.axis_pos[i];
+    }
+    for(int i = 0; i < JOINTS; i++){
+        result.joint_pos[i] = joint_pos[i] - right.joint_pos[i];
+    }
+    return(result);
+}
+
+template <unsigned int AXIS, unsigned int JOINTS>
+point<AXIS, JOINTS> operator*(double left, point<AXIS, JOINTS> right){
+    point<AXIS, JOINTS> result;
+    for(int i = 0; i < AXIS; i++){
+        result.axis_pos[i] = left * right.axis_pos[i];
+    }
+    for(int i = 0; i < JOINTS; i++){
+        result.joint_pos[i] = left * right.joint_pos[i];
+    }
+    return(result);
+}
+
+template <unsigned int AXIS, unsigned int JOINTS>
+point<AXIS, JOINTS> point<AXIS, JOINTS>::operator*(double right){
+    point result;
+    for(int i = 0; i < AXIS; i++){
+        result.axis_pos[i] = axis_pos[i] * right;
+    }
+    for(int i = 0; i < JOINTS; i++){
+        result.joint_pos[i] = joint_pos[i] * right;
+    }
+    return(result);
+}
+
+template <unsigned int AXIS, unsigned int JOINTS>
+point<AXIS, JOINTS> point<AXIS, JOINTS>::operator/(double right){
+    point result;
+    for(int i = 0; i < AXIS; i++){
+        result.axis_pos[i] = axis_pos[i] / right;
+    }
+    for(int i = 0; i < JOINTS; i++){
+        result.joint_pos[i] = joint_pos[i] / right;
+    }
+    return(result);
+}
+
+template <unsigned int AXIS, unsigned int JOINTS>
+double point<AXIS, JOINTS>::operator!(){
+    double result = 0;
+    
+    switch(type){
+        case point::axis:
+            for(int i = 0; i < AXIS; i++){
+                result += axis_pos[i] * axis_pos[i];
+            }
+        break;
+            
+        case point::joint:
+            for(int i = 0; i < JOINTS; i++){
+                result += joint_pos[i] * joint_pos[i];
+            }
+        break;
+            
+        default:
+            break;
+    }
+    return(sqrt(result));
+}
+
+
+template <unsigned int AXIS, unsigned int JOINTS>
+void cmot<AXIS, JOINTS>::set_pos(point<AXIS, JOINTS> p){
     pos = p;
 }
 
-void cmot::push(struct move m){
-    
+template <unsigned int AXIS, unsigned int JOINTS>
+void cmot<AXIS, JOINTS>::push(move<AXIS, JOINTS> m){
+    work_path = *work_path + m;
 }
 
-void cmot::push(list<struct move> *p){
-
+template <unsigned int AXIS, unsigned int JOINTS>
+void cmot<AXIS, JOINTS>::push(list<move<AXIS, JOINTS>> *p){
+    work_path = *work_path + p;
 }
 
-void cmot::import(list<struct move> *p){ // import complex path
+template <unsigned int AXIS, unsigned int JOINTS>
+void cmot<AXIS, JOINTS>::import(list<move<AXIS, JOINTS>> *p){ // import complex path
 	work_path = p;
 }
 
-void cmot::init(){
+template <unsigned int AXIS, unsigned int JOINTS>
+void cmot<AXIS, JOINTS>::init(){
 }
 
-void cmot::blend(int steps){ // path blending (line, line -> line, arc, line)
-    list<struct move> *p = end_of_blend;
+template <unsigned int AXIS, unsigned int JOINTS>
+void cmot<AXIS, JOINTS>::blend(int steps){ // path blending (line, line -> line, arc, line)
+    list<move<AXIS, JOINTS>> *p = end_of_blend;
 
     if(!p){
 		return;
@@ -76,27 +129,45 @@ void cmot::blend(int steps){ // path blending (line, line -> line, arc, line)
     }
 }
 
-void cmot::intp(int steps){ // interpolator
-	list<struct move> *p = end_of_intp;
-    list<struct move> *tmp_path = 0;
-	int split_count = 0;
+template <unsigned int AXIS, unsigned int JOINTS>
+void cmot<AXIS, JOINTS>::intp(int steps){ // interpolator
+	list<move<AXIS, JOINTS>> *p = end_of_intp;
+    move<AXIS, JOINTS> m;
+	unsigned int split_count = 0;
 	int tmp = 0;
     double dist = 0;
     double time = 0;
     unsigned int iid = 0;
 
-	if(!p){
+	if(!p || p->next){
 		return;
 	}
 
-	while(p->next){
-		if(p->data.type == move::line){
-			for(int i = 0; i < AXIS; i++){
+    switch(p->data.type){
+        case move<AXIS, JOINTS>::arc:
+        case move<AXIS, JOINTS>::probe:
+        case move<AXIS, JOINTS>::line:
+            for(int i = 0; i < AXIS; i++){ // calc #splits
 				tmp = ceil(fabs((p->next->data.dest.axis_pos[i] - p->data.dest.axis_pos[i]) / cnf.max_axis_step[i]));
 				if(tmp > split_count){
 					split_count = tmp;
 				}
 			}
+            
+            m = p->data;
+//            m.dest =
+        break;
+            
+        case move<AXIS, JOINTS>::fast:
+        case move<AXIS, JOINTS>::joint:
+        case move<AXIS, JOINTS>::start:
+        break;
+    }
+    
+    
+	while(p->next){
+		if(p->data.type == move<AXIS, JOINTS>::line){
+			
 		}
 
         for(int i = 0; i < AXIS; i++){ // TODO: should not mix joint types for velocity
@@ -106,8 +177,8 @@ void cmot::intp(int steps){ // interpolator
         time = sqrt(dist) / p->data.max_vel;
 
         iid = 0;
-        tmp_path = split(p->data.dest, p->next->data, split_count);
-		for(list<struct move> *i = tmp_path; i->next; i = i->next){
+     //   tmp_path = split(p->data.dest, p->next->data, split_count);
+	/*	for(list<struct move> *i = tmp_path; i->next; i = i->next){
             dist = 0;
             for(int j = 0; j < JOINTS; j++){
                 dist += pow((i->next->data.dest.axis_pos[j] - i->data.dest.axis_pos[j]), 2);
@@ -116,28 +187,30 @@ void cmot::intp(int steps){ // interpolator
             i->next->data.max_vel = sqrt(dist) / time;
             i->data.iid = iid;
             iid++;
-		}
+		}*/
 	}
 }
 
-kin_result cmot::kin(point current, point &dest){ // kinematic (axis pos <-> joint pos)
+template <unsigned int AXIS, unsigned int JOINTS>
+kin_result cmot<AXIS, JOINTS>::kin(point<AXIS, JOINTS> current, point<AXIS, JOINTS> &dest){ // kinematic (axis pos <-> joint pos)
     return(m.kin(current, dest));
 }
 
-kin_result cmot::kin(int steps){
-    return(valid);
+template <unsigned int AXIS, unsigned int JOINTS>
+void cmot<AXIS, JOINTS>::kin(int steps){
 }
 
-kin_result machine::kin(point from, point &to){
+template <unsigned int AXIS, unsigned int JOINTS>
+kin_result machine<AXIS, JOINTS>::kin(point<AXIS, JOINTS> from, point<AXIS, JOINTS> &to){
     switch(to.type){
-        case point::axis:
-            cout << "cmot: kin: forward kinematic not implemented" << endl << flush;
+        case point<AXIS, JOINTS>::axis:
+            std::cout << "cmot: kin: forward kinematic not implemented" << std::endl << std::flush;
             // TODO: axis -> joint
             break;
             
-        case point::joint:
+        case point<AXIS, JOINTS>::joint:
             // TODO: joint -> axis
-            cout << "cmot: kin: forward kinematic not implemented" << endl << flush;
+            std::cout << "cmot: kin: forward kinematic not implemented" << std::endl << std::flush;
             break;
             
         default:
@@ -146,16 +219,20 @@ kin_result machine::kin(point from, point &to){
     return(valid);
 }
 
-void cmot::vplan(int steps){ // velocity planing
+template <unsigned int AXIS, unsigned int JOINTS>
+void cmot<AXIS, JOINTS>::vplan(int steps){ // velocity planing
 
 }
 
-void cmot::tplan(int steps){ // move / timestep planing
+template <unsigned int AXIS, unsigned int JOINTS>
+void cmot<AXIS, JOINTS>::tplan(int steps){ // move / timestep planing
 }
 
-void cmot::clean_up(){ // remove old submoves from intp & tplan
+template <unsigned int AXIS, unsigned int JOINTS>
+void cmot<AXIS, JOINTS>::clean_up(){ // remove old submoves from intp & tplan
 }
 
-point cmot::pop(){
+template <unsigned int AXIS, unsigned int JOINTS>
+point<AXIS, JOINTS> cmot<AXIS, JOINTS>::pop(){
     return(end_of_pop->data.dest);
 }
