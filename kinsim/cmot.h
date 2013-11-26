@@ -1,5 +1,6 @@
 #include <math.h>
 #include <iostream>
+#include "list.h"
 
 #define AXIS 5
 #define JOINTS 5
@@ -49,12 +50,6 @@ struct move{
 	unsigned int tid; // move tplan split id
 
 	bool trigger; // trigger new calculation
-};
-
-struct path{
-	move m;
-	path *next;
-	path *prev;
 };
 
 enum kin_result{
@@ -112,19 +107,19 @@ class machine{
 	public:
 		tool_config tool;
 		machine_config cnf;
-		virtual kin_result fkin(point from, point &to);
+		virtual kin_result kin(point from, point &to);
 };
 
 class cmot{
 	private:
-		path *work_path;
+		list<struct move> *work_path;
 
-		path *end_of_blend;
-		path *end_of_intp;
- 		path *end_of_kin;
- 		path *end_of_vplan;
- 		path *end_of_tplan;
- 		path *end_of_pop;
+		list<struct move> *end_of_blend;
+		list<struct move> *end_of_intp;
+ 		list<struct move> *end_of_kin;
+ 		list<struct move> *end_of_vplan;
+ 		list<struct move> *end_of_tplan;
+ 		list<struct move> *end_of_pop;
 
 		bool fill_buffer; // request tplan & clean_up
     
@@ -136,9 +131,9 @@ class cmot{
 
 		void set_pos(point current_pos); // set current position
 
-		void import(path *p); // import complex path, no copy
+		void import(list<struct move> *p); // import complex path, no copy
 
-        void push(path p); // push path to buffer, no copy
+        void push(list<struct move> *p); // push path to buffer, no copy
 
         void push(move m); // push move to buffer, copy
 
@@ -160,7 +155,6 @@ class cmot{
 		void clean_up(); // remove old submoves from intp & tplan
 };
 
-void append(path *A, move B);
-void insert(path *A, move B);
-path *split(point A, move B, unsigned int count);
-double length(move A);
+
+void split(list<struct move> *p, unsigned int count);
+double length(list<struct move> *p);

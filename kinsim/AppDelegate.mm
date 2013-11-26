@@ -17,7 +17,7 @@
     [kinView newPath:gcode([defaultgcode cStringUsingEncoding:NSASCIIStringEncoding])];
     [window setTitle:[defaultgcode lastPathComponent]];
     
-    sopen("rasp");
+    connected = sopen("rasp");
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication{

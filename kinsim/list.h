@@ -14,8 +14,8 @@
 template <class T>
 struct list{
 	T data;
-	struct path* next;
-	struct path* prev;
+	struct list* next;
+	struct list* prev;
 };
 
 template <class T>
