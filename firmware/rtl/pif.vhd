@@ -98,7 +98,7 @@ begin
 			sedstdby => open
 		);
 
-	LEDR <= '1';
+	LEDR <= '0';
 	LEDG <= '1';
 
 end rtl;
