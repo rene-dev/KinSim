@@ -1,0 +1,178 @@
+/*    Copyright (C) 2013 GP Orcullo
+ *
+ *    This program is free software; you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation; either version 2 of the License, or
+ *    (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with this program; if not, write to the Free Software
+ *    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+ */
+
+component hal_rpspi_gpio "Simple gpio driver for Raspberry Pi";
+
+pin in bit in0;
+pin in bit in1;
+
+description """
+Usage: loadrt hal_rpspi
+""";
+
+option singleton;
+option extra_setup;
+option extra_cleanup;
+
+function transfer nofp;
+
+license "GPL";
+author "";
+;;
+
+#include "rtapi.h"
+#include "rtapi_bitops.h"
+#include "rtapi_app.h"
+#include "hal.h"
+
+#if !defined(BUILD_SYS_USER_DSO)
+#error "This driver is for usermode threads only"
+#endif
+
+#if !defined(TARGET_PLATFORM_RASPBERRY)
+#error "This driver is for the Raspberry Pi platform only"
+#endif
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <fcntl.h>
+#include <sys/mman.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <errno.h>
+#include <stdarg.h>
+
+void *gpio_map;
+volatile unsigned *gpio;
+int fd;
+static void setup_io();
+
+#define BCM2708_PERI_BASE        0x20000000
+#define GPIO_BASE                (BCM2708_PERI_BASE + 0x200000) /* GPIO controller */
+
+#define PAGE_SIZE (4*1024)
+#define BLOCK_SIZE (4*1024)
+
+#define INP_GPIO(g) *(gpio+((g)/10)) &= ~(7<<(((g)%10)*3))
+#define OUT_GPIO(g) *(gpio+((g)/10)) |=  (1<<(((g)%10)*3))
+#define SET_GPIO_ALT(g,a) *(gpio+(((g)/10))) |= (((a)<=3?(a)+4:(a)==4?3:2)<<(((g)%10)*3))
+
+#define GPIO_SET *(gpio+7)  // sets   bits which are 1 ignores bits which are 0
+#define GPIO_CLR *(gpio+10) // clears bits which are 1 ignores bits which are 0
+
+
+EXTRA_SETUP() {
+
+	setup_io();
+
+    INP_GPIO(0); // must use INP_GPIO before we can use OUT_GPIO
+    OUT_GPIO(0);
+    INP_GPIO(1); // must use INP_GPIO before we can use OUT_GPIO
+    OUT_GPIO(1);
+    INP_GPIO(4); // must use INP_GPIO before we can use OUT_GPIO
+    OUT_GPIO(4);
+	return 0;
+}
+
+EXTRA_CLEANUP() {
+	if (gpio != MAP_FAILED) {
+		munmap((void *)gpio,BLOCK_SIZE);
+	}
+}
+
+FUNCTION(transfer){
+	if(in0){
+		GPIO_SET = 1<<0;
+	}
+	else{
+		GPIO_CLR = 1<<0;
+	}
+
+	if(in1){
+		GPIO_SET = 1<<1;
+	}
+	else{
+		GPIO_CLR = 1<<1;
+	}
+
+	GPIO_SET = 1<<4;
+	GPIO_CLR = 1<<4;
+	GPIO_SET = 1<<4;
+	GPIO_CLR = 1<<4;
+	GPIO_SET = 1<<4;
+	GPIO_CLR = 1<<4;
+	GPIO_SET = 1<<4;
+	GPIO_CLR = 1<<4;
+	GPIO_SET = 1<<4;
+	GPIO_CLR = 1<<4;
+	GPIO_SET = 1<<4;
+	GPIO_CLR = 1<<4;
+	GPIO_SET = 1<<4;
+	GPIO_CLR = 1<<4;
+	GPIO_SET = 1<<4;
+	GPIO_CLR = 1<<4;
+	GPIO_SET = 1<<4;
+	GPIO_CLR = 1<<4;
+	GPIO_SET = 1<<4;
+	GPIO_CLR = 1<<4;
+	GPIO_SET = 1<<4;
+	GPIO_CLR = 1<<4;
+	GPIO_SET = 1<<4;
+	GPIO_CLR = 1<<4;
+	GPIO_SET = 1<<4;
+	GPIO_CLR = 1<<4;
+	GPIO_SET = 1<<4;
+	GPIO_CLR = 1<<4;
+
+
+
+
+}
+
+
+void setup_io()
+{
+   /* open /dev/mem */
+   if ((fd = open("/dev/mem", O_RDWR|O_SYNC) ) < 0) {
+      printf("can't open /dev/mem \n");
+      exit(-1);
+   }
+
+   /* mmap GPIO */
+   gpio_map = mmap(
+      NULL,             //Any adddress in our space will do
+      BLOCK_SIZE,       //Map length
+      PROT_READ|PROT_WRITE,// Enable reading & writting to mapped memory
+      MAP_SHARED,       //Shared with other processes
+      fd,           //File to map
+      GPIO_BASE         //Offset to GPIO peripheral
+   );
+
+   close(fd); //No need to keep mem_fd open after mmap
+
+   if (gpio_map == MAP_FAILED) {
+      printf("mmap error %d\n", (int)gpio_map);//errno also set!
+      exit(-1);
+   }
+
+   // Always use volatile pointer!
+   gpio = (volatile unsigned *)gpio_map;
+
+
+} // setup_io

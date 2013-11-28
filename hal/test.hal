@@ -1,0 +1,32 @@
+# components
+loadrt stepgen step_type=0 ctrl_type=v 
+loadrt siggen 
+loadrt threads name1=fast fp1=0 period1=50000 name2=slow period2=1000000 
+loadrt hal_rpspi_gpio 
+# pin aliases
+# param aliases
+# signals
+# nets
+net dir stepgen.0.dir => rpspi-gpio.in1
+net step stepgen.0.step => rpspi-gpio.in0
+net vel siggen.0.cosine => stepgen.0.velocity-cmd
+# parameter values
+setp rpspi-gpio.transfer.tmax         4703
+setp siggen.0.update.tmax        19898
+setp siggen.0.amplitude 1000
+setp stepgen.0.dirhold   0x0000C350
+setp stepgen.0.dirsetup   0x0000C350
+setp stepgen.0.maxaccel            0
+setp stepgen.0.maxvel            0
+setp stepgen.0.position-scale            1
+setp stepgen.0.steplen   0x0000C350
+setp stepgen.0.stepspace   0x0000C350
+setp stepgen.0.enable 1
+setp stepgen.capture-position.tmax            0
+setp stepgen.make-pulses.tmax         5734
+setp stepgen.update-freq.tmax         7521
+# realtime thread/function links
+addf siggen.0.update slow
+addf stepgen.update-freq slow
+addf rpspi-gpio.transfer fast
+addf stepgen.make-pulses fast
