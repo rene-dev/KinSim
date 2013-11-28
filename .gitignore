@@ -21,3 +21,11 @@ DerivedData
 
 # CocoaPods
 Pods
+
+#Lattice Diamond
+new_prj.tcl
+*.jed
+*.ldf
+*.sty
+syn.tcl
+firmware/syn/build/
