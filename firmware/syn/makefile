@@ -1,3 +1,4 @@
+include host.mk
 TOP = pif
 NAME= pif
 FILES = pif.vhd
@@ -23,6 +24,11 @@ init: clean
 	@echo "prj_run PAR -impl build -task PARTrace" >> syn.tcl
 	@echo "prj_run Export -impl build -task Bitgen" >> syn.tcl
 	@echo "prj_project close" >> syn.tcl
+
+deploy:
+	scp $(NAME).jed $(HOST):/tmp/build.jed
+	ssh $(HOST) $(PIFLOAD) /tmp/build.jed
+	ssh $(HOST) $(PIFLOAD) rm /tmp/build.jed
 
 clean:
 	rm -rf build

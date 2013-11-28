@@ -1,0 +1,2 @@
+HOST = root@rpi-linuxcnc
+PIFLOAD = pifload
