@@ -28,7 +28,7 @@ init: clean
 deploy:
 	scp $(NAME).jed $(HOST):/tmp/build.jed
 	ssh $(HOST) $(PIFLOAD) /tmp/build.jed
-	ssh $(HOST) $(PIFLOAD) rm /tmp/build.jed
+	ssh $(HOST) rm /tmp/build.jed
 
 clean:
 	rm -rf build
