@@ -19,6 +19,7 @@ component hal_rpspi_gpio "Simple gpio driver for Raspberry Pi";
 
 pin in bit in0;
 pin in bit in1;
+pin in float pwm1;
 
 description """
 Usage: loadrt hal_rpspi
@@ -76,17 +77,67 @@ static void setup_io();
 #define GPIO_SET *(gpio+7)  // sets   bits which are 1 ignores bits which are 0
 #define GPIO_CLR *(gpio+10) // clears bits which are 1 ignores bits which are 0
 
+//R1
+#define J1_3  0 //SDA
+#define J1_5  1 //SCL
+#define J1_13 21
+
+//R2
+//#define J1_3  2 //SDA
+//#define J1_5  3 //SCL
+//#define J1_13 27
+
+#define J1_7  4  //GPCLK0
+#define J1_8  14 //TXD
+#define J1_10 15 //Pi.RXD, 
+#define J1_11 17
+#define J1_12 18 //PCM_CLK
+#define J1_15 22
+#define J1_16 23
+#define J1_18 24
+#define J1_19 10 //MOSI
+#define J1_21 9  //MISO
+#define J1_22 25
+#define J1_23 11 //SCLK
+#define J1_24 8  //CE0
+#define J1_26 7  //CE1
+
+#define D0 J1_26
+#define D1 J1_24
+#define D2 J1_21
+#define D3 J1_19
+#define D4 J1_23
+#define D6 J1_11
+#define D7 J1_15
+#define STB J1_18
+#define RW J1_16
+
+data_in(){
+	INP_GPIO(D0);
+	INP_GPIO(D1);
+	INP_GPIO(D2);
+	INP_GPIO(D3);
+	INP_GPIO(D4);
+	INP_GPIO(D5);
+	INP_GPIO(D6);
+	INP_GPIO(D7);
+}
+
+data_out(){
+	OUT_GPIO(D0);
+	OUT_GPIO(D1);
+	OUT_GPIO(D2);
+	OUT_GPIO(D3);
+	OUT_GPIO(D4);
+	OUT_GPIO(D5);
+	OUT_GPIO(D6);
+	OUT_GPIO(D7);
+}
 
 EXTRA_SETUP() {
-
 	setup_io();
+	// must use INP_GPIO before we can use OUT_GPIO
 
-    INP_GPIO(0); // must use INP_GPIO before we can use OUT_GPIO
-    OUT_GPIO(0);
-    INP_GPIO(1); // must use INP_GPIO before we can use OUT_GPIO
-    OUT_GPIO(1);
-    INP_GPIO(4); // must use INP_GPIO before we can use OUT_GPIO
-    OUT_GPIO(4);
 	return 0;
 }
 
@@ -97,6 +148,8 @@ EXTRA_CLEANUP() {
 }
 
 FUNCTION(transfer){
+	(int)pwm*255&1<<0;
+
 	if(in0){
 		GPIO_SET = 1<<0;
 	}
@@ -110,39 +163,6 @@ FUNCTION(transfer){
 	else{
 		GPIO_CLR = 1<<1;
 	}
-
-	GPIO_SET = 1<<4;
-	GPIO_CLR = 1<<4;
-	GPIO_SET = 1<<4;
-	GPIO_CLR = 1<<4;
-	GPIO_SET = 1<<4;
-	GPIO_CLR = 1<<4;
-	GPIO_SET = 1<<4;
-	GPIO_CLR = 1<<4;
-	GPIO_SET = 1<<4;
-	GPIO_CLR = 1<<4;
-	GPIO_SET = 1<<4;
-	GPIO_CLR = 1<<4;
-	GPIO_SET = 1<<4;
-	GPIO_CLR = 1<<4;
-	GPIO_SET = 1<<4;
-	GPIO_CLR = 1<<4;
-	GPIO_SET = 1<<4;
-	GPIO_CLR = 1<<4;
-	GPIO_SET = 1<<4;
-	GPIO_CLR = 1<<4;
-	GPIO_SET = 1<<4;
-	GPIO_CLR = 1<<4;
-	GPIO_SET = 1<<4;
-	GPIO_CLR = 1<<4;
-	GPIO_SET = 1<<4;
-	GPIO_CLR = 1<<4;
-	GPIO_SET = 1<<4;
-	GPIO_CLR = 1<<4;
-
-
-
-
 }
 
 
