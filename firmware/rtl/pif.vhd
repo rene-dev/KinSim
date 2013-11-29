@@ -97,8 +97,9 @@ begin
       osc      => clk,
 			sedstdby => open
 		);
-
-	LEDR <= '1';
-	LEDG <= '1';
+	pwm1:entity pwm port map(clk,10,LEDR);
+	pwm2:entity pwm port map(clk,30,LEDG);
+	--LEDR <= '0';
+	--LEDG <= '1';
 
 end rtl;

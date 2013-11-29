@@ -29,3 +29,8 @@ new_prj.tcl
 *.sty
 syn.tcl
 firmware/syn/build/
+host.mk
+.run_manager.ini
+reportview.xml
+
+*.swp
