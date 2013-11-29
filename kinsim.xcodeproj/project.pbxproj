@@ -49,6 +49,12 @@
 		87BF0C231836DD9000D4ABBC /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list.h; sourceTree = "<group>"; };
 		87BF0C27183ABB2F00D4ABBC /* socket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
 		87BF0C2B183AEC4200D4ABBC /* socket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = socket.c; sourceTree = "<group>"; };
+		87CCE8DE1847EE92005848A6 /* pif.lpf */ = {isa = PBXFileReference; lastKnownFileType = text; path = pif.lpf; sourceTree = "<group>"; };
+		87CCE8E01847EE92005848A6 /* edge_detect.vhd */ = {isa = PBXFileReference; lastKnownFileType = text; path = edge_detect.vhd; sourceTree = "<group>"; };
+		87CCE8E11847EE92005848A6 /* pif.vhd */ = {isa = PBXFileReference; lastKnownFileType = text; path = pif.vhd; sourceTree = "<group>"; };
+		87CCE8E21847EE92005848A6 /* pwm.vhd */ = {isa = PBXFileReference; lastKnownFileType = text; path = pwm.vhd; sourceTree = "<group>"; };
+		87CCE8E31847EE92005848A6 /* quad.vhd */ = {isa = PBXFileReference; lastKnownFileType = text; path = quad.vhd; sourceTree = "<group>"; };
+		87CCE8E51847EE92005848A6 /* makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
 		A71938891831719F009EFD11 /* kinsim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kinsim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A719388C1831719F009EFD11 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A719388F1831719F009EFD11 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -111,6 +117,43 @@
 			path = cmot;
 			sourceTree = "<group>";
 		};
+		87CCE8DC1847EE92005848A6 /* firmware */ = {
+			isa = PBXGroup;
+			children = (
+				87CCE8DD1847EE92005848A6 /* layout */,
+				87CCE8DF1847EE92005848A6 /* rtl */,
+				87CCE8E41847EE92005848A6 /* syn */,
+			);
+			path = firmware;
+			sourceTree = "<group>";
+		};
+		87CCE8DD1847EE92005848A6 /* layout */ = {
+			isa = PBXGroup;
+			children = (
+				87CCE8DE1847EE92005848A6 /* pif.lpf */,
+			);
+			path = layout;
+			sourceTree = "<group>";
+		};
+		87CCE8DF1847EE92005848A6 /* rtl */ = {
+			isa = PBXGroup;
+			children = (
+				87CCE8E01847EE92005848A6 /* edge_detect.vhd */,
+				87CCE8E11847EE92005848A6 /* pif.vhd */,
+				87CCE8E21847EE92005848A6 /* pwm.vhd */,
+				87CCE8E31847EE92005848A6 /* quad.vhd */,
+			);
+			path = rtl;
+			sourceTree = "<group>";
+		};
+		87CCE8E41847EE92005848A6 /* syn */ = {
+			isa = PBXGroup;
+			children = (
+				87CCE8E51847EE92005848A6 /* makefile */,
+			);
+			path = syn;
+			sourceTree = "<group>";
+		};
 		A71938801831719F009EFD11 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +161,7 @@
 				87BF0C171835A55000D4ABBC /* cmot */,
 				A719388B1831719F009EFD11 /* Frameworks */,
 				A719388A1831719F009EFD11 /* Products */,
+				87CCE8DC1847EE92005848A6 /* firmware */,
 			);
 			sourceTree = "<group>";
 		};
