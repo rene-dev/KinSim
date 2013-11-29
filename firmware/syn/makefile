@@ -1,7 +1,7 @@
 include host.mk
 TOP = pif
 NAME= pif
-FILES = pif.vhd
+FILES = edge_detect.vhd quad.vhd pwm.vhd pif.vhd
 DEV= LCMXO2-7000HC-4TG144C
 DDIR = /usr/local/diamond/2.2_x64/bin/lin64/
 
