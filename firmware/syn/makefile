@@ -12,6 +12,7 @@ all: init
 init: clean
 	@echo "prj_project new -name $(NAME) -impl build -dev $(DEV) -lpf ../layout/$(NAME).lpf" > new_prj.tcl
 	$(foreach FILE, $(FILES), echo "prj_src add ../rtl/$(FILE)" >> new_prj.tcl;)
+	@echo "prj_impl option top $(TOP)" >> new_prj.tcl
 	@echo "prj_project save" >> new_prj.tcl
 	@echo "prj_project close" >> new_prj.tcl
 	$(DDIR)diamondc new_prj.tcl
