@@ -55,7 +55,7 @@ int swrite(char request[]){
     
     return 0;
 }
-
+/*
 char *sread(){
     char response[BSIZE];
     int bytes;
@@ -66,3 +66,4 @@ char *sread(){
     
     return(response);
 }
+*/

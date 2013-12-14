@@ -34,3 +34,5 @@ host.mk
 reportview.xml
 
 *.swp
+*.o
+kinsim
