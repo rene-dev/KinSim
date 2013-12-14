@@ -9,10 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "gcode.h"
 #import "KinOpenGLView.h"
-
-extern "C"{
 #import "socket.h"
-}
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>{
     int connected;

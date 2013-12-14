@@ -12,10 +12,8 @@
 #import <OpenGL/glu.h>
 #import "easygl.h"
 
-extern "C" {
 #import "socket.h"
 #import "interpolator.h"
-}
 
 typedef struct {
     GLdouble x,y,z;

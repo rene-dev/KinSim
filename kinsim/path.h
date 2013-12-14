@@ -14,6 +14,10 @@
 #define AXIS 3
 #define JOINTS 3
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 struct vec{
 	double axis_pos[AXIS];
 	double joint_pos[JOINTS];
@@ -34,4 +38,9 @@ struct path{
 void append(struct path** A, struct vec B);
 void insert(struct path* A, struct vec B);
 void freepath(struct path* p);
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif

@@ -18,6 +18,10 @@
 #ifndef kinsim_socket_h
 #define kinsim_socket_h
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 #define PORT 7000
 #define BSIZE 128
@@ -26,6 +30,10 @@ int swrite(char request[]);
 int sopen(char h[]);
 void sclose();
 char *sread();
+
+#ifdef __cplusplus
+}
+#endif
 
 
 #endif

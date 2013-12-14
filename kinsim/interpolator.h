@@ -11,6 +11,10 @@
 #ifndef kinsim_interpolator_h
 #define kinsim_interpolator_h
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 struct outpath{
     double* jointpos1;
     double* jointpos2;
@@ -19,5 +23,10 @@ struct outpath{
 };
 
 struct outpath interpol(struct path* AB);
+    
+#ifdef __cplusplus
+}
+#endif
+
 
 #endif

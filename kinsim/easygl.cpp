@@ -13,10 +13,7 @@
 #include <OpenGL/glext.h>
 #include <OpenGL/glu.h>
 #include "easygl.h"
-
-extern "C" {
 #include "path.h"
-}
 
 // simple cube data
 GLint cube_num_vertices = 8;
