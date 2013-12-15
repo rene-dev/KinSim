@@ -228,4 +228,3 @@ void interpol(path* AB){
 		AB = AB->next;
 	}
 }
-

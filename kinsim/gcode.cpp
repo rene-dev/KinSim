@@ -121,4 +121,3 @@ path* gcode(const char *filename){
     }
     return result;
 }
-

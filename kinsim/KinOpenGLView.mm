@@ -10,20 +10,39 @@
 
 @implementation KinOpenGLView
 
+- (void)keyDown:(NSEvent *)theEvent
+{
+    
+}
+
+- (void)keyup:(NSEvent *)theEvent
+{
+    
+}
+
 - (void)mouseDown:(NSEvent *)theEvent
 {
     NSPoint location = [self convertPoint:[theEvent locationInWindow] fromView:self];
-    drag.x = location.x;
-    drag.y = location.y;
-    //startcam.x = cam.x;
-    //startcam.y = cam.y;
+    drag = YES;
+    lastMouse.x = location.x;
+    lastMouse.y = location.y;
+}
+
+- (void)mouseUp:(NSEvent *)theEvent
+{
+    drag = NO;
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent
 {
     NSPoint location = [self convertPoint:[theEvent locationInWindow] fromView:self];
-    //cam.x = location.x-drag.x+startcam.x;
-    //cam.y = drag.y-location.y+startcam.y;
+	mouse = glm::ivec2(location.x, location.y);
+	if(drag)
+	{
+		glm::ivec2 diff = lastMouse - mouse;
+		renderer.orientation = renderer.orientation * glm::quat(glm::vec3(-diff.y, diff.x, 0) * 0.001f);
+	}
+	lastMouse = mouse;
 }
 
 - (void)scrollWheel:(NSEvent *)theEvent
@@ -38,7 +57,6 @@
 		if (renderer.fieldOfView > 179.9) // do not let aperture >= 180
 			renderer.fieldOfView = 179.9;
 	}
-    
 }
 
 - (void)animationTimer:(NSTimer *)timer
@@ -63,6 +81,12 @@
         curr_pos = [pos floatValue]/100*(p.length-1);
     }
     */
+    // update camera
+    glm::vec3 direction = glm::rotate(renderer.orientation, glm::vec3(0, 0, -1));
+    glm::vec3 right = glm::cross(renderer.up, direction);
+    glm::vec3 up = glm::cross(direction, right);
+    renderer.position -= (movement.z * direction + movement.x * right + movement.y * up) * 0.3f * (float)5;
+    renderer.target = renderer.position + direction;
     renderer.draw();
 }
 
@@ -90,6 +114,8 @@
 
 - (void) prepareOpenGL
 {
+    //[ setAcceptsMouseMovedEvents:YES];
+    drag = NO;
     NSString *defaultgcode = [[NSBundle mainBundle] pathForResource:@"gcode" ofType:@"ngc"];
     renderer.currentPath = gcode([defaultgcode cStringUsingEncoding:NSASCIIStringEncoding]);
     interpol(renderer.currentPath);

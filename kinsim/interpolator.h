@@ -21,5 +21,4 @@ void interpol(path* AB);
 }
 #endif
 
-
 #endif

@@ -49,17 +49,3 @@ void freepath(path* p){
             free(tmp);
             }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
