@@ -47,16 +47,7 @@
 
 - (void)scrollWheel:(NSEvent *)theEvent
 {
-	float wheelDelta = [theEvent deltaX] +[theEvent deltaY] + [theEvent deltaZ];
-	if (wheelDelta)
-	{
-		GLfloat deltaAperture = wheelDelta * -renderer.fieldOfView / 200.0f;
-		renderer.fieldOfView += deltaAperture;
-		if (renderer.fieldOfView < 0.1) // do not let aperture <= 0.1
-			renderer.fieldOfView = 0.1;
-		if (renderer.fieldOfView > 179.9) // do not let aperture >= 180
-			renderer.fieldOfView = 179.9;
-	}
+    renderer.scroll([theEvent deltaY]);
 }
 
 - (void)animationTimer:(NSTimer *)timer
@@ -82,12 +73,7 @@
     }
     */
     // update camera
-    glm::vec3 direction = glm::rotate(renderer.orientation, glm::vec3(0, 0, -1));
-    glm::vec3 right = glm::cross(renderer.up, direction);
-    glm::vec3 up = glm::cross(direction, right);
-    renderer.position -= (movement.z * direction + movement.x * right + movement.y * up) * 0.3f * (float)5;
-    renderer.target = renderer.position + direction;
-    renderer.draw();
+    renderer.draw(1.0f/60);
 }
 
 -(IBAction)stop:(id)sender{

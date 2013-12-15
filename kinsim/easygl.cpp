@@ -7,11 +7,6 @@
 //
 
 #include "easygl.h"
-#include "stl.h"
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <stdlib.h>
-#include <string.h>
 
 easygl::easygl()
 {
@@ -40,8 +35,16 @@ void easygl::init()
     sphere.load("sphere.stl", glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
 }
 
-void easygl::draw()
+void easygl::draw(float period)
 {
+    // update camera
+    glm::vec3 direction = glm::rotate(orientation, glm::vec3(0, 0, -1));
+    glm::vec3 right = glm::cross(up, direction);
+    glm::vec3 up = glm::cross(direction, right);
+    position -= (movement.z * direction + movement.x * right + movement.y * up) * speed * (float)period;
+    target = position + direction;
+    
+    
 	glViewport(0, 0, viewportSize.x, viewportSize.y);
 	if(viewportSize.y == 0)
 		viewportSize.y = 1;
@@ -72,6 +75,15 @@ void easygl::draw()
     drawPath();
 
     glFlush();
+}
+
+void easygl::scroll(double offset){
+    double deltaAperture = offset * -fieldOfView / 200.0;
+    fieldOfView += deltaAperture;
+    if (fieldOfView < 0.1) // do not let aperture <= 0.1
+        fieldOfView = 0.1;
+    if (fieldOfView > 179.9) // do not let aperture >= 180
+        fieldOfView = 179.9;
 }
 
 void easygl::drawBox(GLdouble width, GLdouble height, GLdouble depth)

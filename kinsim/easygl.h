@@ -18,7 +18,10 @@
 #endif
 
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/quaternion.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <math.h>
 #include "path.h"
 #include "stl.h"
@@ -26,6 +29,7 @@
 class easygl
 {
 public:
+    glm::vec3 movement;
 	glm::vec3 position;
 	glm::vec3 target;
 	glm::vec3 up;
@@ -43,10 +47,12 @@ public:
 	~easygl();
 
 	void init();
-	void draw();
+	void draw(float period);
+    void scroll(double);
 
 private:
 	stl sphere;
+    const float speed = 5.0f; // movement speed
 
 	void drawBox(GLdouble width, GLdouble height, GLdouble depth);
 	void drawPath();
