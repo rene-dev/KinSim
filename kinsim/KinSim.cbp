@@ -30,7 +30,26 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c99" />
 		</Compiler>
+		<Linker>
+			<Add option="`pkg-config --static --libs glfw3`" />
+		</Linker>
+		<Unit filename="easygl.cpp" />
+		<Unit filename="easygl.h" />
+		<Unit filename="gcode.cpp" />
+		<Unit filename="gcode.h" />
+		<Unit filename="interpolator.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="interpolator.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="path.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="path.h" />
+		<Unit filename="stl.cpp" />
+		<Unit filename="stl.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />
