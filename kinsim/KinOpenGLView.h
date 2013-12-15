@@ -10,6 +10,10 @@
 #import <OpenGL/gl.h>
 #import <OpenGL/glext.h>
 #import <OpenGL/glu.h>
+#import <glm/glm.hpp>
+#import <glm/gtc/quaternion.hpp>
+#import <glm/gtx/quaternion.hpp>
+#import <glm/gtc/matrix_transform.hpp>
 #import "easygl.h"
 #import "socket.h"
 #import "interpolator.h"
@@ -31,9 +35,12 @@
     NSTimer* timer;
     NSTimer* postimer;
     
-    NSPoint drag;
+    //NSPoint drag;
     NSPoint startcam;
+    bool drag;
     easygl renderer;
+    glm::vec3 movement;
+    glm::ivec2 mouse, lastMouse;
 }
 
 -(IBAction)stop:(id)sender;
