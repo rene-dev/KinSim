@@ -71,6 +71,9 @@
 
 - (void) prepareOpenGL
 {
+    NSRect rectView = [self bounds];
+	camera.viewHeight = rectView.size.height;
+	camera.viewWidth = rectView.size.width;
     easyinit(&camera,&cam,&shapeSize,&frame,&curr_pos,&display);
     timer = [NSTimer
              timerWithTimeInterval:(1.0f/60.0f)
@@ -98,6 +101,9 @@
 }
 
 - (void)windowDidResize:(NSNotification *)notification{
+    NSRect rectView = [self bounds];
+	camera.viewHeight = rectView.size.height;
+	camera.viewWidth = rectView.size.width;
     updateCamera(&camera,&shapeSize);
 }
 

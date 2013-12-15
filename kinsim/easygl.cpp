@@ -65,19 +65,8 @@ void easydraw(recVec* cam,int* display,int* curr_pos,GLfloat* j1,GLfloat* j2,GLf
 }
 
 void updateCamera(recCamera* camera,GLfloat* shapeSize){
-    //NSRect rectView = [self bounds];
-	
-	// ensure camera knows size changed
-	//if ((camera.viewHeight != rectView.size.height) ||
-	//    (camera.viewWidth != rectView.size.width)) {
-	//	camera.viewHeight = rectView.size.height;
-	//	camera.viewWidth = rectView.size.width;
-		
-    camera->viewHeight = 800;
-    camera->viewWidth = 600;
-		glViewport (0, 0, camera->viewWidth, camera->viewHeight);
-		updateProjection(camera,shapeSize);  // update projection matrix
-	//}
+    glViewport (0, 0, camera->viewWidth, camera->viewHeight);
+    updateProjection(camera,shapeSize);  // update projection matrix
 }
 
 // update the projection matrix based on camera and view info
