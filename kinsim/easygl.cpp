@@ -97,7 +97,7 @@ void easygl::drawPath()
 {
 	if(!currentPath)
 		return;
-		
+
     glBegin(GL_LINE_STRIP);
     glColor3f(1, 1, 0);
     path* tmp = currentPath;
@@ -113,7 +113,7 @@ void easygl::drawRobot()
 {
 	if(!robotState)
 		return;
-		
+
     float j1 = -robotState->joint_pos[0] - 90;
     float j2 = robotState->joint_pos[1] - 45;
     float j3 = robotState->joint_pos[2] - j2 - 45;
