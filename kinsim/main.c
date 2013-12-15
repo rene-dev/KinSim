@@ -16,6 +16,8 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 }
 int main(void)
 {
+    int width, height;
+    
     recCamera camera;
     recVec cam;
     int curr_pos;
@@ -42,6 +44,10 @@ int main(void)
     }
     glfwMakeContextCurrent(window);
     glfwSetKeyCallback(window, key_callback);
+    
+    glfwGetFramebufferSize(window, &width, &height);
+    camera.viewHeight = height;
+    camera.viewWidth = width;
     
     easyinit(&camera,&cam,&shapeSize,&frame,&curr_pos,&display);
     
@@ -71,6 +77,9 @@ int main(void)
         glfwSwapBuffers(window);
         glfwPollEvents();
         */
+        glfwGetFramebufferSize(window, &width, &height);
+        camera.viewHeight = height;
+        camera.viewWidth = width;
         easydraw(&cam,&display,&curr_pos,&j1,&j2,&j3,&p,currentPath);
         glfwSwapBuffers(window);
         glfwPollEvents();
