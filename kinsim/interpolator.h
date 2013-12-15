@@ -15,13 +15,6 @@
 extern "C" {
 #endif
 
-struct outpath{
-    double* jointpos1;
-    double* jointpos2;
-    double* jointpos3;
-    int length;
-};
-
 struct outpath interpol(struct path* AB);
     
 #ifdef __cplusplus

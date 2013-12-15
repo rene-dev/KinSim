@@ -34,6 +34,13 @@ struct path{
 	struct path* next;
 	struct path* prev;
 };
+    
+struct outpath{
+    double* jointpos1;
+    double* jointpos2;
+    double* jointpos3;
+    int length;
+};
 
 void append(struct path** A, struct vec B);
 void insert(struct path* A, struct vec B);

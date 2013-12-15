@@ -83,6 +83,7 @@
 		A73FFDA4183556E600F6EAAB /* gcode.ngc */ = {isa = PBXFileReference; lastKnownFileType = text; path = gcode.ngc; sourceTree = "<group>"; };
 		A73FFDA518355B2D00F6EAAB /* cmot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cmot.cpp; path = ../kinsim/cmot.cpp; sourceTree = "<group>"; };
 		A73FFDA618355B2D00F6EAAB /* cmot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cmot.h; path = ../kinsim/cmot.h; sourceTree = "<group>"; };
+		A750BF46185D094800899E86 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		A7AC763D18357EBD009DFF34 /* easygl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = easygl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,13 +200,14 @@
 		A71938921831719F009EFD11 /* kinsim */ = {
 			isa = PBXGroup;
 			children = (
+				A750BF46185D094800899E86 /* main.c */,
+				A7AC763D18357EBD009DFF34 /* easygl.h */,
 				87BF0C201836D12300D4ABBC /* easygl.cpp */,
 				87BF0C27183ABB2F00D4ABBC /* socket.h */,
 				87BF0C2B183AEC4200D4ABBC /* socket.c */,
 				A73FFDA4183556E600F6EAAB /* gcode.ngc */,
 				A73FFDA11835470200F6EAAB /* gcode.cpp */,
 				A73FFDA31835503D00F6EAAB /* gcode.h */,
-				A7AC763D18357EBD009DFF34 /* easygl.h */,
 				A71938C718319FF6009EFD11 /* interpolator.c */,
 				A71938C91831A020009EFD11 /* interpolator.h */,
 				A73FFD9E18353CB600F6EAAB /* path.c */,

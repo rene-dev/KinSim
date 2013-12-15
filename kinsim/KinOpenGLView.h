@@ -11,22 +11,8 @@
 #import <OpenGL/glext.h>
 #import <OpenGL/glu.h>
 #import "easygl.h"
-
 #import "socket.h"
 #import "interpolator.h"
-
-typedef struct {
-    GLdouble x,y,z;
-} recVec;
-
-typedef struct {
-	recVec viewPos; // View position
-	recVec viewDir; // View direction vector
-	recVec viewUp; // View up direction
-	recVec rotPoint; // Point to rotate about
-	GLdouble aperture; // pContextInfo->camera aperture
-	GLint viewWidth, viewHeight; // current window/screen height and width
-} recCamera;
 
 @interface KinOpenGLView : NSOpenGLView <NSWindowDelegate>
 
@@ -41,15 +27,12 @@ typedef struct {
     IBOutlet NSSlider* speed;
     IBOutlet NSTextField* debugtext;
     
-    struct path* currentPath;
-    struct outpath p;
-    int curr_pos;
+    path* currentPath;
+    outpath p;
     
     // camera handling
-	recCamera camera;
 	GLfloat worldRotation [4];
 	GLfloat objectRotation [4];
-	GLfloat shapeSize;
 
     // spin
 	GLfloat rRot [3];
@@ -61,21 +44,22 @@ typedef struct {
     NSTimer* postimer;
     
     NSPoint drag;
-    NSPoint cam;
     NSPoint startcam;
     
     easyobj* obj;
     
     GLfloat j1,j2,j3;
     
+    recCamera camera;
+    recVec cam;
+    int curr_pos;
     int frame;
-    Boolean display;
+    int display;
+    GLfloat shapeSize;
 }
 
 -(IBAction)stop:(id)sender;
 -(IBAction)send:(id)sender;
 -(void)newPath:(struct path*)newpath;
--(void)updateCamera;
--(void)resetCamera;
 
 @end
