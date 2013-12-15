@@ -34,6 +34,8 @@
 		A771FA6C185D759300D104D4 /* interpolator.c in Sources */ = {isa = PBXBuildFile; fileRef = A71938C718319FF6009EFD11 /* interpolator.c */; };
 		A771FA6D185D75A500D104D4 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71938C31831723C009EFD11 /* OpenGL.framework */; };
 		A771FA6F185D762700D104D4 /* libglfw3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A771FA6E185D762700D104D4 /* libglfw3.3.0.dylib */; };
+		A771FA72185D82BF00D104D4 /* stl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A771FA70185D82BF00D104D4 /* stl.cpp */; };
+		A771FA73185D82BF00D104D4 /* stl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A771FA70185D82BF00D104D4 /* stl.cpp */; };
 		A7AC763A18357400009DFF34 /* gcode.ngc in Resources */ = {isa = PBXBuildFile; fileRef = A73FFDA4183556E600F6EAAB /* gcode.ngc */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +108,8 @@
 		A771FA61185D753600D104D4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A771FA63185D753600D104D4 /* sim.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = sim.1; sourceTree = "<group>"; };
 		A771FA6E185D762700D104D4 /* libglfw3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.0.dylib; path = ../../../../usr/local/Cellar/glfw3/3.0.3/lib/libglfw3.3.0.dylib; sourceTree = "<group>"; };
+		A771FA70185D82BF00D104D4 /* stl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stl.cpp; sourceTree = "<group>"; };
+		A771FA71185D82BF00D104D4 /* stl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stl.h; sourceTree = "<group>"; };
 		A7AC763D18357EBD009DFF34 /* easygl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = easygl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -237,6 +241,8 @@
 				A771FA5A185D751700D104D4 /* main.cpp */,
 				A7AC763D18357EBD009DFF34 /* easygl.h */,
 				87BF0C201836D12300D4ABBC /* easygl.cpp */,
+				A771FA70185D82BF00D104D4 /* stl.cpp */,
+				A771FA71185D82BF00D104D4 /* stl.h */,
 				87BF0C27183ABB2F00D4ABBC /* socket.h */,
 				87BF0C2B183AEC4200D4ABBC /* socket.c */,
 				A73FFDA4183556E600F6EAAB /* gcode.ngc */,
@@ -398,6 +404,7 @@
 				87BF0C2C183AEC4200D4ABBC /* socket.c in Sources */,
 				A71938C818319FF6009EFD11 /* interpolator.c in Sources */,
 				A71938A01831719F009EFD11 /* AppDelegate.mm in Sources */,
+				A771FA72185D82BF00D104D4 /* stl.cpp in Sources */,
 				A71938C2183171DD009EFD11 /* KinOpenGLView.mm in Sources */,
 				87BF0C241836DD9000D4ABBC /* list.cpp in Sources */,
 				A73FFDA21835470200F6EAAB /* gcode.cpp in Sources */,
@@ -412,6 +419,7 @@
 				A771FA68185D754700D104D4 /* main.cpp in Sources */,
 				A771FA69185D757900D104D4 /* gcode.cpp in Sources */,
 				A771FA6A185D758400D104D4 /* easygl.cpp in Sources */,
+				A771FA73185D82BF00D104D4 /* stl.cpp in Sources */,
 				A771FA6B185D758E00D104D4 /* path.c in Sources */,
 				A771FA6C185D759300D104D4 /* interpolator.c in Sources */,
 			);

@@ -28,36 +28,12 @@
     IBOutlet NSSlider* speed;
     IBOutlet NSTextField* debugtext;
     
-    path* currentPath;
-    outpath p;
-    
-    // camera handling
-	GLfloat worldRotation [4];
-	GLfloat objectRotation [4];
-
-    // spin
-	GLfloat rRot [3];
-	GLfloat rVel [3];
-	GLfloat rAccel [3];
-    
-    //frame timer
     NSTimer* timer;
     NSTimer* postimer;
     
     NSPoint drag;
     NSPoint startcam;
-    
-    //easyobj* obj;
-    
-    GLfloat j1,j2,j3;
-    
-    //recCamera camera;
-    //recVec cam;
     easygl renderer;
-    int curr_pos;
-    int frame;
-    int display;
-    GLfloat shapeSize;
 }
 
 -(IBAction)stop:(id)sender;

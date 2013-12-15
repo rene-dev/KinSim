@@ -46,21 +46,23 @@
     NSRect rectView = [self bounds];
     renderer.viewportSize.y = rectView.size.height;
 	renderer.viewportSize.x = rectView.size.width;
-    
+    /*
     [debugtext setStringValue:[NSString stringWithFormat:@"%f\n%f\n%f",j1,j2,j3]];
+    
     curr_pos += (int)[speed floatValue];
     
     if(curr_pos < 0){
-        curr_pos = p.length - 1;
+        renderer.curr_pos = 100 - 1;//todo: laenge wieder einbauen
     }
-    if(curr_pos >= p.length){
+    if(curr_pos >= 100){
         curr_pos = 0;
     }
     if([speed floatValue] != 0){
-        [pos setFloatValue:curr_pos * 100 / p.length];
+        [pos setFloatValue:curr_pos * 100 / 100];
     }else{
         curr_pos = [pos floatValue]/100*(p.length-1);
     }
+    */
     renderer.draw();
 }
 
@@ -75,12 +77,12 @@
 }
 
 -(IBAction)send:(id)sender{
-    int i1 = -j1 / 0.055;
-    int i2 =  j2 / 0.038;
-    int i3 =  j3 / 0.038;
+    //int i1 = -j1 / 0.055;
+    //int i2 =  j2 / 0.038;
+    //int i3 =  j3 / 0.038;
     
     char buffer[1024];
-    snprintf(buffer, sizeof(buffer), "D %i %i %i %i %i %i\n", i1, i2, i3, 0, 0, 0);
+    //snprintf(buffer, sizeof(buffer), "D %i %i %i %i %i %i\n", i1, i2, i3, 0, 0, 0);
     NSLog(@"%@",[NSString stringWithCString:buffer encoding:NSASCIIStringEncoding]);
     swrite(buffer);
 }
@@ -107,6 +109,7 @@
 
 - (void) newPath:(path*)newpath
 {
+    /*
     display = NO;
     free(p.jointpos1);
     free(p.jointpos2);
@@ -116,6 +119,7 @@
     currentPath = newpath;
     //p = interpol(currentPath);
     display = YES;
+    */
 }
 
 @end
