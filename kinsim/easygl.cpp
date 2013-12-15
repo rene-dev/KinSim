@@ -147,23 +147,23 @@ void easygl::drawRobot()
     glPushMatrix();
     glRotatef(j1, 0, 1, 0);
     drawBox(0.5, 2.45, 0.5);
-    drawStl(&sphere);
+    sphere.draw();
 
     glTranslatef(0, 2.45, 0);
     glRotatef(j2, 1, 0, 0);
     drawBox(0.5, 1.9, 0.5);
-    drawStl(&sphere);
+    sphere.draw();
 
     glTranslatef(0, 1.9, 0);
     glRotatef(j3, 1, 0, 0);
     drawBox(0.5, 1.9, 0.5);
-    drawStl(&sphere);
+    sphere.draw();
 
     //glTranslatef(0, 1.9, 0);
     //glRotatef(j4, 1, 0, 0);
     //glRotatef(j5+90, 0, 1, 0);
     //drawBox(0.1, 1.15, 0.7);
-    //drawStl(&sphere);
+    //sphere.draw();
     glPopMatrix();
 }
 
@@ -186,26 +186,4 @@ void easygl::drawGrid()
         glVertex3f(2.5, 0, i); glVertex3f(-2.5, 0, i);
     }
     glEnd();
-}
-
-void easygl::drawStl(stl* obj)
-{
-    if(!obj)
-    	return;
-
-	glEnable(GL_LIGHTING);
-
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, glm::value_ptr(obj->color));
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, glm::value_ptr(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f)));
-	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 16.0f);
-
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_NORMAL_ARRAY);
-    glVertexPointer(3, GL_FLOAT, sizeof(glm::vec3), obj->vertices.data());
-	glNormalPointer(GL_FLOAT, sizeof(glm::vec3), obj->normals.data());
-    glDrawArrays(GL_TRIANGLES, 0, (GLsizei)obj->vertices.size());
-    glDisableClientState(GL_NORMAL_ARRAY);
-    glDisableClientState(GL_VERTEX_ARRAY);
-
-    glDisable(GL_LIGHTING);
 }

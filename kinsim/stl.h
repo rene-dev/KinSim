@@ -12,6 +12,20 @@
 #include <string>
 #include <vector>
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/quaternion.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <iostream>
+#include <fstream>
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glext.h>
+#else
+#include <GL/gl.h>
+#include <GL/glext.h>
+#endif
 
 class stl
 {
@@ -24,6 +38,7 @@ public:
 	~stl();
 	
 	void load(std::string filename, glm::vec4 color);
+    void draw();
 };
 
 #endif

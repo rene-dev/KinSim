@@ -59,7 +59,6 @@ private:
 	void drawRobot();
 	void drawAxis();
 	void drawGrid();
-	void drawStl(stl* obj);
 };
 
 #endif
