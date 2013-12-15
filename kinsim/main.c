@@ -80,6 +80,7 @@ int main(void)
         glfwGetFramebufferSize(window, &width, &height);
         camera.viewHeight = height;
         camera.viewWidth = width;
+        updateCamera(&camera, &shapeSize);
         easydraw(&cam,&display,&curr_pos,&j1,&j2,&j3,&p,currentPath);
         glfwSwapBuffers(window);
         glfwPollEvents();
