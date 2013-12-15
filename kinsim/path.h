@@ -18,33 +18,33 @@
 extern "C" {
 #endif
 
-struct vec{
+typedef struct {
 	double axis_pos[AXIS];
 	double joint_pos[JOINTS];
-    enum{
+    enum {
 		axis,
 		joint,
 		both,
 		invalid
-	}type;
-};
+	} type;
+} vec;
 
-struct path{
-	struct vec pos;
-	struct path* next;
-	struct path* prev;
-};
+typedef struct path_t {
+	vec pos;
+	struct path_t* next;
+	struct path_t* prev;
+} path;
     
-struct outpath{
+typedef struct {
     double* jointpos1;
     double* jointpos2;
     double* jointpos3;
     int length;
-};
+} outpath;
 
-void append(struct path** A, struct vec B);
-void insert(struct path* A, struct vec B);
-void freepath(struct path* p);
+void append(path** A, vec B);
+void insert(path* A, vec B);
+void freepath(path* p);
 
 #ifdef __cplusplus
 }

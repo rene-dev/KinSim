@@ -23,18 +23,18 @@ namespace g{
     enum{x,y,z}axis;
 }
 
-struct path* gcode(const char *filename){
+path* gcode(const char *filename){
     FILE *f = fopen(filename, "r");
     char c;
     string word;
-    struct path* result = 0;
-    struct vec newvec;
+    path* result = 0;
+    vec newvec;
     float x = 0,y = 0,z = 0;
     bool linedone = true;
-    
+
     word.clear();
     g::next = g::any;
-    
+
     while (!feof(f)) {
         c = fgetc(f);
         switch (g::next) {
@@ -68,7 +68,7 @@ struct path* gcode(const char *filename){
             default:
                 break;
         }
-        
+
         switch (c) {
             case 'g':
                 g::next = g::code;
@@ -109,7 +109,7 @@ struct path* gcode(const char *filename){
                 break;
         }
     }
-    
+
     if(word.length() > 0){
         newvec.type = vec::axis;
         newvec.axis_pos[0] = x;

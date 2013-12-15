@@ -11,6 +11,6 @@
 #ifndef kinsim_gcode_h
 #define kinsim_gcode_h
 
-struct path* gcode(const char *);
+path* gcode(const char *);
 
 #endif

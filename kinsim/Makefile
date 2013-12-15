@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-g -c -Wall `pkg-config --cflags --static glfw3`
 LDFLAGS=`pkg-config --static --libs glfw3`
-SOURCES=main.c easygl.cpp path.c socket.c interpolator.c list.cpp gcode.cpp
+SOURCES=main.cpp easygl.cpp stl.cpp path.c socket.c interpolator.c list.cpp gcode.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=sim
 

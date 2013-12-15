@@ -3,6 +3,10 @@
 #include <stdlib.h>
 #include "interpolator.h"
 
+#ifndef M_PI
+#define M_PI 3.14159f
+#endif
+
 struct max_joint_steps{
 	double step[JOINTS];
 };
@@ -15,8 +19,8 @@ struct tool_offset{
 	double offset[AXIS];
 };
 
-struct vec split(struct vec A, struct vec B, int steps){
-	struct vec C;
+vec split(vec A, vec B, int steps){
+	vec C;
 
 	for(int i = 0; i < AXIS; i++){
 		C.axis_pos[i] = A.axis_pos[i] + (B.axis_pos[i] - A.axis_pos[i]) / steps;
@@ -24,15 +28,15 @@ struct vec split(struct vec A, struct vec B, int steps){
 
 	return(C);
 }
-/*struct vec tfkin(struct vec A, struct tool_offset t){
-	struct vec a;
+/*vec tfkin(vec A, struct tool_offset t){
+	vec a;
 	a.axis_pos[0] = A.axis_pos[0] + t.offset[0];
 }*/
 
-//struct vec fikin(struct vec A, struct tool_offset t){}
+//vec fikin(vec A, struct tool_offset t){}
 
-struct vec fkin(struct vec A){ // forward kin axis -> joints
-	struct vec a = A;
+vec fkin(vec A){ // forward kin axis -> joints
+	vec a = A;
 	double tmp;
 
 
@@ -79,15 +83,15 @@ struct vec fkin(struct vec A){ // forward kin axis -> joints
 	a.joint_pos[0] = atan2(A.axis_pos[1], A.axis_pos[0]);
 	a.joint_pos[1] = tjoint1 + 3.141526/2 - tjoint2/2 - 3.141526/4;
 	a.joint_pos[2] = tjoint2 + 3.141526;
-    
+
     a.joint_pos[2] = a.joint_pos[2] + a.joint_pos[1];
 
-    
+
 	return(a);
 }
 
-struct vec ikin(struct vec a){ // inverse kin joints -> axis
-	struct vec A = a;
+vec ikin(vec a){ // inverse kin joints -> axis
+	vec A = a;
 
 	// wire kin:
 	// A     B
@@ -125,7 +129,7 @@ struct vec ikin(struct vec a){ // inverse kin joints -> axis
 	return(a);
 }
 
-int check_joint_steps(struct vec A, struct vec B, struct max_joint_steps max_j_s){
+int check_joint_steps(vec A, vec B, struct max_joint_steps max_j_s){
 	for(int i = 0; i < JOINTS; i++){
 		if(fabs(A.joint_pos[i] - B.joint_pos[i]) > max_j_s.step[i]){
 			return(1);
@@ -134,7 +138,7 @@ int check_joint_steps(struct vec A, struct vec B, struct max_joint_steps max_j_s
 	return(0);
 }
 
-int check_axis_steps(struct vec A, struct vec B, struct min_axis_steps min_a_s){
+int check_axis_steps(vec A, vec B, struct min_axis_steps min_a_s){
 	for(int i = 0; i < AXIS; i++){
 		if(fabs(A.axis_pos[i] - B.axis_pos[i]) > min_a_s.step[i]){
 			return(1);
@@ -143,8 +147,8 @@ int check_axis_steps(struct vec A, struct vec B, struct min_axis_steps min_a_s){
 	return(0);
 }
 
-int intp(struct path* A, struct max_joint_steps max_j_s, struct min_axis_steps min_a_s){
-	struct path* p = A;
+int intp(path* A, struct max_joint_steps max_j_s, struct min_axis_steps min_a_s){
+	path* p = A;
 	int steps = 0;
 	int tmp = 0;
 
@@ -180,7 +184,7 @@ int intp(struct path* A, struct max_joint_steps max_j_s, struct min_axis_steps m
 	return(0);
 }
 
-int no_jump(struct path* AB){
+int no_jump(path* AB){
 	double tmp;
 	while(AB && AB->next){
 		tmp = round((AB->next->pos.joint_pos[0] - AB->pos.joint_pos[0]) / M_PI);
@@ -190,9 +194,8 @@ int no_jump(struct path* AB){
 	return(0);
 }
 
-struct outpath interpol(struct path* AB){
-    struct outpath p;
-	struct path* head = AB;
+void interpol(path* AB){
+	path* head = AB;
 
 	struct max_joint_steps max_j_s; // min axis res
 	max_j_s.step[0] = 1 / 180 * 3.141526; // 0.1 deg res -> rad
@@ -204,36 +207,25 @@ struct outpath interpol(struct path* AB){
 	min_a_s.step[1] = 1; // 0.1 mm res
 	min_a_s.step[2] = 1; // 0.1 mm res
 
-    
+
     intp(AB, max_j_s, min_a_s);
-    
+
 	int i = 0;
 	head = AB;
 	while(AB){
 		i++;
 		AB = AB->next;
 	}
-    p.length = i;
 	AB = head;
 
-	double *joint_pos_0 = (double *) malloc(sizeof(double) * i);
-	double *joint_pos_1 = (double *) malloc(sizeof(double) * i);
-	double *joint_pos_2 = (double *) malloc(sizeof(double) * i);
-    
-    p.jointpos1 = joint_pos_0;
-    p.jointpos2 = joint_pos_1;
-    p.jointpos3 = joint_pos_2;
-    
 	i = 0;
 	while(AB){
-		joint_pos_0[i] = AB->pos.joint_pos[0]/3.1415*180;
-		joint_pos_1[i] = AB->pos.joint_pos[1]/3.1415*180;
-		joint_pos_2[i] = AB->pos.joint_pos[2]/3.1415*180;
+		AB->pos.joint_pos[0]/=3.1415*180;
+		AB->pos.joint_pos[1]/=3.1415*180;
+		AB->pos.joint_pos[2]/=3.1415*180;
 
 		i++;
 		AB = AB->next;
 	}
-
-	return(p);
 }
 

@@ -15,7 +15,7 @@
 extern "C" {
 #endif
 
-struct outpath interpol(struct path* AB);
+void interpol(path* AB);
     
 #ifdef __cplusplus
 }

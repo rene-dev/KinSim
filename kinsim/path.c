@@ -10,9 +10,9 @@
 #include <stdlib.h>
 #include "path.h"
 
-void insert(struct path* A, struct vec B){
-	struct path* tmp = A->next;
-	A->next = (struct path *)malloc(sizeof(struct path));
+void insert(path* A, vec B){
+	path* tmp = A->next;
+	A->next = (path *)malloc(sizeof(path));
 	A->next->pos = B;
 	A->next->next = tmp;
 	A->next->prev = A;
@@ -21,10 +21,10 @@ void insert(struct path* A, struct vec B){
 	}
 }
 
-void append(struct path** A, struct vec B){
-    struct path* tmp = *A;
+void append(path** A, vec B){
+    path* tmp = *A;
     if(!tmp){
-        tmp = (struct path *)malloc(sizeof(struct path));
+        tmp = (path *)malloc(sizeof(path));
         tmp->next = 0;
         tmp->prev = 0;
         tmp->pos = B;
@@ -34,14 +34,14 @@ void append(struct path** A, struct vec B){
     while(tmp->next){
         tmp = tmp->next;
     }
-	tmp->next = (struct path *)malloc(sizeof(struct path));
+	tmp->next = (path *)malloc(sizeof(path));
 	tmp->next->pos = B;
     tmp->next->next = 0;
 	tmp->next->prev = *A;
 }
 
-void freepath(struct path* p){
-    struct path* tmp;
+void freepath(path* p){
+    path* tmp;
     while(p){
         if(p)
             tmp = p;
