@@ -15,15 +15,15 @@
     NSPoint location = [self convertPoint:[theEvent locationInWindow] fromView:self];
     drag.x = location.x;
     drag.y = location.y;
-    startcam.x = cam.x;
-    startcam.y = cam.y;
+    //startcam.x = cam.x;
+    //startcam.y = cam.y;
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent
 {
     NSPoint location = [self convertPoint:[theEvent locationInWindow] fromView:self];
-    cam.x = location.x-drag.x+startcam.x;
-    cam.y = drag.y-location.y+startcam.y;
+    //cam.x = location.x-drag.x+startcam.x;
+    //cam.y = drag.y-location.y+startcam.y;
 }
 
 - (void)scrollWheel:(NSEvent *)theEvent
@@ -31,35 +31,39 @@
 	float wheelDelta = [theEvent deltaX] +[theEvent deltaY] + [theEvent deltaZ];
 	if (wheelDelta)
 	{
-		GLfloat deltaAperture = wheelDelta * -camera.aperture / 200.0f;
-		camera.aperture += deltaAperture;
-		if (camera.aperture < 0.1) // do not let aperture <= 0.1
-			camera.aperture = 0.1;
-		if (camera.aperture > 179.9) // do not let aperture >= 180
-			camera.aperture = 179.9;
-		updateProjection(&camera,&shapeSize); // update projection matrix
-		//[self setNeedsDisplay: YES];
+		GLfloat deltaAperture = wheelDelta * -renderer.fieldOfView / 200.0f;
+		renderer.fieldOfView += deltaAperture;
+		if (renderer.fieldOfView < 0.1) // do not let aperture <= 0.1
+			renderer.fieldOfView = 0.1;
+		if (renderer.fieldOfView > 179.9) // do not let aperture >= 180
+			renderer.fieldOfView = 179.9;
 	}
+    
 }
 
 - (void)animationTimer:(NSTimer *)timer
 {
+    NSRect rectView = [self bounds];
+    renderer.viewportSize.y = rectView.size.height;
+	renderer.viewportSize.x = rectView.size.width;
+    /*
     [debugtext setStringValue:[NSString stringWithFormat:@"%f\n%f\n%f",j1,j2,j3]];
+    
     curr_pos += (int)[speed floatValue];
     
     if(curr_pos < 0){
-        curr_pos = p.length - 1;
+        renderer.curr_pos = 100 - 1;//todo: laenge wieder einbauen
     }
-    if(curr_pos >= p.length){
+    if(curr_pos >= 100){
         curr_pos = 0;
     }
     if([speed floatValue] != 0){
-        [pos setFloatValue:curr_pos * 100 / p.length];
+        [pos setFloatValue:curr_pos * 100 / 100];
     }else{
         curr_pos = [pos floatValue]/100*(p.length-1);
     }
-    
-    easydraw(&cam,&display,&curr_pos,&j1,&j2,&j3,&p,currentPath);
+    */
+    renderer.draw();
 }
 
 -(IBAction)stop:(id)sender{
@@ -73,12 +77,12 @@
 }
 
 -(IBAction)send:(id)sender{
-    int i1 = -j1 / 0.055;
-    int i2 =  j2 / 0.038;
-    int i3 =  j3 / 0.038;
+    //int i1 = -j1 / 0.055;
+    //int i2 =  j2 / 0.038;
+    //int i3 =  j3 / 0.038;
     
     char buffer[1024];
-    snprintf(buffer, sizeof(buffer), "D %i %i %i %i %i %i\n", i1, i2, i3, 0, 0, 0);
+    //snprintf(buffer, sizeof(buffer), "D %i %i %i %i %i %i\n", i1, i2, i3, 0, 0, 0);
     NSLog(@"%@",[NSString stringWithCString:buffer encoding:NSASCIIStringEncoding]);
     swrite(buffer);
 }
@@ -86,10 +90,11 @@
 
 - (void) prepareOpenGL
 {
-    NSRect rectView = [self bounds];
-	camera.viewHeight = rectView.size.height;
-	camera.viewWidth = rectView.size.width;
-    easyinit(&camera,&cam,&shapeSize,&frame,&curr_pos,&display);
+    NSString *defaultgcode = [[NSBundle mainBundle] pathForResource:@"gcode" ofType:@"ngc"];
+    renderer.currentPath = gcode([defaultgcode cStringUsingEncoding:NSASCIIStringEncoding]);
+    interpol(renderer.currentPath);
+    renderer.robotState = &renderer.currentPath->pos;
+    renderer.init();
     timer = [NSTimer
              timerWithTimeInterval:(1.0f/60.0f)
              target:self
@@ -102,8 +107,9 @@
 	[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSEventTrackingRunLoopMode];
 }
 
-- (void) newPath:(struct path*)newpath
+- (void) newPath:(path*)newpath
 {
+    /*
     display = NO;
     free(p.jointpos1);
     free(p.jointpos2);
@@ -111,15 +117,9 @@
     freepath(currentPath);
     
     currentPath = newpath;
-    p = interpol(currentPath);
+    //p = interpol(currentPath);
     display = YES;
-}
-
-- (void)windowDidResize:(NSNotification *)notification{
-    NSRect rectView = [self bounds];
-	camera.viewHeight = rectView.size.height;
-	camera.viewWidth = rectView.size.width;
-    updateCamera(&camera,&shapeSize);
+    */
 }
 
 @end

@@ -166,6 +166,6 @@ void easygl::drawStl(stl* obj)
 	glColor4fv(glm::value_ptr(obj->color));
     glEnableClientState(GL_VERTEX_ARRAY);
     glVertexPointer(3, GL_FLOAT, sizeof(glm::vec3), obj->vertices.data());
-    glDrawArrays(GL_TRIANGLES, 0, obj->vertices.size());
+    glDrawArrays(GL_TRIANGLES, 0, (GLsizei)obj->vertices.size());
     glDisableClientState(GL_VERTEX_ARRAY);
 }
