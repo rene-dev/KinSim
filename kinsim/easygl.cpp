@@ -46,6 +46,7 @@ void easygl::init()
 	aspectRatio = 1.0;
 
     glEnable(GL_LINE_SMOOTH);
+    glLineWidth(2.0f);
 
     //obj = stl("/Users/crinq/Dropbox/maschinen/knuth/pumpe.stl");
 }
@@ -57,7 +58,7 @@ void easygl::draw()
 		viewportSize.y = 1;
 	aspectRatio = (float)viewportSize.x / (float)viewportSize.y;
 
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -94,6 +95,9 @@ void easygl::drawBox(GLdouble width, GLdouble height, GLdouble depth)
 
 void easygl::drawPath()
 {
+	if(!currentPath)
+		return;
+		
     glBegin(GL_LINE_STRIP);
     glColor3f(1, 1, 0);
     path* tmp = currentPath;
@@ -107,6 +111,9 @@ void easygl::drawPath()
 
 void easygl::drawRobot()
 {
+	if(!robotState)
+		return;
+		
     float j1 = -robotState->joint_pos[0] - 90;
     float j2 = robotState->joint_pos[1] - 45;
     float j3 = robotState->joint_pos[2] - j2 - 45;
