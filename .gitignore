@@ -36,3 +36,9 @@ reportview.xml
 *.swp
 *.o
 sim
+
+*~
+KinSim.depend
+KinSim.layout
+kinsim/bin/
+
