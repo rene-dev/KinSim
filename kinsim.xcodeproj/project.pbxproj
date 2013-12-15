@@ -26,6 +26,14 @@
 		A71938C818319FF6009EFD11 /* interpolator.c in Sources */ = {isa = PBXBuildFile; fileRef = A71938C718319FF6009EFD11 /* interpolator.c */; };
 		A73FFD9F18353CB600F6EAAB /* path.c in Sources */ = {isa = PBXBuildFile; fileRef = A73FFD9E18353CB600F6EAAB /* path.c */; };
 		A73FFDA21835470200F6EAAB /* gcode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A73FFDA11835470200F6EAAB /* gcode.cpp */; };
+		A771FA64185D753600D104D4 /* sim.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A771FA63185D753600D104D4 /* sim.1 */; };
+		A771FA68185D754700D104D4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A771FA5A185D751700D104D4 /* main.cpp */; };
+		A771FA69185D757900D104D4 /* gcode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A73FFDA11835470200F6EAAB /* gcode.cpp */; };
+		A771FA6A185D758400D104D4 /* easygl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87BF0C201836D12300D4ABBC /* easygl.cpp */; };
+		A771FA6B185D758E00D104D4 /* path.c in Sources */ = {isa = PBXBuildFile; fileRef = A73FFD9E18353CB600F6EAAB /* path.c */; };
+		A771FA6C185D759300D104D4 /* interpolator.c in Sources */ = {isa = PBXBuildFile; fileRef = A71938C718319FF6009EFD11 /* interpolator.c */; };
+		A771FA6D185D75A500D104D4 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71938C31831723C009EFD11 /* OpenGL.framework */; };
+		A771FA6F185D762700D104D4 /* libglfw3.3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A771FA6E185D762700D104D4 /* libglfw3.3.0.dylib */; };
 		A7AC763A18357400009DFF34 /* gcode.ngc in Resources */ = {isa = PBXBuildFile; fileRef = A73FFDA4183556E600F6EAAB /* gcode.ngc */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +44,16 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		A771FA5D185D753600D104D4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				A771FA64185D753600D104D4 /* sim.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -83,7 +101,11 @@
 		A73FFDA4183556E600F6EAAB /* gcode.ngc */ = {isa = PBXFileReference; lastKnownFileType = text; path = gcode.ngc; sourceTree = "<group>"; };
 		A73FFDA518355B2D00F6EAAB /* cmot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = cmot.cpp; path = ../kinsim/cmot.cpp; sourceTree = "<group>"; };
 		A73FFDA618355B2D00F6EAAB /* cmot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cmot.h; path = ../kinsim/cmot.h; sourceTree = "<group>"; };
-		A750BF46185D094800899E86 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		A771FA5A185D751700D104D4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A771FA5F185D753600D104D4 /* sim */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sim; sourceTree = BUILT_PRODUCTS_DIR; };
+		A771FA61185D753600D104D4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A771FA63185D753600D104D4 /* sim.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = sim.1; sourceTree = "<group>"; };
+		A771FA6E185D762700D104D4 /* libglfw3.3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw3.3.0.dylib; path = ../../../../usr/local/Cellar/glfw3/3.0.3/lib/libglfw3.3.0.dylib; sourceTree = "<group>"; };
 		A7AC763D18357EBD009DFF34 /* easygl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = easygl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +124,15 @@
 				A71938C618318388009EFD11 /* GLKit.framework in Frameworks */,
 				A71938C41831723C009EFD11 /* OpenGL.framework in Frameworks */,
 				A719388D1831719F009EFD11 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A771FA5C185D753600D104D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A771FA6F185D762700D104D4 /* libglfw3.3.0.dylib in Frameworks */,
+				A771FA6D185D75A500D104D4 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,6 +191,7 @@
 			children = (
 				A71938921831719F009EFD11 /* kinsim */,
 				87BF0C171835A55000D4ABBC /* cmot */,
+				A771FA60185D753600D104D4 /* sim */,
 				A719388B1831719F009EFD11 /* Frameworks */,
 				A719388A1831719F009EFD11 /* Products */,
 				87CCE8DC1847EE92005848A6 /* firmware */,
@@ -171,6 +203,7 @@
 			children = (
 				A71938891831719F009EFD11 /* kinsim.app */,
 				87BF0C161835A55000D4ABBC /* cmot */,
+				A771FA5F185D753600D104D4 /* sim */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,6 +211,7 @@
 		A719388B1831719F009EFD11 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A771FA6E185D762700D104D4 /* libglfw3.3.0.dylib */,
 				A71938C518318388009EFD11 /* GLKit.framework */,
 				A71938C31831723C009EFD11 /* OpenGL.framework */,
 				A719388C1831719F009EFD11 /* Cocoa.framework */,
@@ -200,7 +234,7 @@
 		A71938921831719F009EFD11 /* kinsim */ = {
 			isa = PBXGroup;
 			children = (
-				A750BF46185D094800899E86 /* main.c */,
+				A771FA5A185D751700D104D4 /* main.cpp */,
 				A7AC763D18357EBD009DFF34 /* easygl.h */,
 				87BF0C201836D12300D4ABBC /* easygl.cpp */,
 				87BF0C27183ABB2F00D4ABBC /* socket.h */,
@@ -235,6 +269,15 @@
 				A719389B1831719F009EFD11 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A771FA60185D753600D104D4 /* sim */ = {
+			isa = PBXGroup;
+			children = (
+				A771FA61185D753600D104D4 /* main.cpp */,
+				A771FA63185D753600D104D4 /* sim.1 */,
+			);
+			path = sim;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +317,23 @@
 			productReference = A71938891831719F009EFD11 /* kinsim.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A771FA5E185D753600D104D4 /* sim */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A771FA65185D753600D104D4 /* Build configuration list for PBXNativeTarget "sim" */;
+			buildPhases = (
+				A771FA5B185D753600D104D4 /* Sources */,
+				A771FA5C185D753600D104D4 /* Frameworks */,
+				A771FA5D185D753600D104D4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sim;
+			productName = sim;
+			productReference = A771FA5F185D753600D104D4 /* sim */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -298,6 +358,7 @@
 			targets = (
 				A71938881831719F009EFD11 /* kinsim */,
 				87BF0C151835A55000D4ABBC /* cmot */,
+				A771FA5E185D753600D104D4 /* sim */,
 			);
 		};
 /* End PBXProject section */
@@ -341,6 +402,18 @@
 				87BF0C241836DD9000D4ABBC /* list.cpp in Sources */,
 				A73FFDA21835470200F6EAAB /* gcode.cpp in Sources */,
 				A71938991831719F009EFD11 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A771FA5B185D753600D104D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A771FA68185D754700D104D4 /* main.cpp in Sources */,
+				A771FA69185D757900D104D4 /* gcode.cpp in Sources */,
+				A771FA6A185D758400D104D4 /* easygl.cpp in Sources */,
+				A771FA6B185D758E00D104D4 /* path.c in Sources */,
+				A771FA6C185D759300D104D4 /* interpolator.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +565,42 @@
 			};
 			name = Release;
 		};
+		A771FA66185D753600D104D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/glfw3/3.0.3/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A771FA67185D753600D104D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/glfw3/3.0.3/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -521,6 +630,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		A771FA65185D753600D104D4 /* Build configuration list for PBXNativeTarget "sim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A771FA66185D753600D104D4 /* Debug */,
+				A771FA67185D753600D104D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
