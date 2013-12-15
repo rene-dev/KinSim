@@ -13,6 +13,7 @@
 #import "easygl.h"
 #import "socket.h"
 #import "interpolator.h"
+#import "gcode.h"
 
 @interface KinOpenGLView : NSOpenGLView <NSWindowDelegate>
 
@@ -52,6 +53,7 @@
     
     //recCamera camera;
     //recVec cam;
+    easygl renderer;
     int curr_pos;
     int frame;
     int display;

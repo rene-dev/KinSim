@@ -29,22 +29,24 @@
 - (void)scrollWheel:(NSEvent *)theEvent
 {
 	float wheelDelta = [theEvent deltaX] +[theEvent deltaY] + [theEvent deltaZ];
-	/*if (wheelDelta)
+	if (wheelDelta)
 	{
-		GLfloat deltaAperture = wheelDelta * -camera.aperture / 200.0f;
-		camera.aperture += deltaAperture;
-		if (camera.aperture < 0.1) // do not let aperture <= 0.1
-			camera.aperture = 0.1;
-		if (camera.aperture > 179.9) // do not let aperture >= 180
-			camera.aperture = 179.9;
-		updateProjection(&camera,&shapeSize); // update projection matrix
-		//[self setNeedsDisplay: YES];
+		GLfloat deltaAperture = wheelDelta * -renderer.fieldOfView / 200.0f;
+		renderer.fieldOfView += deltaAperture;
+		if (renderer.fieldOfView < 0.1) // do not let aperture <= 0.1
+			renderer.fieldOfView = 0.1;
+		if (renderer.fieldOfView > 179.9) // do not let aperture >= 180
+			renderer.fieldOfView = 179.9;
 	}
-     */
+    
 }
 
 - (void)animationTimer:(NSTimer *)timer
 {
+    NSRect rectView = [self bounds];
+    renderer.viewportSize.y = rectView.size.height;
+	renderer.viewportSize.x = rectView.size.width;
+    
     [debugtext setStringValue:[NSString stringWithFormat:@"%f\n%f\n%f",j1,j2,j3]];
     curr_pos += (int)[speed floatValue];
     
@@ -59,8 +61,7 @@
     }else{
         curr_pos = [pos floatValue]/100*(p.length-1);
     }
-    
-    //easydraw(&cam,&display,&curr_pos,&j1,&j2,&j3,&p,currentPath);
+    renderer.draw();
 }
 
 -(IBAction)stop:(id)sender{
@@ -87,10 +88,11 @@
 
 - (void) prepareOpenGL
 {
-    NSRect rectView = [self bounds];
-	//camera.viewHeight = rectView.size.height;
-	//camera.viewWidth = rectView.size.width;
-    //easyinit(&camera,&cam,&shapeSize,&frame,&curr_pos,&display);
+    NSString *defaultgcode = [[NSBundle mainBundle] pathForResource:@"gcode" ofType:@"ngc"];
+    renderer.currentPath = gcode([defaultgcode cStringUsingEncoding:NSASCIIStringEncoding]);
+    interpol(renderer.currentPath);
+    renderer.robotState = &renderer.currentPath->pos;
+    renderer.init();
     timer = [NSTimer
              timerWithTimeInterval:(1.0f/60.0f)
              target:self
@@ -114,13 +116,6 @@
     currentPath = newpath;
     //p = interpol(currentPath);
     display = YES;
-}
-
-- (void)windowDidResize:(NSNotification *)notification{
-    NSRect rectView = [self bounds];
-	//camera.viewHeight = rectView.size.height;
-	//camera.viewWidth = rectView.size.width;
-    //updateCamera(&camera,&shapeSize);
 }
 
 @end
