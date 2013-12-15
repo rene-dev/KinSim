@@ -44,6 +44,21 @@
 
 - (void)animationTimer:(NSTimer *)timer
 {
+    [debugtext setStringValue:[NSString stringWithFormat:@"%f\n%f\n%f",j1,j2,j3]];
+    curr_pos += (int)[speed floatValue];
+    
+    if(curr_pos < 0){
+        curr_pos = p.length - 1;
+    }
+    if(curr_pos >= p.length){
+        curr_pos = 0;
+    }
+    if([speed floatValue] != 0){
+        [pos setFloatValue:curr_pos * 100 / p.length];
+    }else{
+        curr_pos = [pos floatValue]/100*(p.length-1);
+    }
+    
     easydraw(&cam,&display,&curr_pos,&j1,&j2,&j3,&p,currentPath);
 }
 
