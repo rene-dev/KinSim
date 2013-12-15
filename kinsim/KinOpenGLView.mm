@@ -15,21 +15,21 @@
     NSPoint location = [self convertPoint:[theEvent locationInWindow] fromView:self];
     drag.x = location.x;
     drag.y = location.y;
-    startcam.x = cam.x;
-    startcam.y = cam.y;
+    //startcam.x = cam.x;
+    //startcam.y = cam.y;
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent
 {
     NSPoint location = [self convertPoint:[theEvent locationInWindow] fromView:self];
-    cam.x = location.x-drag.x+startcam.x;
-    cam.y = drag.y-location.y+startcam.y;
+    //cam.x = location.x-drag.x+startcam.x;
+    //cam.y = drag.y-location.y+startcam.y;
 }
 
 - (void)scrollWheel:(NSEvent *)theEvent
 {
 	float wheelDelta = [theEvent deltaX] +[theEvent deltaY] + [theEvent deltaZ];
-	if (wheelDelta)
+	/*if (wheelDelta)
 	{
 		GLfloat deltaAperture = wheelDelta * -camera.aperture / 200.0f;
 		camera.aperture += deltaAperture;
@@ -40,6 +40,7 @@
 		updateProjection(&camera,&shapeSize); // update projection matrix
 		//[self setNeedsDisplay: YES];
 	}
+     */
 }
 
 - (void)animationTimer:(NSTimer *)timer
@@ -59,7 +60,7 @@
         curr_pos = [pos floatValue]/100*(p.length-1);
     }
     
-    easydraw(&cam,&display,&curr_pos,&j1,&j2,&j3,&p,currentPath);
+    //easydraw(&cam,&display,&curr_pos,&j1,&j2,&j3,&p,currentPath);
 }
 
 -(IBAction)stop:(id)sender{
@@ -87,9 +88,9 @@
 - (void) prepareOpenGL
 {
     NSRect rectView = [self bounds];
-	camera.viewHeight = rectView.size.height;
-	camera.viewWidth = rectView.size.width;
-    easyinit(&camera,&cam,&shapeSize,&frame,&curr_pos,&display);
+	//camera.viewHeight = rectView.size.height;
+	//camera.viewWidth = rectView.size.width;
+    //easyinit(&camera,&cam,&shapeSize,&frame,&curr_pos,&display);
     timer = [NSTimer
              timerWithTimeInterval:(1.0f/60.0f)
              target:self
@@ -102,7 +103,7 @@
 	[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSEventTrackingRunLoopMode];
 }
 
-- (void) newPath:(struct path*)newpath
+- (void) newPath:(path*)newpath
 {
     display = NO;
     free(p.jointpos1);
@@ -111,15 +112,15 @@
     freepath(currentPath);
     
     currentPath = newpath;
-    p = interpol(currentPath);
+    //p = interpol(currentPath);
     display = YES;
 }
 
 - (void)windowDidResize:(NSNotification *)notification{
     NSRect rectView = [self bounds];
-	camera.viewHeight = rectView.size.height;
-	camera.viewWidth = rectView.size.width;
-    updateCamera(&camera,&shapeSize);
+	//camera.viewHeight = rectView.size.height;
+	//camera.viewWidth = rectView.size.width;
+    //updateCamera(&camera,&shapeSize);
 }
 
 @end

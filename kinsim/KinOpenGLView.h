@@ -46,12 +46,12 @@
     NSPoint drag;
     NSPoint startcam;
     
-    easyobj* obj;
+    //easyobj* obj;
     
     GLfloat j1,j2,j3;
     
-    recCamera camera;
-    recVec cam;
+    //recCamera camera;
+    //recVec cam;
     int curr_pos;
     int frame;
     int display;
@@ -60,6 +60,6 @@
 
 -(IBAction)stop:(id)sender;
 -(IBAction)send:(id)sender;
--(void)newPath:(struct path*)newpath;
+//-(void)newPath:(path*)newpath;
 
 @end
