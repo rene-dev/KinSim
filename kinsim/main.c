@@ -26,12 +26,6 @@ int main(void)
     path* currentPath;
     outpath p;
     
-    display = false;
-    free(p.jointpos1);
-    free(p.jointpos2);
-    free(p.jointpos3);
-    freepath(currentPath);
-    
     currentPath = gcode("gcode.ngc");
     p = interpol(currentPath);
     display = true;

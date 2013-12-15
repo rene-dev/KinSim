@@ -12,6 +12,8 @@
 #include <iostream>
 #include <string>
 #include <ctype.h>
+#include <cstdio>
+#include <cstdlib>
 #include "gcode.h"
 
 using namespace std;
@@ -49,13 +51,13 @@ struct path* gcode(const char *filename){
                 }else{
                     switch (g::axis) {
                         case g::x:
-                            x = stof(word);
+                            x = strtof(word.c_str(), NULL);
                             break;
                         case g::y:
-                            y = stof(word);
+                            y = strtof(word.c_str(), NULL);
                             break;
                         case g::z:
-                            z = stof(word);
+                            z = strtof(word.c_str(), NULL);
                             break;
                         default:
                             break;

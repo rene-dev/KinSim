@@ -10,6 +10,7 @@
 #define __kinsim__list__
 
 #include <iostream>
+#include <cstdlib>
 
 template <class T>
 struct list{

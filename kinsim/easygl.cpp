@@ -7,6 +7,8 @@
 //
 
 #include "easygl.h"
+#include <stdlib.h>
+#include <string.h>
 
 // simple cube data
 GLint cube_num_vertices = 8;

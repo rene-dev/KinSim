@@ -12,9 +12,17 @@
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
+
+#ifdef __APPLE__
 #include <OpenGL/gl.h>
 #include <OpenGL/glext.h>
 #include <OpenGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glext.h>
+#include <GL/glu.h>
+#endif
+
 #include <math.h>
 #include "path.h"
 
