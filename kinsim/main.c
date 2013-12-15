@@ -5,25 +5,58 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+recCamera camera;
+GLfloat shapeSize;
+int drag;
+
 static void error_callback(int error, const char* description)
 {
     fputs(description, stderr);
 }
+
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GL_TRUE);
 }
+
+static void mousebutton_callback(GLFWwindow* window, int button, int action, int mods)
+{
+    if (action == GLFW_PRESS && button == GLFW_MOUSE_BUTTON_LEFT)
+        drag = true;
+    if (action == GLFW_RELEASE && button == GLFW_MOUSE_BUTTON_LEFT)
+        drag = false;
+    
+    fflush(stdout);
+}
+
+static void mousepos_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    if(drag){
+        printf("%f %f\n",xpos,ypos);
+    }
+    fflush(stdout);
+}
+
+static void scroll_callback(GLFWwindow * window, double xoffset, double yoffset)
+{
+    GLfloat deltaAperture = yoffset * -camera.aperture / 200.0f;
+    camera.aperture += deltaAperture;
+    if (camera.aperture < 0.1) // do not let aperture <= 0.1
+        camera.aperture = 0.1;
+    if (camera.aperture > 179.9) // do not let aperture >= 180
+        camera.aperture = 179.9;
+    updateProjection(&camera,&shapeSize); // update projection matrix
+}
+
 int main(void)
 {
     int width, height;
-    
-    recCamera camera;
+    drag = 0;
     recVec cam;
     int curr_pos;
     int frame;
     int display;
-    GLfloat shapeSize;
     GLfloat j1,j2,j3;
     path* currentPath;
     outpath p;
@@ -44,6 +77,9 @@ int main(void)
     }
     glfwMakeContextCurrent(window);
     glfwSetKeyCallback(window, key_callback);
+    glfwSetScrollCallback(window, scroll_callback);
+    glfwSetMouseButtonCallback(window,mousebutton_callback);
+    glfwSetCursorPosCallback(window,mousepos_callback);
     
     glfwGetFramebufferSize(window, &width, &height);
     camera.viewHeight = height;
