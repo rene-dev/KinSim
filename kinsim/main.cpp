@@ -12,7 +12,6 @@ const float speed = 5.0f; // movement speed
 const float sensitivity = 0.01f; // mouse sensitivity
 
 easygl renderer;
-double time;
 bool w = false, s = false, a = false, d = false, q = false, e = false;
 glm::vec3 movement;
 int drag;
@@ -99,6 +98,7 @@ int main(void)
     renderer.robotState = &renderer.currentPath->pos;
     renderer.init();
 
+	double time;
     while (!glfwWindowShouldClose(window))
     {
     	double newTime = glfwGetTime();

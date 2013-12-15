@@ -21,8 +21,7 @@
 #include <glm/gtc/quaternion.hpp>
 #include <math.h>
 #include "path.h"
-
-class stl;
+#include "stl.h"
 
 class easygl
 {
@@ -47,6 +46,8 @@ public:
 	void draw();
 
 private:
+	stl sphere;
+
 	void drawBox(GLdouble width, GLdouble height, GLdouble depth);
 	void drawPath();
 	void drawRobot();
