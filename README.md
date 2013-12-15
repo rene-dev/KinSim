@@ -1,10 +1,10 @@
-####KinSim
+#KinSim
 ======
 
-###Kinematik simulator
+##Kinematik simulator
 
-##dependencies
+###dependencies
 
-#OS X
+####OS X
 
 `brew install glfw3 glm`
