@@ -32,7 +32,7 @@ void easygl::init()
     //glEnable(GL_LINE_SMOOTH);
     //glLineWidth(2.0f);
 
-    sphere.load("sphere.stl", glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
+    //sphere.load("sphere.stl", glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
 }
 
 void easygl::draw(float period)
